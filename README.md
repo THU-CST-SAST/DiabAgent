@@ -15,7 +15,7 @@ This repository provides the main experiment's **212 tasks**, a physiological si
 | Agent schedule | Hourly decisions and up to six additional decisions per local day |
 | Evaluation | COGI-4-8/v1: `0.50 S_TIR + 0.35 S_Hypo + 0.15 S_GV` |
 
-The scenarios cover meals and digestion, exercise, changing insulin requirements, infusion failures, and sensor disturbances. Task definitions and model profiles are available in [`benchmark/main212/`](benchmark/main212/) and [`benchmark/models.json`](benchmark/models.json).
+The scenarios cover meals and digestion, exercise, changing insulin requirements, infusion failures, and sensor disturbances. The task set is in [`benchmark/main212/`](benchmark/main212/); harness defaults are in [`configs/harnesses/`](configs/harnesses/).
 
 ## Installation
 
@@ -42,29 +42,45 @@ Supply the installed native executable through `--binary`. Platform-specific bin
 
 ## Running the Benchmark
 
-The five model profiles use the following harnesses:
+Choose a harness and supply the model identifier exposed by your provider. The harness controls the native tool loop, Skill access, memory, and evidence collection; the benchmark supplies the tasks and evaluation protocol.
 
-| Model | Profile | Native CLI |
-|---|---|---|
-| Claude Opus 5.5 | `opus55` | Claude Code 2.1.296 |
-| GPT 6.1 Sol | `gpt61` | Codex 0.163.0 |
-| DeepSeek 4.1 Flash | `deepseek41` | Claude Code 2.1.296 |
-| Kimi K3.1 Pro | `kimi31` | Claude Code 2.1.296 |
-| GLM 5.3 Flash | `glm53flash` | Claude Code 2.1.296 |
+| Harness | CLI | Provider Interface | Defaults |
+|---|---|---|---|
+| `claude-code` | Claude Code 2.1.296 | Messages-compatible streaming and tools | [Configuration](configs/harnesses/claude-code.json) |
+| `codex` | Codex 0.163.0 | Responses-compatible streaming and tools | [Configuration](configs/harnesses/codex.json) |
 
-Provide a credential and a compatible HTTPS endpoint for the selected model. Claude Code profiles use a Messages-compatible endpoint; the Codex profile uses a Responses-compatible endpoint. Model inference is billed by your provider.
+`--model` is passed to your provider and checked against its responses. Model inference is billed by your provider. Configure a credential and inspect the task list:
 
 ```bash
 node scripts/benchmark.mjs list
 
 read -s DIABAGENT_API_KEY
 export DIABAGENT_API_KEY
+```
 
-node scripts/benchmark.mjs run --model opus55 --limit 1 \
+### Claude Code Harness
+
+```bash
+node scripts/benchmark.mjs run \
+  --harness claude-code --model YOUR_MODEL_ID --limit 1 \
   --binary /absolute/path/to/claude.exe \
-  --endpoint https://your-provider.example \
-  --parallel 1 --out artifacts/opus55-check
+  --endpoint https://your-messages-provider.example \
+  --parallel 1 --out artifacts/my-model-code
+```
 
+### Codex Harness
+
+```bash
+node scripts/benchmark.mjs run \
+  --harness codex --model YOUR_MODEL_ID --limit 1 \
+  --binary /absolute/path/to/codex \
+  --endpoint https://your-responses-provider.example/v1 \
+  --parallel 1 --out artifacts/my-model-codex
+```
+
+Codex accepts an optional `--model-catalog PATH.json` for provider-specific model capabilities. See the [harness guide](docs/RUNNING.md) for endpoint requirements, CLI setup, and catalog configuration. After running your chosen harness, clear the credential from the shell:
+
+```bash
 unset DIABAGENT_API_KEY
 ```
 
@@ -124,6 +140,26 @@ The constructor API is implemented in [`sim/src/sim/instance.mjs`](sim/src/sim/i
 
 ## Trajectories and Reports
 
+### Check Progress and Scores
+
+Run the following command during or after an evaluation:
+
+```bash
+node scripts/benchmark.mjs results --run artifacts/my-model-code
+```
+
+It prints completion counts, mean COGI, and mean `S_TIR`, `S_Hypo`, and `S_GV`. The command also writes `summary.json`, `summary.csv`, and per-task `tasks.csv` into the run directory. Mean scores use completed, audit-valid trajectories; progress counts cover the full planned task set.
+
+### Open the Interactive Report
+
+```bash
+node scripts/benchmark.mjs results --run artifacts/my-model-code --report
+```
+
+Open **`artifacts/my-model-code/report/index.html`** in a browser. Use the task selector and timeline to inspect glucose, sensor readings, treatments, events, and decision rationales. This report uses the benchmark's existing trajectory player. Run the command again to include newly completed tasks. The same command works on baseline output directories.
+
+### Inspect Individual Trajectories
+
 Each model run writes a `STATUS.json` and per-task records:
 
 | File | Contents |
@@ -147,14 +183,16 @@ Open the generated `index.html` in a browser.
 ## Repository Structure
 
 ```text
-benchmark/          Main212 tasks, protocol, and model profiles
+benchmark/          Main212 tasks and model-independent evaluation protocol
+configs/harnesses/  Claude Code and Codex runtime defaults
+harnesses/          Native tool loops, model transport, and audits
 sim/src/            Simulator, task constructors, policies, and scoring
 sim/model/          Physiological model
 sim/knowledge/      Patient, device, insulin, and sensor specifications
-sim/harnesses/      Native Claude Code and Codex integrations
 sim/skills/         Skill source pin and benchmark edition builders
 sim/scripts/video/  Interactive trajectory player
 scripts/            Benchmark, baseline, and task-construction commands
+experiments/paper/  Model configurations used in the paper
 examples/           Example task specifications
 test/, sim/test/    Release, simulator, and protocol tests
 docs/               Detailed guides and release information
@@ -162,13 +200,14 @@ docs/               Detailed guides and release information
 
 ## Documentation
 
-Additional guides are currently available in Chinese:
+Guides and protocol references:
 
 - [Task construction](docs/TASKS.md)
-- [Runtime and harness configuration](docs/RUNNING.md)
+- [Runtime and harness configuration](docs/RUNNING.md) (English)
 - [Experiment protocol](docs/PROTOCOL.md)
 - [Baseline policies and schedules](docs/BASELINES.md)
 - [Release information](docs/RELEASE.md)
+- [Paper experiment configurations](experiments/paper/README.md) (English)
 
 ## License and Research Use
 

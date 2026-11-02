@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {installCodexKnowledge} from './knowledge.mjs';
+import {benchmarkCatalog} from './catalog.mjs';
 
 export const CODEX_VERSION='codex-cli 0.163.0';
 export function inspectCodexBinary(binary){
@@ -17,7 +18,7 @@ export function inspectCodexBinary(binary){
 
 /** Native app-server only: never sends model HTTP or loads the user's coding settings. */
 export class CodexRpc {
-  constructor({binary,root,key,endpoint='https://api.openai.com/v1',onMessage=()=>{},timeoutMs=240000,skillAssetsRoot=null,logSecrets=[]}){
+  constructor({binary,root,key,endpoint='https://api.openai.com/v1',onMessage=()=>{},timeoutMs=240000,skillAssetsRoot=null,logSecrets=[],model='gpt-6.1-sol',catalogFile=null}){
     assert(path.isAbsolute(root)&&!fs.existsSync(root));assert(typeof key==='string'&&key.length>0);
     const url=new URL(endpoint);assert(url.protocol==='https:'||['127.0.0.1','localhost'].includes(url.hostname));
     if(url.protocol==='http:')assert.equal(key,'offline-dummy-not-a-credential');
@@ -28,7 +29,8 @@ export class CodexRpc {
     const args=['app-server','--stdio','--config','model_provider="benchmark"','--config','model_providers.benchmark='+JSON.stringify(provider)];
     // CLI config expects TOML; a JSON object is not an inline TOML table.
     args[args.length-1]='model_providers.benchmark={'+Object.entries(provider).map(([k,v])=>k+'='+JSON.stringify(v)).join(',')+'}';
-    const catalog=fileURLToPath(new URL('./model-catalog.json',import.meta.url));
+    const catalog=root+'/model-catalog.json';
+    fs.writeFileSync(catalog,JSON.stringify(benchmarkCatalog(model,catalogFile),null,2));
     args.push('--config','model_catalog_json='+JSON.stringify(catalog),'--config','agents.enabled=false',
       '--config','tools.experimental_request_user_input.enabled=false',
       '--config','include_environment_context=false','--config','include_environment_context_time=false');

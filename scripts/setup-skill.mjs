@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {execFileSync} from 'node:child_process';
 import {reviseNativePrimerSkill} from '../sim/src/bench/revise-native-primer-skill.mjs';
 import {verifySkillAssets,hash} from '../sim/src/bench/skill-assets.mjs';
-import {verifyNativeSkillEdition} from '../sim/harnesses/claude-code-decision-loop/native-skill.mjs';
+import {verifyNativeSkillEdition} from '../harnesses/claude-code-decision-loop/native-skill.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 const source=JSON.parse(fs.readFileSync(root+'sim/skills/source.json'));

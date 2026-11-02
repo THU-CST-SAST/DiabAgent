@@ -99,8 +99,8 @@ export function assertCodexFactualRequest(body,{request,system,knowledge,respons
   return {system_exact:true,factual_history_exact:true,native_entry_exact:true,only_registered_native_catalog:true};
 }
 
-export function createCodexDecisionLoopModel({config,root,key,binary,skillAssetsRoot,endpoint='https://api.openai.com/v1',offline=false,timeoutMs=240000,maxTurns=7,initialCheckpoint=null,initialLogicalMs=null,initialNativeState=null}){
-  assert.equal(config.model,'gpt-6.1-sol');assert.equal(config.reasoning_effort,'high');assert.equal(config.max_tokens,16384);assert.equal(config.strict_tools,true);
+export function createCodexDecisionLoopModel({config,root,key,binary,skillAssetsRoot,endpoint='https://api.openai.com/v1',offline=false,timeoutMs=240000,maxTurns=7,initialCheckpoint=null,initialLogicalMs=null,initialNativeState=null,catalogFile=null}){
+  assert(typeof config.model==='string'&&/^[A-Za-z0-9][A-Za-z0-9._:/-]*$/.test(config.model));assert.equal(config.reasoning_effort,'high');assert.equal(config.max_tokens,16384);assert.equal(config.strict_tools,true);
   assert.equal(maxTurns,7);assert.equal(timeoutMs,240000);assert(!fs.existsSync(root));fs.mkdirSync(root);
   assert(initialLogicalMs===null||Number.isFinite(initialLogicalMs)&&initialLogicalMs>0&&initialLogicalMs<=timeoutMs&&!initialCheckpoint);
   assert(!initialNativeState||!initialCheckpoint&&initialLogicalMs===initialNativeState.state.remaining_logical_ms);
@@ -144,7 +144,7 @@ export function createCodexDecisionLoopModel({config,root,key,binary,skillAssets
     }
     s.held={id:message.id,call,raw};pending?.resolve(s.held);
   }
-  const model={name:config.name??'gpt-6.1-sol native Codex',adapter:'codex',config,
+  const model={name:config.name??config.model+' native Codex',adapter:'codex',config,
     async complete(request){
       assert(!closed&&!busy,'Closed or concurrent Codex decision');busy=true;const started=Date.now();let promise,logicalAllowance=timeoutMs;
       try{
@@ -166,7 +166,7 @@ export function createCodexDecisionLoopModel({config,root,key,binary,skillAssets
           }
           const tools=[...request.tools.map(t=>({...t,input_schema:compileToolContract(t,'openai').schema})),...CODEX_KNOWLEDGE_TOOLS];
           const toolPolicy=tools.map(t=>({...t,strict:request.tools.some(c=>c.name===t.name)&&(config.strict_tool_names==null||config.strict_tool_names.includes(t.name))}));
-          s.transport=await startCodexTransport({root:dir+'/transport',key,endpoint,offline,toolPolicy,instructions:request.system+'\n\n'+nativeKnowledgeInstructions('detailed-reference-v3'),
+          s.transport=await startCodexTransport({root:dir+'/transport',key,endpoint,offline,toolPolicy,model:config.model,instructions:request.system+'\n\n'+nativeKnowledgeInstructions('detailed-reference-v3'),
             guard:(body,n)=>{assert.equal(body.model,config.model);assert(s.responses.length<maxTurns,'Native7 budget exhausted');
               for(const record of codexNativeRouterErrors(body,{responses:s.responses,toolNames:tools.map(t=>t.name)}))if(!s.knowledgeResults.has(record.call_id)){s.knowledgeResults.set(record.call_id,record.result);fs.appendFileSync(s.dir+'/NATIVE-ROUTER-ERRORS.jsonl',JSON.stringify(record)+'\n');}
               save(dir+'/FACTS-'+n+'.json',{controller_request:s.controllerRequests,...assertCodexFactualRequest(body,{request:s.expected,system:s.expected.system+'\n\n'+nativeKnowledgeInstructions('detailed-reference-v3'),knowledge:s.rpc.knowledge,responses:s.responses,knowledgeResults:s.knowledgeResults})});},
@@ -178,10 +178,10 @@ export function createCodexDecisionLoopModel({config,root,key,binary,skillAssets
               assert(typeof raw.id==='string'&&raw.id&&Array.isArray(raw.output),'Complete native envelope identity/output required');
               if(s.responses.some(r=>r.id===raw.id))continue;s.responses.push(raw);save(dir+'/NATIVE-REPLY-'+s.responses.length+'.json',raw);
             }}});
-          s.rpc=new CodexRpc({binary,root:dir+'/native',key:TRANSPORT_DUMMY,logSecrets:[key],endpoint:s.transport.endpoint,skillAssetsRoot,timeoutMs,onMessage:m=>handle(m,s).catch(e=>pending?.reject(e))});
+          s.rpc=new CodexRpc({binary,root:dir+'/native',key:TRANSPORT_DUMMY,logSecrets:[key],endpoint:s.transport.endpoint,skillAssetsRoot,timeoutMs,model:config.model,catalogFile,onMessage:m=>handle(m,s).catch(e=>pending?.reject(e))});
           if(checkpoint)s.rpc.knowledge.inherit(checkpoint);
           s.rpc.child.on('close',()=>{if(current===s)pending?.reject(new ModelError('Native Codex process exited; original stream retained',{retryable:false}));});
-          const thread=await startBenchmarkThread(s.rpc,{system:request.system+'\n\n'+nativeKnowledgeInstructions('detailed-reference-v3'),tools});s.threadId=thread.thread.id;
+          const thread=await startBenchmarkThread(s.rpc,{system:request.system+'\n\n'+nativeKnowledgeInstructions('detailed-reference-v3'),tools,model:config.model});s.threadId=thread.thread.id;
           const history=checkpoint?checkpoint.history:codexHistory(request.messages);save(dir+'/INJECTED-FACTUAL-HISTORY.json',history);
           await s.rpc.request('thread/inject_items',{threadId:s.threadId,items:history});
           promise=waitProposal(logicalAllowance-(Date.now()-started));promise.catch(()=>{});

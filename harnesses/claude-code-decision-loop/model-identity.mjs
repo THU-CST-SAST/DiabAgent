@@ -1,9 +1,9 @@
-// Explicitly registered gateway spelling only; never normalize other model families or versions.
+// Historical experiment identifiers are retained as metadata; selection accepts provider identifiers.
 export const REGISTERED_CODE_MODELS=Object.freeze(['claude-opus-5-5','glm-5.3','qwen3.8-max','deepseek-v4.1-flash-1017','kimi-k3.1-pro','kimi-k3','MiniMax-M3.1-Flash','doubao-seed-evolving','glm-5.3-flash']);
 // Moonshot gateway spellings that need the explicit-type tool schema below.
 export const MOONSHOT_MODELS=Object.freeze(['kimi-k3.1-pro','kimi-k3']);
 export function assertRegisteredCodeModel(model){
-  if(!REGISTERED_CODE_MODELS.includes(model))throw Error('Unregistered Claude Code experiment model');
+  if(typeof model!=='string'||!/^[A-Za-z0-9][A-Za-z0-9._:/-]*$/.test(model))throw Error('A valid provider model identifier is required');
 }
 // Moonshot requires an explicit type even when a homogeneous finite enum already fixes it.
 export function codeToolSchema(schema,model){

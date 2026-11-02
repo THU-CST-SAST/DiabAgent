@@ -6,7 +6,7 @@ The repository's original code is MIT-licensed (LICENSE). This does not relicens
 |---|---|
 | Deichmann2023 physiological reference | `sim/vendor/deichmann2023/LICENSE`, BSD-3-Clause; source/provenance retained beside the reference implementation and `sim/model/Deichmann2023.ts` |
 | oref0 components | `sim/vendor/oref0/LICENSE.txt`, MIT; upstream OpenAPS attribution retained |
-| Codex model catalog | Derived from OpenAI Codex `83086188ae0614bd882818ff1aa23f3194962012`; `sim/harnesses/codex-decision-loop/UPSTREAM-LICENSE` (Apache-2.0), UPSTREAM-NOTICE and CATALOG-PROVENANCE.json retained |
+| Codex model catalog | Derived from OpenAI Codex `83086188ae0614bd882818ff1aa23f3194962012`; `harnesses/codex-decision-loop/UPSTREAM-LICENSE` (Apache-2.0), UPSTREAM-NOTICE and CATALOG-PROVENANCE.json retained. Custom model capability templates are derived locally by `catalog.mjs`; the original catalog is retained. |
 | npm packages | Exact versions/integrities in `sim/package-lock.json`; individual package licenses apply |
 | External glucose-management Skill | Git submodule `THU-CST-SAST/sweet-agent-skill`, commit `eb62199ff01267b49a833d493fd91c57bd8fe150`; its own attribution and redistribution terms apply, including underlying reference material |
 

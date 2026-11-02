@@ -13,8 +13,9 @@ import {inspectCodexControllerPrefix,CODEX_CONTROLLER_PREFIX} from './controller
 const read=f=>JSON.parse(fs.readFileSync(f)),lines=f=>fs.readFileSync(f,'utf8').split('\n').filter(Boolean).map(JSON.parse);
 
 export function auditCodexTrial({dir,expectedConfig,offline=false,modelConfig={strict_tool_names:['act','read_glucose_history']},persist=true,transportRecovery=null}){
+ const expectedModel=modelConfig.model??'gpt-6.1-sol';
  const stats=read(dir+'/stats.json'),bundle=read(dir+'/bundle.json'),calls=parseInvocations(fs.readFileSync(dir+'/invocations.jsonl','utf8'),{strict:true});
- let prefix=null;if(fs.existsSync(dir+'/CONTROLLER-PREFIX.json')){const r=read(dir+'/CONTROLLER-PREFIX.json');prefix=inspectCodexControllerPrefix(r.file);assert.equal(prefix.registration_sha256,r.sha256);assert.deepEqual(prefix.plan.model.model,'gpt-6.1-sol');}
+ let prefix=null;if(fs.existsSync(dir+'/CONTROLLER-PREFIX.json')){const r=read(dir+'/CONTROLLER-PREFIX.json');prefix=inspectCodexControllerPrefix(r.file);assert.equal(prefix.registration_sha256,r.sha256);assert.deepEqual(prefix.plan.model.model,expectedModel);}
  const transcript=lines(dir+'/transcript.jsonl'),actions=transcript.filter(r=>r.parsed&&r.receipt),fixed=actions.filter(r=>r.decision_kind==='fixed');
  const truth=bundle.evaluator_only.states,start=Date.parse(expectedConfig.start_time);
  const replay=replayWorldEvidence(bundle,expectedConfig,c=>new SimEnv(c));
@@ -28,7 +29,7 @@ export function auditCodexTrial({dir,expectedConfig,offline=false,modelConfig={s
    }else assert(!call.replay&&!call.response?.replay,'Unregistered replay is forbidden');
    if(!call.response||call.error)continue;
    const raw=call.response.raw,meta=raw?.__codex_harness;
-   if(!meta?.native_tool_called||meta.version!=='official-codex-decision-loop/v1'||raw.model!=='gpt-6.1-sol'){source=false;continue;}
+   if(!meta?.native_tool_called||meta.version!=='official-codex-decision-loop/v1'||raw.model!==expectedModel){source=false;continue;}
    const location=fs.realpathSync(meta.call_dir);assert(location.startsWith(fs.realpathSync(dir+'/Codex')+path.sep)||index<(prefix?.accepted.length??0)&&prefix.sessions.includes(location));sessions.add(location);
    const {__codex_harness,...original}=raw;
    assert.deepEqual(read(location+'/NATIVE-REPLY-'+meta.native_model_turn+'.json'),original);
@@ -51,8 +52,8 @@ export function auditCodexTrial({dir,expectedConfig,offline=false,modelConfig={s
    const ledger=read(location+'/native/NATIVE-KNOWLEDGE-LEDGER.json');budgets&&=ledger.attempts.filter(a=>a.tool==='Read'&&a.allowed).length<=3;
    const registration=read(location+'/transport/REGISTRATION.json');assert.equal(registration.max_output_tokens,16384);assert.equal(registration.response_rewriting,false);
    for(const file of fs.readdirSync(location+'/transport').filter(f=>/^\d+-UPSTREAM-REQUEST\.json$/.test(f))){
-     const n=file.split('-')[0],delta=read(location+'/transport/'+n+'-BODY-DELTA.json'),before=readCodexRequestEvidence(location+'/transport/'+n+'-NATIVE-REQUEST.json',delta,{recoveryManifest:transportRecovery}).value,after=readCodexRequestEvidence(location+'/transport/'+file,delta,{recoveryManifest:transportRecovery}).value,adapted=adaptCodexWire(before,registration.toolPolicy,{instructions:registration.instructions??null});
-     assert.deepEqual(after,adapted.body);assert.equal(after.reasoning.effort,'high');assert.equal(after.model,'gpt-6.1-sol');
+     const n=file.split('-')[0],delta=read(location+'/transport/'+n+'-BODY-DELTA.json'),before=readCodexRequestEvidence(location+'/transport/'+n+'-NATIVE-REQUEST.json',delta,{recoveryManifest:transportRecovery}).value,after=readCodexRequestEvidence(location+'/transport/'+file,delta,{recoveryManifest:transportRecovery}).value,adapted=adaptCodexWire(before,registration.toolPolicy,{instructions:registration.instructions??null,model:expectedModel});
+     assert.deepEqual(after,adapted.body);assert.equal(after.reasoning.effort,'high');assert.equal(after.model,expectedModel);
      const fact=read(location+'/FACTS-'+n+'.json');guards&&=fact.system_exact&&fact.factual_history_exact&&fact.native_entry_exact&&fact.only_registered_native_catalog;
      assert.deepEqual(read(location+'/transport/'+n+'-BODY-DELTA.json').changed_fields,adapted.changes);
    }

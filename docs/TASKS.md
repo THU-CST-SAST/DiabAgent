@@ -2,7 +2,7 @@
 
 ## 冻结主实验
 
-`benchmark/main212/TASKS.json` 是 212 个 task 的唯一清单，`fixture_sha256` 校验原始文件字节。32 个场景模板覆盖进食/吸收、运动、需求变化、输注故障与传感器问题；与患者组合后得到 212 题。`MAIN-SET.json` 保留原始选题记录，其中模型/并发字段是历史元数据；公开五模型路由以 `benchmark/models.json` 为准。
+`benchmark/main212/TASKS.json` 是 212 个 task 的唯一清单，`fixture_sha256` 校验原始文件字节。32 个场景模板覆盖进食/吸收、运动、需求变化、输注故障与传感器问题；与患者组合后得到 212 题。`MAIN-SET.json` 保留原始选题记录，其中模型/并发字段是历史元数据。运行入口通过 `--harness` 选择原生运行器、`--model` 指定待测模型，默认配置见 `configs/harnesses/`。
 
 `fixture.instance.config` 含隐藏事件和 evaluator 配置，**不能作为 agent prompt**。运行入口只把 `fixture.pub` 与 `SimEnv.observe()` 的公开信息交给控制器。
 

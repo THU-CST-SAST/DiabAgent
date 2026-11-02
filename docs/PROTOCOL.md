@@ -18,6 +18,6 @@
 
 Prompt 不是独立手写的另一个版本：`src/bench/prompt.mjs`、`prompt-revisions.mjs`、`controller.mjs` 和 `benchmark/llm-agent.mjs` 根据同一公开信息和协议生成。公开入口不把私有 fixture 注入模型，也不允许模型调用任意 shell/网络/真实设备。
 
-五模型名称和路由在 `benchmark/models.json`。其中 GPT 使用官方 Codex，其他四个使用官方 Claude Code 的原生模型循环和 MCP；国内模型需要能提供该协议/签名语义的兼容服务。模型名称是实验记录里的精确别名，是否可用取决于你自己的服务权限。
+公开入口通过 `--harness claude-code|codex` 选择原生循环，通过 `--model` 指定待测模型。两种 harness 的默认配置在 `configs/harnesses/`，实现位于顶层 `harnesses/`；论文模型配置保存在 `experiments/paper/`。服务需支持所选 harness 的消息、流式输出与工具协议，运行器按指定的模型身份校验响应。
 
 历史主结果包含故障恢复和用户批准的格式纠错预算扩展，并非声称所有题都在初始预算一次完成。这里默认保留格式连续 3 次止损；可选 `--decision-redraw true` 明确开启运行器内的重请求并记录事件。它不是改分、不是按分数挑轨迹，也不是原 response 的精确续写。不承诺服务随机性下逐 token 或逐分一致。公开源与历史协议的区别见 RELEASE.md。

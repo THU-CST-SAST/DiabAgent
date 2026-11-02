@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-export async function startBenchmarkThread(rpc,{system,tools}){
+export async function startBenchmarkThread(rpc,{system,tools,model='gpt-6.1-sol'}){
   assert(typeof system==='string'&&system.length>0);
   const names=new Set(['act','simulate','read_glucose_history','Read','Skill']);
   assert(tools.every(t=>names.has(t.name)),'No unrelated tools in a benchmark thread');
@@ -17,7 +17,7 @@ export async function startBenchmarkThread(rpc,{system,tools}){
   }
   if(rpc.knowledge)assert.equal(pinned,1,'Native Codex must discover exactly the pinned Skill');
   return rpc.request('thread/start',{
-    model:'gpt-6.1-sol',baseInstructions:system,developerInstructions:'',
+    model,baseInstructions:system,developerInstructions:'',
     cwd:rpc.root+'/workspace',approvalPolicy:'never',sandbox:'read-only',environments:[],experimentalRawEvents:true,
     config:{model_reasoning_effort:'high',project_doc_max_bytes:0,web_search:'disabled',
       include_collaboration_mode_instructions:false,include_permissions_instructions:false,

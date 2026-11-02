@@ -28,8 +28,8 @@ export function cappedCodexBody(native,{model='gpt-6.1-sol',maxTokens=16384}={})
   return {...native,max_output_tokens:maxTokens};
 }
 
-export function adaptCodexWire(native,toolPolicy=null,{instructions=null}={}){
-  const body=structuredClone(cappedCodexBody(native)),changes=native.max_output_tokens===undefined?['max_output_tokens']:[];
+export function adaptCodexWire(native,toolPolicy=null,{instructions=null,model='gpt-6.1-sol'}={}){
+  const body=structuredClone(cappedCodexBody(native,{model})),changes=native.max_output_tokens===undefined?['max_output_tokens']:[];
   if(instructions!==null){
     assert(typeof instructions==='string'&&instructions.length>0);
     const same=body.input.filter(i=>i.type==='message'&&i.role==='developer'&&i.content?.length===1&&i.content[0].text===instructions);
@@ -60,7 +60,7 @@ export function adaptCodexWire(native,toolPolicy=null,{instructions=null}={}){
   return {body,changes};
 }
 
-export async function startCodexTransport({root,key,endpoint='https://api.openai.com/v1',guard=()=>{},onResponse=()=>{},onFailure=()=>{},onWait=()=>{},offline=false,toolPolicy=null,instructions=null,waitDelaysMs=null}){
+export async function startCodexTransport({root,key,endpoint='https://api.openai.com/v1',guard=()=>{},onResponse=()=>{},onFailure=()=>{},onWait=()=>{},offline=false,toolPolicy=null,instructions=null,waitDelaysMs=null,model='gpt-6.1-sol'}){
   assert(!fs.existsSync(root),'Transport evidence is append-only, never replace an attempt');
   const upstreamBase=new URL(endpoint);assert(!upstreamBase.username&&!upstreamBase.password&&!upstreamBase.search&&!upstreamBase.hash);
   assert(upstreamBase.protocol==='https:'||offline&&upstreamBase.protocol==='http:'&&['127.0.0.1','localhost'].includes(upstreamBase.hostname));
@@ -70,7 +70,7 @@ export async function startCodexTransport({root,key,endpoint='https://api.openai
   const delays=waitDelaysMs??[60000,120000,240000,480000,600000];assert(delays.length&&delays.every(n=>Number.isInteger(n)&&n>0));
   const active=new Set(),timers=new Set(),redact=s=>redactCodexTransport(s,key);
   const save=(file,s)=>fs.writeFileSync(root+'/'+file,redact(typeof s==='string'?s:JSON.stringify(s,null,2)));
-  save('REGISTRATION.json',{version:'official-codex-output-cap-transport/v3',endpoint,model:'gpt-6.1-sol',max_output_tokens:16384,body_changes:['max_output_tokens',...(toolPolicy?['restore registered function parameter schemas and strict flags']:[]),...(instructions?['promote exact registered system to instructions, without duplication']:[])],toolPolicy,instructions,native_CLI_owns_model_loop:true,response_rewriting:false,credential_transport:'memory and upstream Authorization header only'});
+  save('REGISTRATION.json',{version:'official-codex-output-cap-transport/v3',endpoint,model,max_output_tokens:16384,body_changes:['max_output_tokens',...(toolPolicy?['restore registered function parameter schemas and strict flags']:[]),...(instructions?['promote exact registered system to instructions, without duplication']:[])],toolPolicy,instructions,native_CLI_owns_model_loop:true,response_rewriting:false,credential_transport:'memory and upstream Authorization header only'});
   const server=http.createServer(async(req,res)=>{
     const n=++sequence,started=Date.now();let native,body;
     try{
@@ -78,7 +78,7 @@ export async function startCodexTransport({root,key,endpoint='https://api.openai
       assert.equal(req.headers.authorization,'Bearer '+TRANSPORT_DUMMY);
       let size=0;const chunks=[];
       for await(const chunk of req){size+=chunk.length;assert(size<=16777216,'Request exceeds bounded transport input');chunks.push(chunk);}
-      const bytes=Buffer.concat(chunks);save(n+'-NATIVE-BYTES.txt',bytes.toString());native=JSON.parse(bytes);save(n+'-NATIVE-REQUEST.json',native);const adapted=adaptCodexWire(native,toolPolicy,{instructions});body=adapted.body;guard(native,n);
+      const bytes=Buffer.concat(chunks);save(n+'-NATIVE-BYTES.txt',bytes.toString());native=JSON.parse(bytes);save(n+'-NATIVE-REQUEST.json',native);const adapted=adaptCodexWire(native,toolPolicy,{instructions,model});body=adapted.body;guard(native,n);
       save(n+'-NATIVE-REQUEST.json',native);save(n+'-UPSTREAM-REQUEST.json',body);
       const restored=structuredClone(body);
       for(const at of adapted.changes){const keys=at.split('.');let old=native,destination=restored;for(const k of keys.slice(0,-1)){old=old[k];destination=destination[k];}const last=keys.at(-1);if(Object.hasOwn(old,last))destination[last]=old[last];else delete destination[last];}

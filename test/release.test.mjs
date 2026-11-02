@@ -6,7 +6,7 @@ import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {ROOT,read,fixture,taskRows,runBaseline,scoreBundle,saveReport,assertEndpoint} from '../scripts/lib.mjs';
 import {verifySkillAssets} from '../sim/src/bench/skill-assets.mjs';
-import {verifyNativeSkillEdition} from '../sim/harnesses/claude-code-decision-loop/native-skill.mjs';
+import {verifyNativeSkillEdition} from '../harnesses/claude-code-decision-loop/native-skill.mjs';
 import {buildInstanceConfig} from '../sim/src/sim/instance.mjs';
 import {SimEnv} from '../sim/src/env/pomdp.mjs';
 
@@ -18,17 +18,19 @@ test('all212 original task byte hashes, physics and scoring contract verify with
   for(const row of rows){const f=fixture(row);assert.equal(f.instance.config.horizon_minutes,4320);assert.equal(f.pub.scoring_version,'COGI-4-8/v1');}
 });
 
-test('five explicit native harness routes and exact derived Skill are available',()=>{
-  const models=read(ROOT+'benchmark/models.json');assert.equal(Object.keys(models).length,5);
-  assert.equal(models.gpt61.harness,'codex');assert(Object.values(models).filter(m=>m.harness==='code').length===4);
+test('two model-independent harness defaults and exact derived Skill are available',()=>{
+  for(const harness of ['claude-code','codex']){
+    const settings=read(ROOT+'configs/harnesses/'+harness+'.json');assert.equal(settings.harness,harness);assert(!settings.config.model);
+  }
+  assert.equal(Object.keys(read(ROOT+'experiments/paper/models.json')).length,5);
   const assets=verifySkillAssets(ROOT+'sim/skills/main212');verifyNativeSkillEdition(assets.source);
   assert.equal(assets.source.sha256,read(ROOT+'benchmark/main212/protocol.json').native_skill.assets_sha256);
   assert.equal(fs.realpathSync(ROOT+'sim/harnesses/claude-code-decision-loop/runtime'),fs.realpathSync(ROOT+'sim'));
 });
 
 test('both native model engines load from an isolated checkout without cluster paths',async()=>{
-  const code=await import('../sim/harnesses/claude-code-decision-loop/model.mjs');
-  const codex=await import('../sim/harnesses/codex-decision-loop/model.mjs');
+  const code=await import('../harnesses/claude-code-decision-loop/model.mjs');
+  const codex=await import('../harnesses/codex-decision-loop/model.mjs');
   assert.equal(typeof code.createDecisionLoopModel,'function');assert.equal(typeof codex.createCodexDecisionLoopModel,'function');
 });
 
@@ -58,7 +60,7 @@ test('baseline 5/15/60min share frozen world, score and original framework playe
 });
 
 test('paid runs cannot start from missing endpoint/credentials; bad args fail closed',()=>{
-  for(const args of [['run','--model','opus55'],['list','--unknown','1'],['baselines','--policies','bogus','--out','artifacts/never-created']])assert.notEqual(cli(args).status,0);
+  for(const args of [['run','--harness','claude-code','--model','vendor/new-model'],['list','--unknown','1'],['baselines','--policies','bogus','--out','artifacts/never-created']])assert.notEqual(cli(args).status,0);
   assert(!fs.existsSync(ROOT+'artifacts/never-created'));
   assert.throws(()=>assertEndpoint('https://user:secret@example.com'));
   assert.throws(()=>assertEndpoint('http://example.com'));

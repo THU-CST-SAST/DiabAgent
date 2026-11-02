@@ -15,9 +15,9 @@ export function options(argv){
 }
 const [command,...args]=process.argv.slice(2),opt=options(args);
 const need=key=>{assert(opt[key]&&opt[key]!=='true','--'+key+' required');return opt[key];};
-const allowed={verify:[],list:[],create:['spec','out'],pipeline:['config','out'],baselines:['out','tasks','limit','policies','interval'],run:['out','tasks','limit','model','binary','endpoint','key-env','parallel','decision-redraw'],report:['bundle','out']};
+const allowed={verify:[],list:[],create:['spec','out'],pipeline:['config','out'],baselines:['out','tasks','limit','policies','interval'],run:['out','tasks','limit','harness','model','binary','endpoint','key-env','parallel','decision-redraw','model-catalog'],report:['bundle','out'],results:['run','report']};
 try{
-  assert(Object.hasOwn(allowed,command),'Commands: verify | list | create | pipeline | baselines | run | report (see README.md)');
+  assert(Object.hasOwn(allowed,command),'Commands: verify | list | create | pipeline | baselines | run | results | report (see README.md)');
   for(const key of Object.keys(opt))assert(allowed[command].includes(key),'Unknown option --'+key);
   if(command==='verify'){
     const rows=taskRows();assert.equal(rows.length,212);assert.equal(new Set(rows.map(r=>r.task_id)).size,212);
@@ -53,9 +53,13 @@ try{
       subscores:Object.fromEntries(['tir','hypo','gv'].map(k=>[k,rs.reduce((s,r)=>s+r.score_details.subscores[k],0)/rs.length]))};});
     write(out+'/SUMMARY.json',summary);console.log(JSON.stringify(summary,null,2));
   }else if(command==='run'){
-    need('out');need('model');need('binary');need('endpoint');
+    need('out');need('harness');need('model');need('binary');need('endpoint');
     if(opt['decision-redraw']!==undefined)assert(['true','false'].includes(opt['decision-redraw']));
     const {runModels}=await import('./run-model.mjs');await runModels(selectTasks(opt),opt);
+  }else if(command==='results'){
+    const {summarizeResults}=await import('./results.mjs');
+    const result=summarizeResults(need('run'),{report:opt.report==='true'});
+    console.table(result.groups);console.log(JSON.stringify({counts:result.counts,summary:result.summary_file,csv:result.csv_file,report:result.report_file},null,2));
   }else if(command==='report'){
     const out=path.resolve(need('out'));assert(!fs.existsSync(out));fs.mkdirSync(out,{recursive:true});saveReport(out,read(need('bundle')));console.log(out+'/index.html');
   }

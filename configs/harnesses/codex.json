@@ -1,0 +1,12 @@
+{
+  "harness": "codex",
+  "cli_version": "0.163.0",
+  "config": {
+    "adapter": "codex",
+    "max_tokens": 16384,
+    "strict_tools": true,
+    "strict_tool_names": ["act", "read_glucose_history"],
+    "tool_contract_repair": true,
+    "reasoning_effort": "high"
+  }
+}
