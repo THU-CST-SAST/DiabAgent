@@ -23,6 +23,13 @@ test('five explicit native harness routes and exact derived Skill are available'
   assert.equal(models.gpt61.harness,'codex');assert(Object.values(models).filter(m=>m.harness==='code').length===4);
   const assets=verifySkillAssets(ROOT+'sim/skills/main212');verifyNativeSkillEdition(assets.source);
   assert.equal(assets.source.sha256,read(ROOT+'benchmark/main212/protocol.json').native_skill.assets_sha256);
+  assert.equal(fs.realpathSync(ROOT+'sim/harnesses/claude-code-decision-loop/runtime'),fs.realpathSync(ROOT+'sim'));
+});
+
+test('both native model engines load from an isolated checkout without cluster paths',async()=>{
+  const code=await import('../sim/harnesses/claude-code-decision-loop/model.mjs');
+  const codex=await import('../sim/harnesses/codex-decision-loop/model.mjs');
+  assert.equal(typeof code.createDecisionLoopModel,'function');assert.equal(typeof codex.createCodexDecisionLoopModel,'function');
 });
 
 test('documented single-task constructor runs and keeps private config outside public.json',t=>{
