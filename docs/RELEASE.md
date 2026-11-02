@@ -20,3 +20,5 @@
 发布验证使用离线单元/集成测试、全部 fixture 的原哈希检查、72h baseline 小样本、造题和原生框架报告 smoke。模型测试使用本机模拟服务；需要真实 native CLI 的 opt-in 测试在未配置该 CLI 时跳过。没有付费模型调用，也未重复原科学主实验。
 
 CI 从 clean checkout、固定 Node、git submodule 和 lockfile 安装后重新运行相同入口。Dockerfile 作为部署配方提供；未安装 Docker 的发布环境不能声称做过镜像运行验收。
+
+本次 clean clone 的实测记录见 [VALIDATION.json](VALIDATION.json)：Node 24.21.0，414 项通过、12 项 opt-in 跳过、0 失败，npm audit 为 0 个已知漏洞。

@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-02",
+  "validated_code_commit": "dd01abd",
+  "environment": {"node": "24.21.0", "platform": "darwin", "arch": "arm64"},
+  "clean_clone": true,
+  "recursive_submodules": true,
+  "setup_from_lockfile": true,
+  "fixture_hashes_verified": 212,
+  "scenario_templates": 32,
+  "skill_assets_sha256": "10f1e522b4ba24fbaa0a6d85ece7c047715f87099cd769ad13d9a2f6c8a24eb7",
+  "tests": {
+    "release": {"passed": 7, "failed": 0, "skipped": 0},
+    "simulator_and_protocol": {"passed": 407, "failed": 0, "skipped": 12},
+    "skip_reason": "Opt-in official native CLI tests require separately installed binaries; no paid tests were run."
+  },
+  "smoke": {
+    "single_task_constructor": true,
+    "custom_pipeline": {"worlds": 2, "tasks": 6},
+    "main212_baseline_sample": {"tasks": 1, "policies": ["standard", "guideline", "oref1", "hcl"], "minutes": 15, "steps_per_trajectory": 864},
+    "frequency_regression_minutes": [5, 15, 60],
+    "original_framework_player": true,
+    "both_native_engine_imports": true
+  },
+  "npm_audit": {"known_vulnerabilities": 0},
+  "security_review": {
+    "no_credentials_or_science_logs_staged": true,
+    "credential_pattern_matches": "Only a synthetic token in a test fixture; not a credential.",
+    "external_skill": "Pinned gitlink; derived Markdown remains outside this repository's Git objects."
+  },
+  "paid_model_calls": 0,
+  "official_cli_live_qualification": false,
+  "docker_image_tested": false,
+  "historical_science_rerun": false
+}

@@ -8,6 +8,8 @@
 
 Linux/macOS，Git、npm、Node.js **24.21.0**（`.nvmrc`）；Linux 是原实验平台。
 
+以下使用已安装的 nvm 选择 Node；若通过其他方式安装了相同版本，可跳过两条 nvm 命令。
+
 ```bash
 git clone --recurse-submodules git@github.com:THU-CST-SAST/DiabAgent.git
 cd DiabAgent
