@@ -28,6 +28,8 @@ test('hardware, schedule and native budgets are configurable and prepared datase
   assert.equal(o.rows[0].input.instance.config.controller.algorithm,'oref1');
   assert.equal(o.protocol.agent_options.max_extra_decisions_per_day,12);
   assert.equal(resolveExperiment({limit:'1','history-hours':'6'}).mode,'custom');
+  const medium=resolveExperiment({experiment:ROOT+'examples/experiments/existing-scenes-oref.json'});
+  assert.equal(medium.protocol.agent_options.reasoning_effort,'medium');
 });
 test('custom scenario runs through adapter and custom harness with the native report generator',t=>{
   const dir=temporary(t);

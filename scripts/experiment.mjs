@@ -81,8 +81,9 @@ export function resolveExperiment(options={}){
   const effective={...defaults,agent_options:agent,runtime,scoring_version:scoring,options:{units:custom.units??inherited.options?.units??defaults.options.units},
     model:merge(inherited.model??{},custom.model??{}),native_skill:merge(merge(defaults.native_skill,inherited.native_skill??{}),custom.native_skill??{})};
   effective.model.reasoning_effort??=agent.reasoning_effort??'high';
+  effective.agent_options=parseAgentOptions({...agent,reasoning_effort:effective.model.reasoning_effort});
   effective.max_turns=runtime.max_turns;effective.max_format_errors=runtime.max_format_errors;effective.max_native_turns_per_decision=runtime.max_native_turns;
-  effective.logical_timeout_ms=runtime.logical_timeout_ms;effective.native_skill.max_reads_per_decision=runtime.max_reference_reads;
+  effective.logical_timeout_ms=runtime.logical_timeout_ms;effective.outer_API_tries=runtime.outer_api_tries;effective.native_skill.max_reads_per_decision=runtime.max_reference_reads;
   assert(!['api_key','key','token'].some(k=>Object.hasOwn(effective.model,k)),'Use a credential environment variable');
   const customized=file||options.dataset||options.hardware||options.interval||options.scenarios||options['agent-options']||Object.keys(AGENT_OPTION_DEFAULTS).some(k=>options[k.replaceAll('_','-')]!==undefined);
   return {name:custom.name??loaded.inherited?.name??'main212',mode:customized?'custom':'main212',
