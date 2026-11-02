@@ -1,90 +1,177 @@
 # DiabAgent
 
-面向合成 1 型糖尿病患者的长时序决策 benchmark。包含仿真构造器、主实验的 **212 个冻结 task**、五模型原生 CLI harness、实验 Skill 的固定版本构建流程，以及 classical baselines。
+## Overview
 
-**仅用于研究仿真，不是临床建议，也不连接真实患者或设备。** 不包含 API 密钥、商业 CLI 二进制、旧实验操作目录或书籍全文副本。原生 CLI 和模型访问需要自行安装、授权；不能把旧模型别名替换成别的模型后仍称为同配置复现。
+DiabAgent is a benchmark for long-horizon glucose management with AI agents. Agents manage synthetic patients with type 1 diabetes by interpreting continuous glucose monitoring (CGM) readings, consulting clinical knowledge, maintaining memory, and choosing treatment actions over multi-day episodes. Performance is evaluated from the resulting glucose trajectories.
 
-## 快速开始
+This repository provides the main experiment's **212 tasks**, a physiological simulator, task constructors, native Claude Code and Codex harnesses, a versioned glucose-management Skill, classical baselines, and interactive trajectory reports.
 
-Linux/macOS，Git、npm、Node.js **24.21.0**（`.nvmrc`）；Linux 是原实验平台。
+| Component | Main Experiment |
+|---|---|
+| Task set | 212 tasks across 32 scenario templates |
+| Episode length | 72 hours, with 864 five-minute simulation steps |
+| Hardware | Dana-i pump with Aspart insulin, under agent control |
+| Information setting | I2, with sensor perturbations and task-specific events |
+| Agent schedule | Hourly decisions and up to six additional decisions per local day |
+| Evaluation | COGI-4-8/v1: `0.50 S_TIR + 0.35 S_Hypo + 0.15 S_GV` |
 
-以下使用已安装的 nvm 选择 Node；若通过其他方式安装了相同版本，可跳过两条 nvm 命令。
+The scenarios cover meals and digestion, exercise, changing insulin requirements, infusion failures, and sensor disturbances. Task definitions and model profiles are available in [`benchmark/main212/`](benchmark/main212/) and [`benchmark/models.json`](benchmark/models.json).
+
+## Installation
+
+Use **Node.js 24.21.0**, npm, and Git. Linux x86_64 is the reference platform for model experiments; offline simulation and tests also run on macOS. The Node.js version is recorded in [`.nvmrc`](.nvmrc).
 
 ```bash
-git clone --recurse-submodules git@github.com:THU-CST-SAST/DiabAgent.git
+git clone --recurse-submodules https://github.com/THU-CST-SAST/DiabAgent.git
 cd DiabAgent
-nvm install
-nvm use
 npm run setup
 npm run verify
 npm test
 ```
 
-`setup` 安装 lockfile 中的依赖，核对外部 Skill 的固定提交，再在本地生成主实验 Skill；不会请求模型。普通 clone 后可先执行 `git submodule update --init --recursive`。Skill 的来源与许可边界见 [第三方组件](THIRD_PARTY_NOTICES.md)。
+The setup command installs dependencies from the lockfile and builds the benchmark Skill from its pinned upstream revision. Verification checks the task hashes and runtime manifests. For an existing checkout, initialize the Skill dependency with `git submodule update --init --recursive`.
 
-## 三个入口
-
-### 1. 构造新题
+Model experiments additionally require the official native CLI for the selected harness:
 
 ```bash
-node scripts/benchmark.mjs create --spec examples/task.json --out artifacts/my-task
-node scripts/benchmark.mjs pipeline --config sim/bench/pipelines/custom.example.json
-node scripts/benchmark.mjs pipeline --config sim/bench/pipelines/custom.example.json --out artifacts/my-suite
+npm install --prefix "$HOME/diabagent-tools/code296" @anthropic-ai/claude-code@2.1.296
+npm install --prefix "$HOME/diabagent-tools/codex163" @openai/codex@0.163.0
 ```
 
-单题输出 evaluator 私有的 `fixture.json` 和可给 agent 的 `public.json`；批量构造器支持场景、患者、硬件、种子、信息条件的组合和兼容性检查。见 [造题说明](docs/TASKS.md)。新造题不等于冻结主实验题，不要覆盖 `benchmark/main212/fixtures/`。
+Supply the installed native executable through `--binary`. Platform-specific binary locations and identity checks are described in [`docs/RUNNING.md`](docs/RUNNING.md).
 
-### 2. 运行主实验
+## Running the Benchmark
+
+The five model profiles use the following harnesses:
+
+| Model | Profile | Native CLI |
+|---|---|---|
+| Claude Opus 5.5 | `opus55` | Claude Code 2.1.296 |
+| GPT 6.1 Sol | `gpt61` | Codex 0.163.0 |
+| DeepSeek 4.1 Flash | `deepseek41` | Claude Code 2.1.296 |
+| Kimi K3.1 Pro | `kimi31` | Claude Code 2.1.296 |
+| GLM 5.3 Flash | `glm53flash` | Claude Code 2.1.296 |
+
+Provide a credential and a compatible HTTPS endpoint for the selected model. Claude Code profiles use a Messages-compatible endpoint; the Codex profile uses a Responses-compatible endpoint. Model inference is billed by your provider.
 
 ```bash
 node scripts/benchmark.mjs list
-# 先用一个 task 检查自己的模型服务，再去掉 --limit 1 跑全量。
+
 read -s DIABAGENT_API_KEY
 export DIABAGENT_API_KEY
+
 node scripts/benchmark.mjs run --model opus55 --limit 1 \
   --binary /absolute/path/to/claude.exe \
-  --endpoint https://YOUR-COMPATIBLE-PROVIDER \
+  --endpoint https://your-provider.example \
   --parallel 1 --out artifacts/opus55-check
+
 unset DIABAGENT_API_KEY
 ```
 
-上面的 `run` **会产生付费模型调用**。`--model` 可用 `opus55 / gpt61 / deepseek41 / kimi31 / glm53flash`；GPT 使用 Codex 原生二进制，其他模型使用 Claude Code。端点必须明确提供，不能使用示例地址。各 CLI 的安装、精确版本、输出及可选重试见 [运行环境](docs/RUNNING.md)。
+Start with a single task to check the service configuration. Remove `--limit 1` to evaluate all 212 tasks, and set `--parallel` to select concurrency. Use a fresh `--out` directory for each run. Individual tasks can be selected with `--tasks TASK_ID,...`.
 
-### 3. 运行 baseline
+The harness provides simulation and history tools, native Skill access, rolling memory, request logging, and trajectory audits. The main configuration requests high reasoning effort and 16,384 output tokens, with seven native model turns, three reference reads, and two simulation calls per decision. The complete settings are in [`benchmark/main212/protocol.json`](benchmark/main212/protocol.json).
+
+## Baselines
+
+All baselines use the same task configurations, observations, device dynamics, and scoring implementation as the agent experiments.
+
+| Policy | Description |
+|---|---|
+| `standard` | Standard-care heuristic |
+| `guideline` | Guideline-based heuristic |
+| `oref1` | oref1-inspired controller with SMB/UAM mechanisms |
+| `hcl` | Simplified predictive hybrid closed-loop controller |
+
+The main experiment compares agents with `standard`, `guideline`, and `oref1` at a **15-minute decision interval**. Run a small CPU-only evaluation with:
 
 ```bash
-# CPU-only，小样本快速验证。
 node scripts/benchmark.mjs baselines --limit 1 --interval 15 \
   --policies standard,guideline,oref1 --out artifacts/baseline-check
-# 全部 212 题，论文主表的三种 15min baseline。
+```
+
+For the full task set:
+
+```bash
 node scripts/benchmark.mjs baselines --interval 15 \
   --policies standard,guideline,oref1 --out artifacts/baseline-main212-15min
 ```
 
-另支持 `hcl`，以及 `5/10/15/20/30/45/60/90/120` 分钟。它们在相同的扰动 CGM、输注故障和信息约束下运行，不读取真值做决策。评分才使用 evaluator 真值。见 [Baseline](docs/BASELINES.md)。
+Supported decision intervals are `5/10/15/20/30/45/60/90/120` minutes. Five-minute policies are consulted at each simulation step; other intervals retain up to six urgent consultations per local day. Outputs include per-task trajectories, total scores, component scores, and an aggregate summary.
 
-## 协议与输出
+## Creating Tasks
 
-主实验：Dana-i + Aspart、无后台 HCL、I2、72 小时、864 个 5min 步长；agent 每 60min 固定决策，每个本地日最多 6 次额外决策。COGI-4-8/v1 总分为 `0.50 S_TIR + 0.35 S_Hypo + 0.15 S_GV`。完整配置、提示词入口与版本见 [复现协议](docs/PROTOCOL.md)。
-
-模型输出包含 `STATUS.json`、每题 `bundle.json`、原始 native 会话、`invocations.jsonl`、`transcript.jsonl`、严格审计和 `RESULT.json`。未完成或审计不通过的分数为 `null`，不会补 WAIT 冒充完成。完整轨迹和 baseline 的 `index.html` 使用现有框架交互播放器生成，可直接打开。
+Task constructors expose patient characteristics, devices, sensors, events, seeds, and information settings. Create a task from the supplied example:
 
 ```bash
-node scripts/benchmark.mjs report --bundle PATH/TO/bundle.json --out artifacts/replay
+node scripts/benchmark.mjs create \
+  --spec examples/task.json --out artifacts/my-task
 ```
 
-## 目录
+The output contains an evaluator-side `fixture.json` and an agent-facing `public.json`. For batch construction, the scenario pipeline combines patient, hardware, and event settings with compatibility checks:
 
-| 路径 | 内容 |
+```bash
+# Inspect the task-generation plan.
+node scripts/benchmark.mjs pipeline \
+  --config sim/bench/pipelines/custom.example.json
+
+# Build the task suite.
+node scripts/benchmark.mjs pipeline \
+  --config sim/bench/pipelines/custom.example.json --out artifacts/my-suite
+```
+
+The constructor API is implemented in [`sim/src/sim/instance.mjs`](sim/src/sim/instance.mjs), with batch generation in [`sim/src/experiments/scenario-pipeline.mjs`](sim/src/experiments/scenario-pipeline.mjs).
+
+## Trajectories and Reports
+
+Each model run writes a `STATUS.json` and per-task records:
+
+| File | Contents |
 |---|---|
-| `benchmark/main212/` | 212 原始冻结题目、SHA256、主实验协议 |
-| `benchmark/models.json` | 五模型配置及 harness 路由 |
-| `sim/src/`, `sim/model/`, `sim/knowledge/` | 仿真、构造器、观察/动作、评分、baseline |
-| `sim/harnesses/` | Claude Code / Codex 原生决策循环、工具边界、审计与重试 |
-| `sim/skills/` | 固定上游 gitlink、派生规则；`main212/` 由 setup 构建 |
-| `sim/scripts/video/` | 框架原有的交互报告播放器 |
-| `scripts/` | 可移植的公开运行入口，不依赖内部服务器目录 |
-| `analysis/scenario-design-versions/` | 构造器兼容测试所需的历史场景目录，不是主实验集 |
-| `test/`, `sim/test/` | 离线发布与仿真/工具协议测试 |
+| `bundle.json` | Full simulation trajectory and evaluator data |
+| `transcript.jsonl` | Controller decisions and action receipts |
+| `invocations.jsonl` | Model requests and responses |
+| `Code/` or `Codex/` | Native harness session records |
+| `RESULT.json` | Completion status, audit validity, and score |
+| `run.json`, `index.html` | Interactive trajectory replay |
 
-代码许可见 [LICENSE](LICENSE)；第三方许可各自保留。版本差异及验收范围见 [发布说明](docs/RELEASE.md)。本仓库不包含新分支的 Dana-i oref 后台泵实现。
+Aggregate model scores use completed, audit-valid trajectories. Interactive reports show glucose readings, treatments, events, and decision rationales through the simulator's trajectory player. Generate a replay from a saved bundle with:
+
+```bash
+node scripts/benchmark.mjs report \
+  --bundle PATH/TO/bundle.json --out artifacts/replay
+```
+
+Open the generated `index.html` in a browser.
+
+## Repository Structure
+
+```text
+benchmark/          Main212 tasks, protocol, and model profiles
+sim/src/            Simulator, task constructors, policies, and scoring
+sim/model/          Physiological model
+sim/knowledge/      Patient, device, insulin, and sensor specifications
+sim/harnesses/      Native Claude Code and Codex integrations
+sim/skills/         Skill source pin and benchmark edition builders
+sim/scripts/video/  Interactive trajectory player
+scripts/            Benchmark, baseline, and task-construction commands
+examples/           Example task specifications
+test/, sim/test/    Release, simulator, and protocol tests
+docs/               Detailed guides and release information
+```
+
+## Documentation
+
+Additional guides are currently available in Chinese:
+
+- [Task construction](docs/TASKS.md)
+- [Runtime and harness configuration](docs/RUNNING.md)
+- [Experiment protocol](docs/PROTOCOL.md)
+- [Baseline policies and schedules](docs/BASELINES.md)
+- [Release information](docs/RELEASE.md)
+
+## License and Research Use
+
+DiabAgent is released under the [MIT License](LICENSE). Third-party components and the external Skill retain their respective terms; see [Third-Party Notices](THIRD_PARTY_NOTICES.md).
+
+This benchmark is designed for research with synthetic patients. See [Safety and Security](SECURITY.md) for responsible use.
