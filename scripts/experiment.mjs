@@ -44,7 +44,7 @@ function dataset(source,base,scoring){
 
 export function resolveExperiment(options={}){
   const file=options.experiment?fs.realpathSync(options.experiment):null,base=file?path.dirname(file):process.cwd(),custom=file?read(file):{};
-  const allowed=new Set(['name','dataset','selection','hardware','world','agent_options','runtime','model','harness','scoring_version','units','baseline','native_skill']);
+  const allowed=new Set(['name','dataset','selection','hardware','patient','world','agent_options','runtime','model','harness','scoring_version','units','baseline','native_skill']);
   for(const key of Object.keys(custom))assert(allowed.has(key),'Unknown experiment field: '+key);
   const defaults=protocol();let scoring=custom.scoring_version??defaults.scoring_version;
   const source=options.dataset?path.resolve(options.dataset):custom.dataset??'main212';
@@ -56,7 +56,9 @@ export function resolveExperiment(options={}){
   for(const [k,min,max]of [['max_native_turns',1,256],['max_reference_reads',0,100],['logical_timeout_ms',1,86400000],['max_turns',1,1000000],['max_format_errors',1,1000000],['outer_api_tries',1,100]])assert(Number.isInteger(runtime[k])&&runtime[k]>=min&&runtime[k]<=max,'Invalid runtime.'+k);
   const hardware=options.hardware??custom.hardware,patch=hardware?(typeof hardware==='string'?read(ROOT+'configs/hardware.json')[hardware]:hardware):{};
   assert(patch!==undefined,'Unknown hardware preset: '+hardware);
-  const world=merge(patch,custom.world??{}),selection=custom.selection??{};
+  if(custom.patient!==undefined)assert(object(custom.patient),'patient must be an object');
+  const patient=custom.patient===undefined?{}:{patient:custom.patient,person:{type:null}};
+  const world=merge(merge(patch,patient),custom.world??{}),selection=custom.selection??{};
   let rows=loaded.rows;
   const scenarios=options.scenarios?options.scenarios.split(','):selection.scenarios;
   if(scenarios){const wanted=new Set(scenarios.map(x=>x.toLowerCase()));rows=rows.filter(r=>wanted.has((r.scene??r.task_id.split('-')[0]).toLowerCase()));}
@@ -67,6 +69,7 @@ export function resolveExperiment(options={}){
   for(const row of rows){
     assert(/^[a-z0-9-]+$/.test(row.task_id),'Invalid task identifier');
     const original=row.input,patched=Object.keys(world).length?merge(original.instance.config,world):null;
+    if(patched?.person.type===null)delete patched.person.anthropometry;
     if(patched&&world.horizon_minutes!==undefined)patched.scenario.extra_events=patched.scenario.extra_events.filter(e=>e.at_minute<patched.horizon_minutes);
     const config=patched?normalizeConfig(patched):original.instance.config;
     assert(config.horizon_minutes>agent.warmup_days*1440,'warmup_days must leave a scored horizon');

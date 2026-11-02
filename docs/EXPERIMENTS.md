@@ -67,6 +67,70 @@ Agent/runtime settings resolve from reference defaults, then a prepared dataset'
 
 Paths inside an experiment file are relative to that file. CLI paths are relative to the current directory. `prepare` writes `TASKS.json`, `fixtures/` and `EXPERIMENT.json`; model runs retain the effective protocol in `PLAN.json` and actual inputs in `dataset/fixtures/`. Source fixtures remain unchanged.
 
+## Custom Patients
+
+Specify patient demographics directly; `person.type` presets are optional:
+
+```json
+{
+  "patient": {
+    "sex": "female",
+    "age_years": 27,
+    "height_cm": 167.5,
+    "weight_kg": 61.2,
+    "initial_glucose_mg_dl": 140
+  }
+}
+```
+
+| Field | Accepted Values |
+|---|---|
+| `sex` | `male`, `female`, the simulator's biological-sex values |
+| `age_years` | Integer 1-120 |
+| `height_cm` | Number 50-230; decimals accepted |
+| `weight_kg` | Number 10-250; decimals accepted |
+| `initial_glucose_mg_dl` | Number 40-400; optional |
+
+These are input-validation bounds, rather than a claim of physiological validation for every possible combination. Partial patient objects fill unspecified fields from the selected input/defaults. Unknown fields and invalid values produce field-specific errors.
+
+### Build a New Patient and Scenario
+
+The [complete example](../examples/scenarios/custom-patient.json) specifies these fields without a `person` preset, and includes explicit synthetic physiology, programmed therapy settings, a meal and a walk:
+
+```bash
+node scripts/benchmark.mjs create --spec examples/scenarios/custom-patient.json --out artifacts/my-patient
+node scripts/benchmark.mjs baselines --dataset artifacts/my-patient --interval 15 \
+  --policies standard,guideline,oref1 --out artifacts/my-patient-baselines
+```
+
+Pass `--dataset artifacts/my-patient` to any model harness, then use `results --run RUN_DIRECTORY --report` as usual. The saved fixture, public patient information, prompts, world snapshots and reports retain the configured values.
+
+When a task specification includes an optional `person` preset, it supplies physiological/routine defaults; explicit `patient` fields override its demographics, and `overrides.patient` has final precedence. Event-pack applicability uses the final patient demographics, including age/sex checks.
+
+### Change Patients in Existing Scenarios
+
+Put `patient` alongside `dataset` in an experiment file:
+
+```bash
+node scripts/benchmark.mjs prepare --experiment examples/experiments/custom-patient.json --out artifacts/custom-patient-tasks
+node scripts/benchmark.mjs run --dataset artifacts/custom-patient-tasks --dry-run
+```
+
+The top-level experiment `patient` object patches the selected tasks' demographics and clears their preset-person label. Existing scenario events, physiology, programmed profile and safety settings remain as supplied by the dataset; this is a controlled demographic/body-weight intervention, rather than a new draw from a preset population. Override them explicitly with `world.physiology`, `world.profile`, `world.safety` and `world.scenario` when defining a different physiological patient. `world` takes precedence over top-level `patient`.
+
+For a new task with no preset, reference physiological defaults apply unless explicitly overridden; an unspecified programmed basal is computed from body weight and sensitivity. Body weight enters the physiological kernel. Age, sex and height are public descriptive fields and can participate in scenario applicability; the simulator does not infer individualized insulin sensitivity, carb ratio or a validated age/sex-specific physiological model from demographics alone. Configure these separately in `overrides.physiology` and `overrides.profile` (or experiment `world`).
+
+Batch pipelines also accept explicit patient objects in their `patients` axis, for example:
+
+```json
+{"patients": [
+  {"id": "custom-female-27", "patient": {"sex": "female", "age_years": 27, "height_cm": 167.5, "weight_kg": 61.2}},
+  {"id": "custom-male-46", "patient": {"sex": "male", "age_years": 46, "height_cm": 182, "weight_kg": 85.4}}
+]}
+```
+
+Insert this axis into a pipeline configuration to combine your patients with its scenarios, hardware and seeds. Each entry can also provide `overrides` for physiology/profile settings; `person` and the existing demographic distribution generator remain optional alternatives.
+
 ## Hardware and Background Automation
 
 ```bash

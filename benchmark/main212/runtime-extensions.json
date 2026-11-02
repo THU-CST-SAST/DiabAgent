@@ -19,7 +19,7 @@
     {
       "path": "src/bench/prompt.mjs",
       "original_sha256": "e111dd6bf010827d083fd6865d08389921135d93cd8b3b7387e4923793be4aba",
-      "sha256": "6583fe59d6211c7fea0b408319663f5751ea22b80ca122c13a30d440234f81b3"
+      "sha256": "d18f20596bdf7e9f370821929fdec46fda22603514c74234db4587f6ac259b51"
     },
     {
       "path": "src/core/config.mjs",
@@ -40,6 +40,11 @@
       "path": "src/policies/oref1.mjs",
       "original_sha256": "7827779244284e349883691f06b2ceb56ae9c8edf4575cfb46ba9b843cb1577e",
       "sha256": "717d5569ba2f1684e85ab913b69efc31c7b8bb33cc56e6ef869898eb073569d7"
+    },
+    {
+      "path": "src/sim/instance.mjs",
+      "original_sha256": "ecba8e77cce1780b047a174b6dbd788b46f5b076c48d1df1128ad1307359fa4f",
+      "sha256": "4ef4908875592e50de1f46fd9b3565e1bed0fbb915ba3a740b8868838e561151"
     },
     {
       "path": "src/sim/world.mjs",

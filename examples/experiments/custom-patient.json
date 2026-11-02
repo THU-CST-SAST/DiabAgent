@@ -1,0 +1,9 @@
+{
+  "name": "existing-scenario-custom-patient",
+  "dataset": "main212",
+  "selection": {"scenarios": ["A01"], "limit": 1},
+  "patient": {"sex": "female", "age_years": 27, "height_cm": 167.5, "weight_kg": 61.2},
+  "hardware": "dana-i-oref",
+  "world": {"horizon_minutes": 180},
+  "agent_options": {"fixed_interval_minutes": 15}
+}

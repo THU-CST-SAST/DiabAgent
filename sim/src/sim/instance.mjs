@@ -4,6 +4,8 @@
 //
 // {
 //   seed, start_time?, horizon_minutes?,
+//   patient:  {sex, age_years, height_cm, weight_kg, initial_glucose_mg_dl?} (all optional;
+//             no person preset required; explicit fields override an optional preset),
 //   person:   {type, bmi, dawn, carb_counting, sample, seed?} | null (reference patient; seed: person
 //             draw, default = the instance seed),
 //   therapy:  {mode:'pump', pump:{model, insulin}} | {mode:'mdi', mdi:{bolus_pen, bolus_insulin, basal_pen, basal_insulin}},
@@ -70,6 +72,7 @@ export function buildInstanceConfig(spec) {
   if(spec.start_time)base.start_time=spec.start_time;
   if(spec.horizon_minutes)base.horizon_minutes=spec.horizon_minutes;
   if(spec.person)base.person=spec.person;
+  if(spec.patient!==undefined)base.patient=spec.patient;
   if(spec.therapy)base.therapy=spec.therapy;
   if(spec.controller)base.controller=spec.controller;
   if(spec.self_care)base.self_care=typeof spec.self_care==='string'?{mode:spec.self_care}:spec.self_care;
@@ -78,7 +81,8 @@ export function buildInstanceConfig(spec) {
   if('meter' in sensors)base.meter={model:sensors.meter};
 
   // Resolve the person first so routines can follow their meal plan.
-  let cfg=normalizeConfig(base);
+  const patient=spec.overrides?.patient;
+  let cfg=normalizeConfig(patient===undefined?base:{...base,patient:deepMerge(base.patient??{},patient)});
   const packs=spec.events??['baseline'],layer={};
   for(const id of packs) {
     const pack=EVENT_PACKS[id];if(!pack)throw new Error(`Unknown event pack ${id}`);

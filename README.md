@@ -124,7 +124,13 @@ node scripts/benchmark.mjs run --dataset artifacts/hcl-dataset \
   --out artifacts/my-hcl-experiment
 ```
 
-The HCL example uses DASH hardware, a five-minute agent schedule, a shorter episode, and custom tool budgets. The [experiment guide](docs/EXPERIMENTS.md) covers configuration precedence, all option groups, custom harnesses, reusable datasets, and new scenarios. Every run records its resolved configuration and is audited against that configuration.
+The HCL example uses DASH hardware, a five-minute agent schedule, a shorter episode, and custom tool budgets. Patients can be specified directly, without selecting an age/sex preset:
+
+```json
+{"patient": {"sex": "female", "age_years": 27, "height_cm": 167.5, "weight_kg": 61.2}}
+```
+
+Use `patient` in a task specification to build a new patient, or in an experiment file to replace patient demographics in existing scenarios. See the [custom patient task](examples/scenarios/custom-patient.json) and [existing-scenario example](examples/experiments/custom-patient.json). The [experiment guide](docs/EXPERIMENTS.md) explains physiological settings, configuration precedence, all option groups, custom harnesses, reusable datasets, and new scenarios. Every run records its resolved configuration and is audited against that configuration.
 
 ## Baselines
 

@@ -311,7 +311,10 @@ export function taskDescription({instance,obs,units='mmol',config,scanTimes,hour
     `Glucose values shown to you are in ${u}${units==='mgdl'?'':' (1 mmol/L = 18.016 mg/dL)'}. Insulin is in U, carbohydrate in g, times are local clock time.`,
     '',
     '## The person (public information)');
-  const who=r?`${AGE_GROUPS[r.age_group]??r.age_group}, ${r.sex}`:`adult, ${pt.sex??'male'} (reference patient)`;
+  const age=pt.age_years,group=age<6?null:age<13?'child':age<18?'adolescent':age<65?'adult':'older';
+  const reference=!r&&pt.sex==='male'&&age===39&&pt.height_cm===170&&pt.weight_kg===66;
+  const who=r&&r.sex===pt.sex&&r.age_group===group?`${AGE_GROUPS[r.age_group]??r.age_group}, ${pt.sex}`
+    :reference?'adult, male (reference patient)':`${pt.sex??'unspecified sex'} (custom patient)`;
   lines.push(`- ${who}; age ${pt.age_years??'?'} y; weight ${num(pt.weight_kg,1)} kg${pt.height_cm?`; height ${pt.height_cm} cm`:''}.`);
   lines.push(`- Therapy profile (their usual settings; may not be perfect): ${pump?`basal ${num(p.basal_u_h,3)} U/h, `:''}ISF ${fmtG(p.isf_mg_dl_per_u,units)} ${u} per U, carb ratio ${num(p.carb_ratio_g_per_u,1)} g/U, target ${fmtG(p.target_mg_dl,units)} ${u}, insulin action time ${p.dia_hours} h.`);
   if(!pump&&p.basal_injection)lines.push(`- Long-acting insulin: the person injects ${p.basal_injection.units} U ${obs.insulin.long_acting??''} at ${p.basal_injection.times.join(', ')} every day by themselves (you see an event). Do not repeat that dose.`);

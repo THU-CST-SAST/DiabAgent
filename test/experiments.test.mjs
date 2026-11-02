@@ -64,3 +64,20 @@ test('custom pen hardware runs compatible baselines and explicitly marks pump-on
   cli('baselines','--experiment',file,'--interval','25','--policies','standard,oref1,hcl','--out',dir+'/baseline');
   const summary=summarizeResults(dir+'/baseline',{report:true});assert.equal(summary.counts.complete,1);assert.equal(summary.counts.not_applicable,2);
 });
+test('a custom patient can replace a task patient or define a new runnable scenario',t=>{
+  const dir=temporary(t),e=resolveExperiment({experiment:ROOT+'examples/experiments/custom-patient.json'}),config=e.rows[0].input.instance.config;
+  assert.deepEqual(config.patient,{sex:'female',age_years:27,height_cm:167.5,weight_kg:61.2,initial_glucose_mg_dl:config.patient.initial_glucose_mg_dl});
+  assert.equal(config.person.type,null);assert.equal(config.person.resolved,null);
+  assert.equal(e.rows[0].input.pub.prompt_context.person,null);
+  saveDataset(e,dir+'/prepared');assert.deepEqual(resolveExperiment({dataset:dir+'/prepared'}).rows[0].input,e.rows[0].input);
+  cli('create','--spec','examples/scenarios/custom-patient.json','--out',dir+'/task');
+  const out=dir+'/run';assert.equal(cli('run','--dataset',dir+'/task','--interval','15','--harness','adapter','--harness-config','examples/harnesses/scripted.json','--model','offline','--out',out).complete,1);
+  const summary=summarizeResults(out,{report:true});assert.equal(summary.counts.complete,1);assert(fs.existsSync(summary.report_file));
+  const bundle=read(out+'/trials/custom-patient-meal-and-walk/bundle.json');
+  assert.equal(bundle.manifest.config.patient.weight_kg,61.2);assert.equal(bundle.manifest.config.person.type,null);
+  const pipeline=read(ROOT+'sim/bench/pipelines/custom.example.json');
+  pipeline.patients=[{id:'custom-female-27',patient:{sex:'female',age_years:27,height_cm:167.5,weight_kg:61.2}}];pipeline.information=['I2'];
+  const file=dir+'/pipeline.json';fs.writeFileSync(file,JSON.stringify({dataset:{pipeline}}));
+  const planned=resolveExperiment({experiment:file});assert.equal(planned.rows.length,1);
+  assert.deepEqual(planned.rows[0].input.pub.prompt_context.patient,pipeline.patients[0].patient);
+});

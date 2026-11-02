@@ -1,0 +1,25 @@
+{
+  "id": "custom-patient-meal-and-walk",
+  "seed": 42,
+  "start_time": "2026-10-20T00:00:00.000Z",
+  "horizon_minutes": 360,
+  "patient": {
+    "sex": "female",
+    "age_years": 27,
+    "height_cm": 167.5,
+    "weight_kg": 61.2,
+    "initial_glucose_mg_dl": 140
+  },
+  "therapy": {"mode": "pump", "pump": {"model": "dana_i", "insulin": "aspart"}},
+  "sensors": {"cgm": "dexcom_g6", "meter": "contour_next_one"},
+  "events": ["baseline"],
+  "overrides": {
+    "information": {"mode": "I2", "policy": "record-derived-v3", "own_records": true},
+    "profile": {"basal_u_h": 0.6, "isf_mg_dl_per_u": 55, "carb_ratio_g_per_u": 12},
+    "physiology": {"sensitivity": 1.1},
+    "scenario": {"meals": {}, "activity": {"enabled": false}, "extra_events": [
+      {"id": "lunch", "type": "meal", "at_minute": 60, "grams": 45, "announced_grams": 45, "absorption_minutes": 150},
+      {"id": "walk", "type": "exercise", "at_minute": 180, "duration_minutes": 40, "accelerometer_counts": 2095, "announced": true}
+    ]}
+  }
+}
