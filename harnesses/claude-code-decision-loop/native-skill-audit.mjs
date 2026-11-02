@@ -10,7 +10,7 @@ import {assertRegisteredCodeModel,modelIdentityMatches} from './model-identity.m
 
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
-export function inspectNativeKnowledge(location,session,events,maxTurns){
+export function inspectNativeKnowledge(location,session,events,maxTurns,maxReads=3){
   const launch=read(location+'/LAUNCH.json'),config=read(location+'/native-knowledge-boundary.json');
   const ledger=read(location+'/NATIVE-KNOWLEDGE-LEDGER.json');
   const resumed=fs.existsSync(location+'/NATIVE-RESUME-REGISTRATION.json')?read(location+'/NATIVE-RESUME-REGISTRATION.json'):null;
@@ -26,7 +26,7 @@ export function inspectNativeKnowledge(location,session,events,maxTurns){
   }
   assert.equal(session.harness,NATIVE_SKILL_VERSION);
   assert(isDeepStrictEqual(session.native_knowledge_ledger,ledger));
-  assert.equal(config.max_reads,3);
+  assert.equal(config.max_reads,maxReads);
   verifyNativeSkillEdition({files:config.files,sha256:config.assets_sha256,derivation:config.derivation});
   if(!checkpoint)assert.equal(config.skill_root,location+'/workspace/.experiment-plugin/skills/blood-glucose-management');
   for(const [rel,digest] of Object.entries(config.files)){
@@ -49,7 +49,7 @@ export function inspectNativeKnowledge(location,session,events,maxTurns){
     const routing=read(location+'/NATIVE-TASK-ENTRY.json');
     assert.equal(routing.mode,'task-command-v1');assert.equal(routing.command,'/'+config.skill_name);
     assert.equal(routing.manual_body_injection,false);assert.equal(routing.model_selected_activation,false);
-    assert.equal(routing.native_model_turn_budget,maxTurns);assert.equal(routing.reference_read_budget,3);
+    assert.equal(routing.native_model_turn_budget,maxTurns);assert.equal(routing.reference_read_budget,maxReads);
     assert(argv.includes('--resume'));const sid=option('--resume');assert(/^[a-f0-9-]{36}$/.test(sid));
     const history=fs.readFileSync(location+'/home/projects/decision-loop/'+sid+'.jsonl','utf8').split('\n').filter(Boolean).map(JSON.parse);
     const body=fs.readFileSync(config.skill_root+'/SKILL.md','utf8').replace(/^---\n[\s\S]*?\n---\n/,'').trim();
@@ -88,7 +88,7 @@ export function inspectNativeKnowledge(location,session,events,maxTurns){
       }
     }
   }
-  assert(ledger.attempts.filter(o=>o.tool==='Read'&&o.allowed).length<=3);
+  assert(ledger.attempts.filter(o=>o.tool==='Read'&&o.allowed).length<=maxReads);
   // Both streamed and JSON-native output may repeat the same message id in public chunks.
   const requested=option('--model');assertRegisteredCodeModel(requested);
   const assistants=events.filter(e=>e.type==='assistant'&&e.message?.model);

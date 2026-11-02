@@ -99,13 +99,14 @@ export function assertCodexFactualRequest(body,{request,system,knowledge,respons
   return {system_exact:true,factual_history_exact:true,native_entry_exact:true,only_registered_native_catalog:true};
 }
 
-export function createCodexDecisionLoopModel({config,root,key,binary,skillAssetsRoot,endpoint='https://api.openai.com/v1',offline=false,timeoutMs=240000,maxTurns=7,initialCheckpoint=null,initialLogicalMs=null,initialNativeState=null,catalogFile=null}){
-  assert(typeof config.model==='string'&&/^[A-Za-z0-9][A-Za-z0-9._:/-]*$/.test(config.model));assert.equal(config.reasoning_effort,'high');assert.equal(config.max_tokens,16384);assert.equal(config.strict_tools,true);
-  assert.equal(maxTurns,7);assert.equal(timeoutMs,240000);assert(!fs.existsSync(root));fs.mkdirSync(root);
+export function createCodexDecisionLoopModel({config,root,key,binary,skillAssetsRoot,endpoint='https://api.openai.com/v1',offline=false,timeoutMs=240000,maxTurns=7,initialCheckpoint=null,initialLogicalMs=null,initialNativeState=null,catalogFile=null,maxReferenceReads=3}){
+  assert(typeof config.model==='string'&&/^[A-Za-z0-9][A-Za-z0-9._:/-]*$/.test(config.model));assert(typeof config.reasoning_effort==='string');assert(Number.isInteger(config.max_tokens)&&config.max_tokens>0);assert.equal(typeof config.strict_tools,'boolean');
+  assert(Number.isInteger(maxTurns)&&maxTurns>0&&maxTurns<=256);assert(timeoutMs>0&&timeoutMs<=86400000);assert(!fs.existsSync(root));fs.mkdirSync(root);
   assert(initialLogicalMs===null||Number.isFinite(initialLogicalMs)&&initialLogicalMs>0&&initialLogicalMs<=timeoutMs&&!initialCheckpoint);
   assert(!initialNativeState||!initialCheckpoint&&initialLogicalMs===initialNativeState.state.remaining_logical_ms);
   let closed=false,busy=false,current=null,pending=null,sessionCount=0,accepted=0,continuations=0,initial=initialCheckpoint,initialAllowance=initialLogicalMs,initialNative=initialNativeState;
   const sessions=[];
+  const knowledgeInstructions=nativeKnowledgeInstructions('detailed-reference-v3',{maxReads:maxReferenceReads,maxTurns});
   const safe=value=>key?String(value).split(key).join('[REDACTED]'):String(value);
   const save=(file,value)=>fs.writeFileSync(file,safe(JSON.stringify(value,null,2)));
   async function shutdown(){if(!current)return;await current.rpc?.close();await current.transport?.close();current=null;}
@@ -165,27 +166,27 @@ export function createCodexDecisionLoopModel({config,root,key,binary,skillAssets
             for(let i=0;i<s.responses.length;i++)save(dir+'/NATIVE-REPLY-'+(i+1)+'.json',s.responses[i]);
           }
           const tools=[...request.tools.map(t=>({...t,input_schema:compileToolContract(t,'openai').schema})),...CODEX_KNOWLEDGE_TOOLS];
-          const toolPolicy=tools.map(t=>({...t,strict:request.tools.some(c=>c.name===t.name)&&(config.strict_tool_names==null||config.strict_tool_names.includes(t.name))}));
-          s.transport=await startCodexTransport({root:dir+'/transport',key,endpoint,offline,toolPolicy,model:config.model,instructions:request.system+'\n\n'+nativeKnowledgeInstructions('detailed-reference-v3'),
+          const toolPolicy=tools.map(t=>({...t,strict:config.strict_tools&&request.tools.some(c=>c.name===t.name)&&(config.strict_tool_names==null||config.strict_tool_names.includes(t.name))}));
+          s.transport=await startCodexTransport({root:dir+'/transport',key,endpoint,offline,toolPolicy,model:config.model,maxTokens:config.max_tokens,effort:config.reasoning_effort,instructions:request.system+'\n\n'+knowledgeInstructions,
             guard:(body,n)=>{assert.equal(body.model,config.model);assert(s.responses.length<maxTurns,'Native7 budget exhausted');
               for(const record of codexNativeRouterErrors(body,{responses:s.responses,toolNames:tools.map(t=>t.name)}))if(!s.knowledgeResults.has(record.call_id)){s.knowledgeResults.set(record.call_id,record.result);fs.appendFileSync(s.dir+'/NATIVE-ROUTER-ERRORS.jsonl',JSON.stringify(record)+'\n');}
-              save(dir+'/FACTS-'+n+'.json',{controller_request:s.controllerRequests,...assertCodexFactualRequest(body,{request:s.expected,system:s.expected.system+'\n\n'+nativeKnowledgeInstructions('detailed-reference-v3'),knowledge:s.rpc.knowledge,responses:s.responses,knowledgeResults:s.knowledgeResults})});},
+              save(dir+'/FACTS-'+n+'.json',{controller_request:s.controllerRequests,...assertCodexFactualRequest(body,{request:s.expected,system:s.expected.system+'\n\n'+knowledgeInstructions,knowledge:s.rpc.knowledge,responses:s.responses,knowledgeResults:s.knowledgeResults})});},
             onFailure:error=>pending?.reject(error),
             onWait:event=>{if(event.phase==='request-start'){s.wireBudget=pending?.snapshot();return;}s.waitEvent=event;s.firstWait??=event.at;if(event.phase==='waiting')pending?.restoreAndPause(s.wireBudget);else pending?.resume();},
             onResponse:response=>{s.lastHTTP=response;s.waitEvent=null;s.firstWait=null;for(const raw of parseCodexSseResponses(response.text)){
               assert.equal(raw.model,config.model,'Provider returned a different model');
-              if(raw.instructions!==undefined)assert.equal(raw.instructions,s.expected.system+'\n\n'+nativeKnowledgeInstructions('detailed-reference-v3'),'Provider reported a foreign system prompt');
+              if(raw.instructions!==undefined)assert.equal(raw.instructions,s.expected.system+'\n\n'+knowledgeInstructions,'Provider reported a foreign system prompt');
               assert(typeof raw.id==='string'&&raw.id&&Array.isArray(raw.output),'Complete native envelope identity/output required');
               if(s.responses.some(r=>r.id===raw.id))continue;s.responses.push(raw);save(dir+'/NATIVE-REPLY-'+s.responses.length+'.json',raw);
             }}});
-          s.rpc=new CodexRpc({binary,root:dir+'/native',key:TRANSPORT_DUMMY,logSecrets:[key],endpoint:s.transport.endpoint,skillAssetsRoot,timeoutMs,model:config.model,catalogFile,onMessage:m=>handle(m,s).catch(e=>pending?.reject(e))});
+          s.rpc=new CodexRpc({binary,root:dir+'/native',key:TRANSPORT_DUMMY,logSecrets:[key],endpoint:s.transport.endpoint,skillAssetsRoot,timeoutMs,model:config.model,catalogFile,maxReferenceReads,onMessage:m=>handle(m,s).catch(e=>pending?.reject(e))});
           if(checkpoint)s.rpc.knowledge.inherit(checkpoint);
           s.rpc.child.on('close',()=>{if(current===s)pending?.reject(new ModelError('Native Codex process exited; original stream retained',{retryable:false}));});
-          const thread=await startBenchmarkThread(s.rpc,{system:request.system+'\n\n'+nativeKnowledgeInstructions('detailed-reference-v3'),tools,model:config.model});s.threadId=thread.thread.id;
+          const thread=await startBenchmarkThread(s.rpc,{system:request.system+'\n\n'+knowledgeInstructions,tools,model:config.model,effort:config.reasoning_effort});s.threadId=thread.thread.id;
           const history=checkpoint?checkpoint.history:codexHistory(request.messages);save(dir+'/INJECTED-FACTUAL-HISTORY.json',history);
           await s.rpc.request('thread/inject_items',{threadId:s.threadId,items:history});
           promise=waitProposal(logicalAllowance-(Date.now()-started));promise.catch(()=>{});
-          await s.rpc.request('turn/start',{threadId:s.threadId,input:[{type:'skill',name:'blood-glucose-management',path:s.rpc.knowledge.path}],effort:'high'});
+          await s.rpc.request('turn/start',{threadId:s.threadId,input:[{type:'skill',name:'blood-glucose-management',path:s.rpc.knowledge.path}],effort:config.reasoning_effort});
         }
         const held=await promise,raw=held.raw;
         const unreported=current.responses.filter(r=>!current.reportedUsage.has(r.id));
@@ -202,6 +203,6 @@ export function createCodexDecisionLoopModel({config,root,key,binary,skillAssets
       }catch(error){error.message=safe(error.message);if(error.body)error.body=safe(error.body);if(error.response_raw)error.response_raw=JSON.parse(safe(JSON.stringify(error.response_raw)));promise?.catch(()=>{});pending?.reject(error);await shutdown();throw error;}finally{busy=false;}
     },
     async close(){if(closed)return;closed=true;pending?.reject(new Error('Codex model closed'));await shutdown();key='';save(root+'/MODEL.json',{closed:true,sessions:sessionCount,accepted,continuations});},
-    get diagnostics(){return {sessions:sessionCount,accepted,continuations,native_Codex:true,output_cap:16384,gateway_wait:current?.waitEvent?{...current.waitEvent,first_wait_at:current.firstWait}:null};}
+    get diagnostics(){return {sessions:sessionCount,accepted,continuations,native_Codex:true,output_cap:config.max_tokens,gateway_wait:current?.waitEvent?{...current.waitEvent,first_wait_at:current.firstWait}:null};}
   };return model;
 }

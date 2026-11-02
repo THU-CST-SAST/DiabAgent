@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {scoredBundle,configuredChecks} from './runtime/src/bench/evaluation-contract.mjs';
 import {inspectNativeRuntimeCheckpoint} from './native-runtime-recovery.mjs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -46,7 +47,7 @@ function streamMessages(events, model, authorizedUnsignedId=null) {
 
 const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
-export function auditDirectTrial({ dir, config, expectedConfig, offlineOnly = false, persist = true, maxTurns = STANDARD_HARNESS.max_native_turns_per_decision, registeredPrefix = null, nativeSkill = false, scoringVersion = 'METRICS-v0.3' }) {
+export function auditDirectTrial({ dir, config, expectedConfig, offlineOnly = false, persist = true, maxTurns = STANDARD_HARNESS.max_native_turns_per_decision, registeredPrefix = null, nativeSkill = false, scoringVersion = 'METRICS-v0.3', evaluation=null,maxReferenceReads=3 }) {
   if(nativeSkill&&registeredPrefix)assert.ok(['registered-native-skill-prefix/v1','registered-native-skill-prefix/v2',PENDING_PREFIX_VERSION,HISTORY_PREFIX_VERSION,INCOMPLETE_PREFIX_VERSION].includes(registeredPrefix.lineage_version));
   const stats = read(dir + '/stats.json'), bundle = read(dir + '/bundle.json');
   const calls = parseInvocations(fs.readFileSync(dir + '/invocations.jsonl', 'utf8'), { strict: true });
@@ -135,7 +136,7 @@ export function auditDirectTrial({ dir, config, expectedConfig, offlineOnly = fa
     if(runtime&&location===runtime.session){inspectNativeRuntimeCheckpoint(runtime);const raw=Object.keys(runtime.files).filter(f=>/^COMPLETE-NATIVE-REPLY-.*\.json$/.test(f)&&!/-STREAM-JSON-BINDING|-BOUND-NATIVE-JSON/.test(f)).map(f=>read(location+'/'+f)).find(v=>!v.stop_reason);authorizedUnsignedId={id:raw.id,raw};}
     else if(registeredPrefix?.lineage_version===INCOMPLETE_PREFIX_VERSION&&location===initial?.incomplete?.session)authorizedUnsignedId=initial.incomplete.unfinished_message_id;
     if(nativeSkill){
-      if(!knowledge.has(location))knowledge.set(location,inspectNativeKnowledge(location,session,rows,allowedTurns(location)));
+      if(!knowledge.has(location))knowledge.set(location,inspectNativeKnowledge(location,session,rows,allowedTurns(location),maxReferenceReads));
       for(const record of meta.native_internal??[])assert(knowledge.get(location).internal.some(r=>isDeepStrictEqual(r,record)));
       const system=expected.system.map(b=>b.text).join('\n');
       const appended=launch.argv[launch.argv.indexOf('--append-system-prompt')+1];
@@ -156,9 +157,10 @@ export function auditDirectTrial({ dir, config, expectedConfig, offlineOnly = fa
     sessionsClosed &&= session.exit != null;
   }
   const truth = bundle.evaluator_only.states, start = Date.parse(bundle.manifest.config.start_time);
-  assert(['METRICS-v0.3','COGI-4-8/v1'].includes(scoringVersion));
-  const native = verifierReport(bundle, scoring, { scoring_version: scoringVersion, verifier: 'daily' }, { episode_id: bundle.manifest.episode_id, agent_completed: stats.state === 'done', agent_steps: bundle.metrics.steps, verifier_wait_steps: 0 });
-  const independent = scoring.episodeScore(scoring.episodeMetrics(bundle), scoring.DEFAULT_WEIGHTS, { version: scoringVersion });
+  assert(['bench-v0.2','bench-v0.3','METRICS-v0.3','COGI-v1','COGI-4-8/v1'].includes(scoringVersion));
+  const scoringBundle=evaluation?scoredBundle(bundle,evaluation):bundle;
+  const native = verifierReport(scoringBundle, scoring, { scoring_version: scoringVersion, weights:evaluation?.weights, verifier: 'daily' }, { episode_id: bundle.manifest.episode_id, agent_completed: stats.state === 'done', agent_steps: bundle.metrics.steps, verifier_wait_steps: 0 });
+  const independent = scoring.episodeScore(scoring.episodeMetrics(scoringBundle), evaluation?.weights??scoring.DEFAULT_WEIGHTS, { version: scoringVersion });
   const worldReplay=nativeSkill?replayWorldEvidence(bundle,expectedConfig,c=>new SimEnv(c)):null;
   const checks = { world_config: isDeepStrictEqual(bundle.manifest.config, expectedConfig), horizon: expectedConfig.horizon_minutes === 4320, original_controller_done: stats.state === 'done', steps: bundle.metrics.steps === 864, truth_points: truth.length === 865, elapsed: bundle.metrics.elapsed_minutes === 4320, complete: bundle.metrics.completed_horizon === true, fixed_hours: stats.fixed_decisions === 72 && fixed.length === 72, fixed_grid: fixed.every((row, i) => Date.parse(row.sim_time) === start + i * 3600000), truth_grid: truth.every((row, i) => Date.parse(row.time) === start + i * 300000 && Number.isFinite(row.true_glucose_mg_dl)), extra_cap: Object.values(stats.extra_decisions_by_local_day ?? {}).every(n => n <= 6), no_WAIT_tail: !bundle.trajectory.some(row => /harness:.*remaining horizon|validator.*WAIT/i.test(row.rationale ?? '')), native_reward: native.reward.reward === independent.score && native.metrics.reward.reward === native.reward.reward && native.metrics.scoring_version === scoringVersion, no_verifier_fill: native.reward.verifier_wait_steps === 0, all_successes_native_MCP: successes.length > 0 && provenance, complete_public_stream_preserved: publicStream, compiled_controller_contexts_equal: contexts, only_query_tools_continue_and_act_ends_process: [...sessionDirs].every(location => { const turns = read(location + '/SESSION.json').turns; return turns.length >= 1 && turns.length <= allowedTurns(location) && turns.slice(0, -1).every(t => LOOP_TOOLS.includes(t.tool) && t.mcp) && (registeredPrefix && (nativeSkill ? registeredPrefix.native_sessions.some(s=>s.location===location) : location.startsWith(registeredPrefix.source + '/Code/')) || !LOOP_TOOLS.includes(turns.at(-1).tool)); }), sessions_closed: sessionsClosed, registered_lineage: registeredPrefix ? historical === registeredPrefix.accepted_calls && fresh > 0 : calls.every(row => !row.replay && !row.response?.replay) };
   if(nativeSkill){checks.world_config=worldReplay.valid;checks.original_world_replays_exactly=worldReplay.valid;}
@@ -176,6 +178,7 @@ export function auditDirectTrial({ dir, config, expectedConfig, offlineOnly = fa
     }
     checks.gateway_wait_evidence=waits.every(event=>event.delay_ms>=60000);
   }
+  if(evaluation)Object.assign(checks,configuredChecks(bundle,stats,rows,expectedConfig,evaluation));
   const valid = Object.values(checks).every(Boolean);
   const report = { checked: new Date().toISOString(), valid, offline_only: offlineOnly, lineage_version: registeredPrefix ? 'registered-native-prefix/v1' : null, historical_registered_calls: historical, new_native_calls: fresh, no_replays: !registeredPrefix, completed_model_trajectories: valid && !offlineOnly ? 1 : 0, scoring_version: scoringVersion, scientific_score: valid && !offlineOnly ? native.reward.reward : null, scripted_infrastructure_score_not_model: valid && offlineOnly ? native.reward.reward : null, checks, world_config_sha256: hash(expectedConfig), completed_logical_model_boundaries: successes.length, Code_processes: sessionDirs.size, in_process_continuations: continuations, native_corrections: nativeCorrections, tool_names: [...tools], actual_HTTP: null, actual_wire_requests: null, direct_request_body_not_intercepted: !offlineOnly, construction_not_live_wire_equality: true, native_metric: bundle.metrics };
   if(nativeSkill){

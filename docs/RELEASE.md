@@ -9,7 +9,7 @@
 ## 与原主实验对齐
 
 - `benchmark/main212/fixtures` 来自最终归档的原始 212 个题目，逐字节 SHA256 校验，不重新造题代替。
-- `original-runtime-hashes.json` 保留原主实验可分发运行核心的相对路径哈希。`npm run verify` 核对仿真/生理/知识配置/评分核心与原运行版本，唯一已有核心差异为 `src/bench/models/tool-contract.mjs` 的工具协议修复；没有修改任务物理或 COGI 公式。
+- `original-runtime-hashes.json` 保留原主实验可分发运行核心的相对路径哈希。`runtime-extensions.json` 逐文件记录公开版本的可选扩展及其新哈希，`npm run verify` 同时检查原始 fixture 和已登记的扩展。扩展包含工具协议修复、可配置决策频率及可选 oref1/HCL 后台泵；默认 fixture 和 COGI 公式保留，回归测试验证默认路径及各可选控制器。公开运行核心不再宣称全部逐字节等同原版。
 - 公开 harness 复用当前 main 的健壮性修复，并只移除服务器专属的默认二进制位置/网关：生产 endpoint 显式配置，版本与模型检查仍保留。
 - npm lockfile 的 `body-parser` 与 `qs` 更新为通过发布时 npm audit 的修复版本，只涉及 HTTP 解析依赖。原模型 CLI 不随 npm 依赖一起自动升级。
 - Skill 从固定上游提交重新构建，最终文件列表 hash 必须等于主实验 `10f1e522...`；不会悄悄替换为简化 Skill。

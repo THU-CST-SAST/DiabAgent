@@ -55,7 +55,8 @@ export function publicDescription(spec) {
     sensors:{cgm:cfg.cgm.model,meter:cfg.meter.model,meter_routine_times:[...cfg.meter.routine_times],
       scan_window:[...cfg.cgm.scan_window],scan_interval_minutes:cfg.cgm.scan_interval_minutes},
     events:[...(spec.events??['baseline'])],
-    controller:{enabled:cfg.controller.enabled,mode:cfg.controller.mode},
+    controller:{enabled:cfg.controller.enabled,mode:cfg.controller.mode,
+      ...(['oref1','hcl'].includes(cfg.controller.algorithm)?{algorithm:cfg.controller.algorithm}:{})},
     // Care mode (track): whether the person boluses announced meals and treats visible lows
     // themselves. The mode is public; the behaviour parameters are priors (selfCarePrior).
     self_care:{mode:cfg.self_care?.mode??'none'},

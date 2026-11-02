@@ -1,0 +1,10 @@
+{
+  "name":"exercise-dash-hcl-five-minute",
+  "dataset":"main212",
+  "selection":{"scenarios":["C01"],"limit":1},
+  "hardware":"dash-hcl",
+  "world":{"horizon_minutes":180},
+  "agent_options":{"decision_schedule":"hourly","fixed_interval_minutes":5,"max_extra_decisions_per_day":0},
+  "runtime":{"max_native_turns":10,"max_reference_reads":4},
+  "model":{"max_tokens":8192}
+}

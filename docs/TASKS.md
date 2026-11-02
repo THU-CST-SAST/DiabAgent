@@ -34,3 +34,6 @@ const receipt = env.step({
 - `bench/pipelines/patient224-three-day-hypoglycemia-v2-20261029/pipeline-config.json`：主实验选题的上游构造配置；正式比较仍读取冻结 212 fixture，不重新生成来替换它们。
 
 `pipeline` 不带 `--out` 只列计划；带 `--out` 执行离线构造和检查，不调用模型。批量格式参考 `sim/bench/pipelines/custom.example.json`。可用 I0/I1/I2；新实验应明确记录所用条件、设备、评分版本和种子。
+## Runnable Custom Datasets
+
+Constructed tasks and pipeline suites can be passed directly to `run --dataset DIRECTORY`. Use `prepare --dataset DIRECTORY --out NEW_DIRECTORY` to export frozen inputs and their effective protocol. Experiment files also accept inline task/pipeline specifications and world overrides. See the [English experiment guide](EXPERIMENTS.md) for complete examples, hardware choices and result viewing.

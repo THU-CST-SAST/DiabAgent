@@ -66,9 +66,10 @@ export function deviationSlopes(devs) {
  * ratio from the median deviation of the last 8 h outside the 4 h after reported carbs, once at
  * least 4 h of such data exist (oref0 autosens: ratio = 1 + median*12/ISF/basal, 0.7-1.2).
  */
-export function makeAutosens({windowHours=8,minHours=4}={}) {
-  const devs=new Map(),carbs=new Set();
+export function makeAutosens({windowHours=8,minHours=4,state=null}={}) {
+  const devs=new Map(state?.devs??[]),carbs=new Set(state?.carbs??[]);
   return {
+    snapshot:()=>({devs:[...devs],carbs:[...carbs]}),
     update(obs,list) {
       for(const d of list)devs.set(d.at,d.dev);
       for(const c of obs.reported_carbs??[])carbs.add(Date.parse(c.time));

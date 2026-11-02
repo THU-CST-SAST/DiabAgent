@@ -26,7 +26,7 @@
 //                          the person type's median parameters, never the hidden person (exp 2c)
 //   simulate_calls         1..10 (default 3): simulate calls allowed per decision (per sample)
 //   simulate_max_hours     1..12 (default 6): longest what-if horizon
-//   fixed_interval_minutes 15..240, multiple of 5 (default 60): fixed-slot spacing of the 'hourly'
+//   fixed_interval_minutes 5..525600, multiple of 5 (default 60): fixed-slot spacing of the 'hourly'
 //                          protocol (decision_schedule 'hourly'); the per-date extra cap does not scale
 //   prompt_revision        explicit immutable prompt version; default current v4, legacy v3 supported
 //   cross_day_memory       true | false (default true): false = an amnesic control for the learning ablation; at each
@@ -47,7 +47,7 @@ export const AGENT_OPTION_DEFAULTS=Object.freeze({history_hours:3,warmup_days:0,
 export const MEMORY=['none','notes','notes+profile'];
 export const MEMORY_MODES=['rolling','full','none'];
 const INT_RANGES={history_hours:[1,24],warmup_days:[0,14],min_decision_minutes:[5,240],max_decisions_per_day:[1,288],keep_turns:[1,200],
-  samples:[1,15],simulate_calls:[1,10],simulate_max_hours:[1,12],max_extra_decisions_per_day:[0,6],fixed_interval_minutes:[15,240]};
+  samples:[1,15],simulate_calls:[1,10],simulate_max_hours:[1,12],max_extra_decisions_per_day:[0,288],fixed_interval_minutes:[5,525600]};
 // Dashed / camelCase spellings accepted on input.
 const ALIASES={historyHours:'history_hours',warmupDays:'warmup_days',minDecisionMinutes:'min_decision_minutes',maxDecisionsPerDay:'max_decisions_per_day',
   memoryMode:'memory_mode',keepTurns:'keep_turns',reasoningEffort:'reasoning_effort',simulateCalls:'simulate_calls',simulateMaxHours:'simulate_max_hours',promptRevision:'prompt_revision',

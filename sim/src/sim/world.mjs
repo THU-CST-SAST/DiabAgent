@@ -12,6 +12,8 @@ import {Rng} from '../core/rng.mjs';
 import {generateEvents,visibleNotice,localDay,localAt,applyMasking,lateReports,completeReports} from '../core/scenario.mjs';
 import {iobAt,cobAt,iobDefinition,COB_DEFINITION} from '../core/estimators.mjs';
 import {oref0Policy} from '../policies/oref0.mjs';
+import {runOref1Controller} from './oref1-controller.mjs';
+import {runHclController} from './hcl-controller.mjs';
 import {actionSpecs,availableActions,validateAction} from './actions.mjs';
 
 const MAX_STEP_MS=MAX_STEP_MINUTES*60000;
@@ -376,6 +378,7 @@ export class World {
     const i=this.config.information;
     if(i.mode==='native'||i.mode==='I0')return false;
     if(i.own_records&&['agent','agent_rescue_carbs'].includes(source))return false;
+    if(i.own_records&&source==='loop'&&['oref1','hcl'].includes(this.config.controller.algorithm))return false;
     if(['minimal-v2','record-derived-v3'].includes(i.policy)&&i.mode==='I2')return ['meal','exercise','life','fault','treatment'].includes(category);
     if(source==='agent_rescue_carbs'||source==='agent')return false;
     if(category==='treatment'&&at>=this.start)return false;
@@ -647,6 +650,8 @@ export class World {
   runController(reading) {
     const k=this.controller,c=this.config.controller;
     if(this.mdi||!this.continuousCgm)return;
+    if(c.algorithm==='oref1'&&k.mode!=='lgs')return runOref1Controller(this);
+    if(c.algorithm==='hcl'&&k.mode!=='lgs')return runHclController(this);
     // oref0 drives closed mode; in open and LGS mode it only runs (as a suggestion) when compute_suggestions is set.
     let d=null;
     if(k.mode==='closed'||c.compute_suggestions) {
@@ -724,6 +729,7 @@ export class World {
         self_care:c.self_care.mode,
         ...(c.profile_switch?.enabled?{changes:clone(this.profileHistory.slice(-PROFILE_HISTORY))}:{})},
       ...(c.controller.expose_actions?{controller:{mode:k.mode,enabled:k.enabled,
+        ...(['oref1','hcl'].includes(c.controller.algorithm)?{algorithm:c.controller.algorithm}:{}),
         suspended_until:k.suspendedUntil>this.now?this.iso(k.suspendedUntil):null,
         temp_target:k.tempTarget?.until>this.now?{...k.tempTarget,until:this.iso(k.tempTarget.until)}:null}}:{}),
       available_actions:availableActions(this),
@@ -758,9 +764,10 @@ export class World {
         } else {out.reported_carbs=[];out.device.insulin_ledger=[];}
         for(const key of ['last_bolus','last_injection','last_basal_injection','reservoir_u','bolus_in_progress','extended_bolus'])
           if(key in out.device) {
-            const known=(key==='last_basal_injection'&&this.mdi&&c.therapy.mdi.dose_memory)||c.information.own_records&&(key==='last_bolus'?this.device.lastBolus?.source==='agent'
+            const knownLoop=source=>source==='loop'&&['oref1','hcl'].includes(c.controller.algorithm);
+            const known=(key==='last_basal_injection'&&this.mdi&&c.therapy.mdi.dose_memory)||c.information.own_records&&(key==='last_bolus'?this.device.lastBolus?.source==='agent'||knownLoop(this.device.lastBolus?.source)
               :key==='last_basal_injection'?this.device.basalLog?.at(-1)?.source==='agent'||!!(this.mdi&&this.config.therapy.mdi.dose_memory)
-              :key==='bolus_in_progress'?this.device.lastBolus?.source==='agent'
+              :key==='bolus_in_progress'?this.device.lastBolus?.source==='agent'||knownLoop(this.device.lastBolus?.source)
               :key==='extended_bolus'?this.device.extended?.source==='agent':false);
             if(!known)out.device[key]=null;
           }

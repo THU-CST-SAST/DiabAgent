@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
-import {ROOT,read,fixture,taskRows,runBaseline,scoreBundle,saveReport,assertEndpoint} from '../scripts/lib.mjs';
+import {ROOT,read,hash,fixture,taskRows,runBaseline,scoreBundle,saveReport,assertEndpoint} from '../scripts/lib.mjs';
 import {verifySkillAssets} from '../sim/src/bench/skill-assets.mjs';
 import {verifyNativeSkillEdition} from '../harnesses/claude-code-decision-loop/native-skill.mjs';
 import {buildInstanceConfig} from '../sim/src/sim/instance.mjs';
@@ -65,6 +65,11 @@ test('paid runs cannot start from missing endpoint/credentials; bad args fail cl
   assert.throws(()=>assertEndpoint('https://user:secret@example.com'));
   assert.throws(()=>assertEndpoint('http://example.com'));
   assert.throws(()=>assertEndpoint('https://example.com/?key=secret'));
+});
+
+test('optional hardware extensions preserve pre-extension default baseline truth',()=>{
+  const expected={standard:'37c6ea8d3c4672e427df83cc90447346d55539fc47bd99d6aad1d136cab339a4',guideline:'0e2cae8f5ecb834d0a406f2b3bd85fc4feb47746e55e7ac60ae04c325974210b',oref1:'452720bca8dcf1911ce8547fd5761eaaf4be08aecd294983c7a9edaabd7b9508',hcl:'3ce06be30882413e6f0b937274034c8981921ef20b6fb962d288a0e7ed193940'};
+  for(const [policy,sha]of Object.entries(expected))assert.equal(hash(JSON.stringify(runBaseline(fixture(taskRows()[0]),{policy,interval:15}).bundle.evaluator_only.states)),sha,policy);
 });
 
 test('documented baseline CLI publishes total/components and cannot overwrite results',t=>{

@@ -25,7 +25,7 @@ test('model summary includes only complete audited scores and renders the framew
   assert.equal(result.groups[0].COGI,baseline.result.score);assert.equal(result.groups[0].S_TIR,baseline.result.score_details.subscores.tir);
   assert.equal(result.status_updated,'2026-11-02T00:00:00Z');assert(result.tasks.filter(r=>r.state!=='complete').every(r=>r.score===null));
   const html=fs.readFileSync(result.report_file,'utf8');assert(html.includes('window.RUNS='));assert(html.includes(tasks[0].task_id));assert(!html.includes(tasks[4].task_id));
-  assert(fs.readFileSync(root+'/summary.csv','utf8').includes('"S_Hypo"'));assert(fs.readFileSync(root+'/tasks.csv','utf8').includes('"unstarted",,,,\n'));
+  assert(fs.readFileSync(root+'/summary.csv','utf8').includes('"S_Hypo"'));assert(fs.readFileSync(root+'/tasks.csv','utf8').includes('"unstarted","COGI-4-8/v1",,,,,\n'));
   assert.equal(read(root+'/summary.json').groups[0].model,model);
 });
 

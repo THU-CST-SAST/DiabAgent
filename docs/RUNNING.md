@@ -2,7 +2,7 @@
 
 ## Select a Harness
 
-DiabAgent evaluates a model through an official native CLI. Supply `--harness`, `--model`, `--binary`, and `--endpoint` explicitly.
+DiabAgent supports native CLI harnesses, API adapters and custom modules. Native runs supply `--harness`, `--model`, `--binary`, and `--endpoint` explicitly. See [Custom Experiments](EXPERIMENTS.md) for configuration files and additional interfaces.
 
 | Harness | CLI version | Endpoint contract |
 |---|---|---|
@@ -62,7 +62,9 @@ The native catalog schema is illustrated by `harnesses/codex-decision-loop/model
 
 ## Run the Task Set
 
-Remove `--limit 1` to run all 212 tasks. `--tasks TASK_ID,...` selects an exact subset. `--parallel N` controls concurrency within the process, from 1 to 64. Start each evaluation in a fresh output directory, and assign task ownership to one runner process.
+Remove `--limit 1` to run all 212 reference tasks. `--tasks TASK_ID,...` selects an exact subset; `--scenarios A01,F02` selects scenario templates. `--parallel N` accepts a positive integer and controls process concurrency; choose a value within your host and provider limits. Start each evaluation in a fresh output directory, and assign task ownership to one runner process.
+
+`--experiment FILE.json` configures hardware, world parameters, scheduling, agent options, model settings and harness budgets. `--dataset DIRECTORY` uses constructed or prepared tasks. `--interval 15` changes the agent schedule without changing the physiological simulation grid. Audits use the resolved protocol stored in `PLAN.json`. See [EXPERIMENTS.md](EXPERIMENTS.md) for runnable examples and option precedence.
 
 Gateway retries retain request evidence and use 60/120/240/480/600s backoff. Authentication, quota, and permission failures terminate the request. `--decision-redraw true` enables the runtime's recorded fresh-request recovery for supported deadline/runner failures, up to four attempts. Whole-process crash recovery remains outside the validated recovery scope.
 

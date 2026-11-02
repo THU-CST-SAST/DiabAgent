@@ -18,13 +18,13 @@ export function inspectCodexBinary(binary){
 
 /** Native app-server only: never sends model HTTP or loads the user's coding settings. */
 export class CodexRpc {
-  constructor({binary,root,key,endpoint='https://api.openai.com/v1',onMessage=()=>{},timeoutMs=240000,skillAssetsRoot=null,logSecrets=[],model='gpt-6.1-sol',catalogFile=null}){
+  constructor({binary,root,key,endpoint='https://api.openai.com/v1',onMessage=()=>{},timeoutMs=240000,skillAssetsRoot=null,logSecrets=[],model='gpt-6.1-sol',catalogFile=null,maxReferenceReads=3}){
     assert(path.isAbsolute(root)&&!fs.existsSync(root));assert(typeof key==='string'&&key.length>0);
     const url=new URL(endpoint);assert(url.protocol==='https:'||['127.0.0.1','localhost'].includes(url.hostname));
     if(url.protocol==='http:')assert.equal(key,'offline-dummy-not-a-credential');
     this.identity=inspectCodexBinary(binary);this.root=root;this.timeoutMs=timeoutMs;this.sequence=0;this.pending=new Map();this.onMessage=onMessage;this.closed=false;
     fs.mkdirSync(root,{recursive:true});fs.mkdirSync(root+'/home');fs.mkdirSync(root+'/workspace');
-    this.knowledge=skillAssetsRoot?installCodexKnowledge(root,skillAssetsRoot):null;
+    this.knowledge=skillAssetsRoot?installCodexKnowledge(root,skillAssetsRoot,{maxReads:maxReferenceReads}):null;
     const provider={name:'Registered benchmark provider',base_url:endpoint,env_key:'OPENAI_API_KEY',wire_api:'responses',request_max_retries:0,stream_max_retries:0,stream_idle_timeout_ms:86400000,requires_openai_auth:false,supports_websockets:false};
     const args=['app-server','--stdio','--config','model_provider="benchmark"','--config','model_providers.benchmark='+JSON.stringify(provider)];
     // CLI config expects TOML; a JSON object is not an inline TOML table.

@@ -1,0 +1,10 @@
+{
+  "name":"selected-scenes-dana-oref",
+  "dataset":"main212",
+  "selection":{"scenarios":["A01","F02"],"limit":2},
+  "hardware":"dana-i-oref",
+  "world":{"horizon_minutes":180},
+  "agent_options":{"decision_schedule":"hourly","fixed_interval_minutes":15,"memory":"notes","history_hours":6,"samples":2,"simulate_calls":3},
+  "runtime":{"max_native_turns":12,"max_reference_reads":5,"logical_timeout_ms":360000,"max_format_errors":10},
+  "model":{"max_tokens":8192,"reasoning_effort":"medium"}
+}

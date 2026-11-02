@@ -9,7 +9,7 @@ export const intervalWord=minutes=>minutes===60?'hourly':`${minutes}-minute`;
  */
 export class HourlySchedule {
   constructor({start,end,offsetMs=0,extraLimit=6,intervalMinutes=60}) {
-    if(!Number.isFinite(start)||!(end>start)||!Number.isInteger(extraLimit)||extraLimit<0||extraLimit>6
+    if(!Number.isFinite(start)||!(end>start)||!Number.isInteger(extraLimit)||extraLimit<0||extraLimit>288
       ||!Number.isInteger(intervalMinutes)||intervalMinutes<5||intervalMinutes%5!==0)
       throw Error('Invalid hourly schedule');
     this.start=start;this.end=end;this.offsetMs=offsetMs;this.extraLimit=extraLimit;

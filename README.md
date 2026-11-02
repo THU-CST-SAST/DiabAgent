@@ -4,7 +4,7 @@
 
 DiabAgent is a benchmark for long-horizon glucose management with AI agents. Agents manage synthetic patients with type 1 diabetes by interpreting continuous glucose monitoring (CGM) readings, consulting clinical knowledge, maintaining memory, and choosing treatment actions over multi-day episodes. Performance is evaluated from the resulting glucose trajectories.
 
-This repository provides the main experiment's **212 tasks**, a physiological simulator, task constructors, native Claude Code and Codex harnesses, a versioned glucose-management Skill, classical baselines, and interactive trajectory reports.
+This repository provides the main experiment's **212 tasks**, a physiological simulator, task constructors, configurable harnesses, a versioned glucose-management Skill, classical baselines, and interactive trajectory reports. Use the default protocol to reproduce the main evaluation, or configure your own hardware, controllers, schedules, scenarios, and model interface.
 
 | Component | Main Experiment |
 |---|---|
@@ -48,6 +48,8 @@ Choose a harness and supply the model identifier exposed by your provider. The h
 |---|---|---|---|
 | `claude-code` | Claude Code 2.1.296 | Messages-compatible streaming and tools | [Configuration](configs/harnesses/claude-code.json) |
 | `codex` | Codex 0.163.0 | Responses-compatible streaming and tools | [Configuration](configs/harnesses/codex.json) |
+| `adapter` | In-process adapter | Existing API adapters or an offline scripted policy | [Configuration](configs/harnesses/adapter.json) |
+| `custom` | User-supplied module | Your own `createHarness` factory | [Example](examples/harnesses/custom.mjs) |
 
 `--model` is passed to your provider and checked against its responses. Model inference is billed by your provider. Configure a credential and inspect the task list:
 
@@ -86,7 +88,43 @@ unset DIABAGENT_API_KEY
 
 Start with a single task to check the service configuration. Remove `--limit 1` to evaluate all 212 tasks, and set `--parallel` to select concurrency. Use a fresh `--out` directory for each run. Individual tasks can be selected with `--tasks TASK_ID,...`.
 
-The harness provides simulation and history tools, native Skill access, rolling memory, request logging, and trajectory audits. The main configuration requests high reasoning effort and 16,384 output tokens, with seven native model turns, three reference reads, and two simulation calls per decision. The complete settings are in [`benchmark/main212/protocol.json`](benchmark/main212/protocol.json).
+The native harnesses provide simulation and history tools, native Skill access, rolling memory, request logging, and trajectory audits. The default configuration requests high reasoning effort and 16,384 output tokens, with seven native model turns, three reference reads, and two simulation calls per decision. These are defaults, configurable through an experiment file. The default settings are in [`benchmark/main212/protocol.json`](benchmark/main212/protocol.json).
+
+## Custom Experiments
+
+Keep the existing scenarios and change the hardware and decision schedule:
+
+```bash
+# Inspect available devices, controllers and agent options.
+node scripts/benchmark.mjs catalog
+
+# Resolve the configuration without contacting a model.
+node scripts/benchmark.mjs run --hardware dana-i-oref --interval 15 \
+  --scenarios A01,F02 --limit 2 --dry-run
+
+# Run the selected tasks with an oref-enabled Dana-i pump.
+node scripts/benchmark.mjs run --hardware dana-i-oref --interval 15 \
+  --harness claude-code --model YOUR_MODEL_ID \
+  --binary /absolute/path/to/claude.exe \
+  --endpoint https://your-messages-provider.example \
+  --out artifacts/my-oref-experiment
+```
+
+Hardware presets cover pens, ordinary pumps, oref1-enabled pumps and HCL pumps. An experiment JSON can override any supported world configuration, agent option, model setting and exposed harness budget. For example:
+
+```bash
+node scripts/benchmark.mjs prepare \
+  --experiment examples/experiments/hcl-five-minute.json \
+  --out artifacts/hcl-dataset
+
+node scripts/benchmark.mjs run --dataset artifacts/hcl-dataset \
+  --harness codex --model YOUR_MODEL_ID \
+  --binary /absolute/path/to/codex \
+  --endpoint https://your-responses-provider.example/v1 \
+  --out artifacts/my-hcl-experiment
+```
+
+The HCL example uses DASH hardware, a five-minute agent schedule, a shorter episode, and custom tool budgets. The [experiment guide](docs/EXPERIMENTS.md) covers configuration precedence, all option groups, custom harnesses, reusable datasets, and new scenarios. Every run records its resolved configuration and is audited against that configuration.
 
 ## Baselines
 
@@ -113,7 +151,7 @@ node scripts/benchmark.mjs baselines --interval 15 \
   --policies standard,guideline,oref1 --out artifacts/baseline-main212-15min
 ```
 
-Supported decision intervals are `5/10/15/20/30/45/60/90/120` minutes. Five-minute policies are consulted at each simulation step; other intervals retain up to six urgent consultations per local day. Outputs include per-task trajectories, total scores, component scores, and an aggregate summary.
+Decision intervals accept positive multiples of five minutes, including `5/10/15/20/30/45/60/90/120`. Five-minute policies are consulted at each simulation step; other intervals use the configured daily extra-consultation cap (default six). Baselines accept the same `--experiment`, `--dataset`, `--hardware` and task-selection options as model runs. Outputs include per-task trajectories, total scores, component scores, and an aggregate summary.
 
 ## Creating Tasks
 
@@ -134,6 +172,11 @@ node scripts/benchmark.mjs pipeline \
 # Build the task suite.
 node scripts/benchmark.mjs pipeline \
   --config sim/bench/pipelines/custom.example.json --out artifacts/my-suite
+
+# Use a constructed task or suite with any supported harness.
+node scripts/benchmark.mjs run --dataset artifacts/my-task --dry-run
+node scripts/benchmark.mjs prepare --dataset artifacts/my-suite \
+  --out artifacts/my-prepared-suite
 ```
 
 The constructor API is implemented in [`sim/src/sim/instance.mjs`](sim/src/sim/instance.mjs), with batch generation in [`sim/src/experiments/scenario-pipeline.mjs`](sim/src/experiments/scenario-pipeline.mjs).
@@ -184,8 +227,8 @@ Open the generated `index.html` in a browser.
 
 ```text
 benchmark/          Main212 tasks and model-independent evaluation protocol
-configs/harnesses/  Claude Code and Codex runtime defaults
-harnesses/          Native tool loops, model transport, and audits
+configs/            Harness, hardware and default experiment configurations
+harnesses/          Native tool loops, adapter support and audits
 sim/src/            Simulator, task constructors, policies, and scoring
 sim/model/          Physiological model
 sim/knowledge/      Patient, device, insulin, and sensor specifications
@@ -193,7 +236,7 @@ sim/skills/         Skill source pin and benchmark edition builders
 sim/scripts/video/  Interactive trajectory player
 scripts/            Benchmark, baseline, and task-construction commands
 experiments/paper/  Model configurations used in the paper
-examples/           Example task specifications
+examples/           Task, experiment and custom harness examples
 test/, sim/test/    Release, simulator, and protocol tests
 docs/               Detailed guides and release information
 ```
@@ -202,6 +245,7 @@ docs/               Detailed guides and release information
 
 Guides and protocol references:
 
+- [Custom experiments and configurable hardware](docs/EXPERIMENTS.md) (English)
 - [Task construction](docs/TASKS.md)
 - [Runtime and harness configuration](docs/RUNNING.md) (English)
 - [Experiment protocol](docs/PROTOCOL.md)

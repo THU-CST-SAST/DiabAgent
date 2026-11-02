@@ -33,9 +33,10 @@ export const HCL_SETTINGS=Object.freeze({
 });
 
 /** The loop part (care.mjs loop interface). */
-export function hclLoop(settings=HCL_SETTINGS) {
-  const S=settings;let lastAutoBolusAt=-Infinity,lastSample=null;
+export function hclLoop(settings=HCL_SETTINGS,{state=null}={}) {
+  const S=settings;let lastAutoBolusAt=state?.lastAutoBolusAt??-Infinity,lastSample=state?.lastSample??null;
   return {
+    snapshot:()=>({lastAutoBolusAt:Number.isFinite(lastAutoBolusAt)?lastAutoBolusAt:null,lastSample}),
     name:'B3',
     active:obs=>obs.device.type==='pump'&&cgmLive(obs,10),
     decide(obs,care) {

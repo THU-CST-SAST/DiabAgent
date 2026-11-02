@@ -17,10 +17,10 @@ import {captureNativeSegmentCheckpoint,inspectNativeHistoryRetry} from './native
 import {assertRegisteredCodeModel,codeToolSchema} from './model-identity.mjs';
 
 export function compileControllerRequest(config, { system, messages, tools }) {
-  assertRegisteredCodeModel(config.model); assert([8192,16384].includes(config.max_tokens));
+  assertRegisteredCodeModel(config.model); assert(Number.isInteger(config.max_tokens)&&config.max_tokens>0);
   // Output cap and reasoning effort are independently registered; both high and max are supported.
-  assert(['high','max'].includes(config.reasoning_effort ?? config.effort)); assert.equal(config.strict_tools, true);
-  return { model: config.model, max_tokens: config.max_tokens, system: [{ type: 'text', text: system, cache_control: { type: 'ephemeral' } }], messages: toAnthropicMessages(messages), tools: tools.map(t => ({ name: t.name, description: t.description, input_schema: codeToolSchema(compileToolContract(t, 'anthropic').schema,config.model), strict: config.strict_tool_names == null || config.strict_tool_names.includes(t.name) })), output_config: { effort: config.reasoning_effort ?? config.effort }, thinking: config.thinking, tool_choice: { type: 'auto', disable_parallel_tool_use: true } };
+  assert(typeof (config.reasoning_effort??config.effort)==='string'); assert.equal(typeof config.strict_tools,'boolean');
+  return { model: config.model, max_tokens: config.max_tokens, system: [{ type: 'text', text: system, cache_control: { type: 'ephemeral' } }], messages: toAnthropicMessages(messages), tools: tools.map(t => ({ name: t.name, description: t.description, input_schema: codeToolSchema(compileToolContract(t, 'anthropic').schema,config.model), strict: config.strict_tools&&(config.strict_tool_names == null || config.strict_tool_names.includes(t.name)) })), output_config: { effort: config.reasoning_effort ?? config.effort }, thinking: config.thinking, tool_choice: { type: 'auto', disable_parallel_tool_use: true } };
 }
 
 /**
@@ -41,7 +41,7 @@ export function decisionContinuation(previous, next, useId) {
   return text == null ? null : { text, is_error: !!results[0].is_error };
 }
 
-export function createDecisionLoopModel({ config, root, key, binary, registration, offlineEndpoint, timeoutMs, nativeSkillAssetsRoot=null, nativeKnowledgeGuidance='legacy-v1', nativeSkillEntry='automatic', initialParallelCorrection=null, initialNativeHistoryCheckpoint=null, releaseClosedSessions=false, maxTurns = STANDARD_HARNESS.max_native_turns_per_decision, initialSessionMaxTurns = maxTurns }) {
+export function createDecisionLoopModel({ config, root, key, binary, registration, offlineEndpoint, timeoutMs, nativeSkillAssetsRoot=null, nativeKnowledgeGuidance='legacy-v1', nativeSkillEntry='automatic', initialParallelCorrection=null, initialNativeHistoryCheckpoint=null, releaseClosedSessions=false, maxTurns = STANDARD_HARNESS.max_native_turns_per_decision, initialSessionMaxTurns = maxTurns, maxReferenceReads=3 }) {
   assert(['automatic','task-command-v1'].includes(nativeSkillEntry),'Unknown native Skill entry mode');
   assert(nativeSkillAssetsRoot||nativeSkillEntry==='automatic','Task Skill entry requires native Skill mode');
   validateKnowledgeGuidance(nativeKnowledgeGuidance);
@@ -86,7 +86,7 @@ export function createDecisionLoopModel({ config, root, key, binary, registratio
             await live?.session.close(); live = null;
             if(releaseClosedSessions&&current&&!current.released)await current.release();
             const checkpoint=nativeHistoryRetry?.registration??(!firstReplyAccepted&&!checkpointReplyReceived?initialNativeHistoryCheckpoint:null);
-            current = new DecisionLoopSession({ root: root + '/session-' + (sessions.length + 1), key, binary, registration, offlineEndpoint, timeoutMs:checkpoint?.attestation.remaining_logical_ms??timeoutMs,nativeSkillAssetsRoot,nativeKnowledgeGuidance,nativeSkillEntry,
+            current = new DecisionLoopSession({maxReferenceReads, root: root + '/session-' + (sessions.length + 1), key, binary, registration, offlineEndpoint, timeoutMs:checkpoint?.attestation.remaining_logical_ms??timeoutMs,nativeSkillAssetsRoot,nativeKnowledgeGuidance,nativeSkillEntry,
               initialParallelCorrection:!firstReplyAccepted?initialParallelCorrection:null,
               nativeHistoryCheckpoint:checkpoint,
               maxTurns: checkpoint?checkpoint.attestation.remaining_native_turns:queryRetry?queryRetry.remaining_native_turns:!firstReplyAccepted?initialSessionMaxTurns:maxTurns });

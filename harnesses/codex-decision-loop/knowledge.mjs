@@ -25,7 +25,7 @@ export function codexKnowledgeResult(config,state,{id,name,input}){
   const text=lines.slice(decision.offset_lines-1,decision.offset_lines-1+decision.limit_lines).join('\n');
   assert.equal(text.length,decision.characters);return {success:true,text};
 }
-export function installCodexKnowledge(root,assetsRoot){
+export function installCodexKnowledge(root,assetsRoot,{maxReads=3}={}){
   const manifest=JSON.parse(fs.readFileSync(assetsRoot+'/source.json'));
   verifyNativeSkillEdition(manifest);assert.equal(manifest.sha256,NATIVE_CONTROL_PLAYBOOK_ASSETS);
   const target=root+'/home/skills/blood-glucose-management';fs.mkdirSync(target,{recursive:true});
@@ -37,7 +37,7 @@ export function installCodexKnowledge(root,assetsRoot){
     const bytes=fs.readFileSync(from);assert.equal(createHash('sha256').update(bytes).digest('hex'),digest);
     fs.mkdirSync(path.dirname(destination+'/'+rel),{recursive:true});fs.writeFileSync(destination+'/'+rel,bytes);
   }
-  const config={skill_name:'sweetbench-glucose:blood-glucose-management',skill_root:destination,files:manifest.files,assets_sha256:manifest.sha256,max_reads:3},state={attempts:[]};
+  const config={skill_name:'sweetbench-glucose:blood-glucose-management',skill_root:destination,files:manifest.files,assets_sha256:manifest.sha256,max_reads:maxReads},state={attempts:[]};
   fs.writeFileSync(root+'/KNOWLEDGE-REGISTRATION.json',JSON.stringify({...config,source:assetsRoot,native_entry_mode:'explicit Codex skill input',reference_reader:'dynamic Read with original evaluateNativeRead policy',entry_bytes_changed:false,reference_bytes_changed:false},null,2));
   const persist=()=>fs.writeFileSync(root+'/NATIVE-KNOWLEDGE-LEDGER.json',JSON.stringify(state,null,2));persist();
   let inheritedRoot=null;
@@ -45,7 +45,7 @@ export function installCodexKnowledge(root,assetsRoot){
     inherit({ledger,knowledge}){
       assert.equal(state.attempts.length,0);assert.equal(knowledge.assets_sha256,config.assets_sha256);
       for(const [file,digest]of Object.entries(config.files))assert.equal(createHash('sha256').update(fs.readFileSync(knowledge.skill_root+'/'+file)).digest('hex'),digest);
-      assert(ledger.attempts.filter(a=>a.tool==='Read'&&a.allowed).length<=3);
+      assert(ledger.attempts.filter(a=>a.tool==='Read'&&a.allowed).length<=maxReads);
       inheritedRoot=fs.realpathSync(knowledge.skill_root);state.attempts=structuredClone(ledger.attempts);persist();
       fs.writeFileSync(root+'/INHERITED-KNOWLEDGE.json',JSON.stringify({source_root:inheritedRoot,original_ledger:ledger,budget_reset:false},null,2));
     },

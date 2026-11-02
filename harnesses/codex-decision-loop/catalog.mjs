@@ -15,7 +15,7 @@ export function benchmarkCatalog(model,sourceFile=null){
   const entry=structuredClone(catalogue.models[0]);
   Object.assign(entry,{slug:model,display_name:model,description:'DiabAgent evaluation model',base_instructions:'',model_messages:null,
     prefer_websockets:false,use_responses_lite:false,context_window:128000,max_context_window:128000,
-    default_reasoning_level:'high',supported_reasoning_levels:[{effort:'high',description:'Benchmark reasoning effort'}],
+    default_reasoning_level:'high',supported_reasoning_levels:['low','medium','high','xhigh'].map(effort=>({effort,description:effort+' reasoning effort'})),
     availability_nux:null,upgrade:null,available_in_plans:[],service_tiers:[],additional_speed_tiers:[]});
   return {models:[entry]};
 }

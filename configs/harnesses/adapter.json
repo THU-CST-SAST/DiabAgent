@@ -1,0 +1,4 @@
+{
+  "harness":"adapter",
+  "config":{"adapter":"openai-compatible","wire_api":"responses","max_tokens":16384,"reasoning_effort":"high","strict_tools":true,"tool_contract_repair":true}
+}

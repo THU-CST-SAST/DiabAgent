@@ -30,7 +30,7 @@ export const PARALLEL_REJECTION = 'Rejected: exactly one tool call per reply is 
  * controller's exact result, and the first act proposal ends the process before any action is applied.
  */
 export class DecisionLoopSession {
-  constructor({ root, key, binary, registration, offlineEndpoint, nativeSkillAssetsRoot=null, nativeKnowledgeGuidance='legacy-v1', nativeSkillEntry='automatic', initialParallelCorrection=null, nativeHistoryCheckpoint=null, timeoutMs = 120000, maxTurns = STANDARD_HARNESS.max_native_turns_per_decision }) {
+  constructor({ root, key, binary, registration, offlineEndpoint, nativeSkillAssetsRoot=null, nativeKnowledgeGuidance='legacy-v1', nativeSkillEntry='automatic', initialParallelCorrection=null, nativeHistoryCheckpoint=null, timeoutMs = 120000, maxTurns = STANDARD_HARNESS.max_native_turns_per_decision,maxReferenceReads=3 }) {
     assert(['automatic','task-command-v1'].includes(nativeSkillEntry));
     assert(nativeSkillAssetsRoot||nativeSkillEntry==='automatic');
     assert.ok(offlineEndpoint || registration === (nativeSkillAssetsRoot?NATIVE_SKILL_REGISTRATION:REGISTRATION), 'Unregistered production invocation');
@@ -39,13 +39,13 @@ export class DecisionLoopSession {
       assert.equal(url.protocol, 'http:'); assert.equal(url.hostname, '127.0.0.1');
       assert.equal(key, 'offline-dummy-not-a-credential');
     }
-    assert.ok(key && timeoutMs > 0 && timeoutMs <= 480000 && Number.isInteger(maxTurns) && maxTurns >= 1 && maxTurns <= 8);
+    assert.ok(key && timeoutMs > 0 && timeoutMs <= 86400000 && Number.isInteger(maxTurns) && maxTurns >= 1 && maxTurns <= 256);
     // Linux claude.exe 2.1.296 by default; another platform's same-version build is pinned via CLAUDE_BINARY_SHA256.
     assert.equal(createHash('sha256').update(fs.readFileSync(binary)).digest('hex'), process.env.CLAUDE_BINARY_SHA256 ?? '24972e3bc859fab2b46ed4c1e51f7d6130f06d3bd550811a114640de3370d0de');
     if(initialParallelCorrection){assert.equal(initialParallelCorrection.consumed_native_turns,1);
       assert.equal(initialParallelCorrection.remaining_native_turns,6);assert.equal(maxTurns,6);}
     if(nativeHistoryCheckpoint){assert(nativeSkillAssetsRoot&&nativeSkillEntry==='task-command-v1');assert(!initialParallelCorrection);assert.equal(nativeHistoryCheckpoint.attestation.remaining_native_turns,maxTurns);}
-    Object.assign(this, { root, key, binary, offlineEndpoint, timeoutMs, maxTurns, initialParallelCorrection,nativeKnowledgeGuidance,nativeSkillEntry,nativeHistoryCheckpoint });
+    Object.assign(this, { root, key, binary, offlineEndpoint, timeoutMs, maxTurns, initialParallelCorrection,nativeKnowledgeGuidance,nativeSkillEntry,nativeHistoryCheckpoint,maxReferenceReads });
     this.productionEndpoint=process.env.DIABAGENT_CODE_BASE_URL??'https://api.anthropic.com';
     const endpoint=new URL(this.productionEndpoint);
     assert(endpoint.protocol==='https:'&&!endpoint.username&&!endpoint.password&&!endpoint.search&&!endpoint.hash,'Invalid production endpoint');
@@ -179,21 +179,21 @@ export class DecisionLoopSession {
   async start(expected) {
     if(this.nativeHistoryCheckpoint)return this.startHistoryCheckpoint(expected);
     if(this.nativeKnowledge===undefined&&this.nativeSkillAssetsRoot&&this.initialParallelCorrection)verifyPendingCorrection(this.initialParallelCorrection,expected);
-    assertRegisteredCodeModel(expected.model); assert([8192,16384].includes(expected.max_tokens)); assert(['high','max'].includes(expected.output_config.effort),'Registered effort must be high or max');
-    assert(['high','max'].includes(expected.output_config.effort));
+    assertRegisteredCodeModel(expected.model); assert(Number.isInteger(expected.max_tokens)&&expected.max_tokens>0);
+    assert(typeof expected.output_config.effort==='string');
     assert.equal(expected.messages.at(-1).role, 'user'); assert.ok(expected.tools.length);
     const taskEntry=this.nativeSkillEntry==='task-command-v1';
     const home = this.root + '/home', cwd = this.root + '/workspace', sid = randomUUID(), project = 'decision-loop', resumed = taskEntry || expected.messages.length > 1 || !!this.initialParallelCorrection;
     fs.mkdirSync(home); fs.mkdirSync(cwd); fs.mkdirSync(home + '/projects/' + project, { recursive: true }); fs.mkdirSync(this.root + '/results');
     if(this.nativeSkillAssetsRoot){
       assert(!expected.tools.some(t=>t.name==='read_glucose_skill'),'Do not mix native Skill with a custom reference reader');
-      this.nativeKnowledge=prepareNativeSkill({assetsRoot:this.nativeSkillAssetsRoot,workspace:cwd,sessionRoot:this.root,guidanceRevision:this.nativeKnowledgeGuidance});
+      this.nativeKnowledge=prepareNativeSkill({assetsRoot:this.nativeSkillAssetsRoot,workspace:cwd,sessionRoot:this.root,guidanceRevision:this.nativeKnowledgeGuidance,maxReads:this.maxReferenceReads,maxTurns:this.maxTurns});
       this.save('NATIVE-SKILL-MANIFEST.json',nativeKnowledgeManifest(this.nativeKnowledge));
     }
     this.initialControllerMessageCount=expected.messages.length;
     if(taskEntry)this.save('NATIVE-TASK-ENTRY.json',{mode:this.nativeSkillEntry,command:'/'+this.nativeKnowledge.name,
       original_controller_messages:expected.messages.length,manual_body_injection:false,model_selected_activation:false,
-      native_model_turn_budget:this.maxTurns,reference_read_budget:3});
+      native_model_turn_budget:this.maxTurns,reference_read_budget:this.maxReferenceReads});
     if(this.initialParallelCorrection){
       assert(resumed);this.save('REGISTERED-PARALLEL-CORRECTION.json',this.initialParallelCorrection);
       if(this.nativeKnowledge)this.save('DERIVED-PARALLEL-REJECTIONS.json',{origin:'New registered policy results; not original MCP results',source_manifest:this.initialParallelCorrection.source_manifest,
@@ -240,7 +240,7 @@ export class DecisionLoopSession {
 
   async startHistoryCheckpoint(expected){
     assert([8192,16384].includes(expected.max_tokens));
-    assert(['high','max'].includes(expected.output_config.effort));
+    assert(typeof expected.output_config.effort==='string');
     const prepared=prepareNativeHistoryCheckpoint({...this.nativeHistoryCheckpoint,destination:this.root,expected});
     assert.equal(prepared.proof.remaining_native_turns,this.maxTurns);this.nativeKnowledge=prepared.knowledge;this.nativeTaskHistory=prepared.history;this.nativeWorkspace=prepared.cwd;
     this.initialControllerMessageCount=expected.messages.length;this.receiptsFile=prepared.receipts;this.tools=prepared.tools;

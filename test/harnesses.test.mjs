@@ -12,6 +12,7 @@ import {benchmarkCatalog} from '../harnesses/codex-decision-loop/catalog.mjs';
 import {startBenchmarkThread} from '../harnesses/codex-decision-loop/thread.mjs';
 import {startCodexTransport,TRANSPORT_DUMMY} from '../harnesses/codex-decision-loop/transport.mjs';
 import {createCodexDecisionLoopModel} from '../harnesses/codex-decision-loop/model.mjs';
+import {nativeKnowledgeInstructions} from '../harnesses/claude-code-decision-loop/native-skill.mjs';
 
 const model='provider/unlisted-model-v1';
 test('public configuration accepts an arbitrary provider model for either harness',()=>{
@@ -27,6 +28,16 @@ test('Code compiles and checks the selected model without changing returned iden
   const raw={id:'custom-response',type:'message',role:'assistant',model,content:[{type:'tool_use',id:'call-1',name:'mcp__experiment__act',input:{action:{type:'WAIT'}}}],stop_reason:'tool_use',usage:{input_tokens:3,output_tokens:2}};
   assert.deepEqual(parseCodeStream(JSON.stringify(raw),{model}).raw,raw);
   assert.throws(()=>parseCodeStream(JSON.stringify({...raw,model:'different-model'}),{model}),/identity/);
+});
+test('native harness settings accept custom token, effort and reference/native-turn budgets',async t=>{
+  const request=read(ROOT+'harnesses/claude-code-decision-loop/CAPTURE-FIXTURES.json').cases[0].neutral;
+  const config={...resolveHarness({harness:'claude-code',model}).config,max_tokens:4096,reasoning_effort:'medium'};
+  const compiled=compileControllerRequest(config,request);assert.equal(compiled.max_tokens,4096);assert.equal(compiled.output_config.effort,'medium');
+  const instructions=nativeKnowledgeInstructions('detailed-reference-v3',{maxReads:5,maxTurns:12});
+  assert(instructions.includes('5'));assert(instructions.includes('12'));
+  const root=fs.mkdtempSync(path.join(os.tmpdir(),'diabagent-budgets-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));
+  const delegate=createCodexDecisionLoopModel({config:{...resolveHarness({harness:'codex',model}).config,max_tokens:4096,reasoning_effort:'medium'},root:root+'/model',key:TRANSPORT_DUMMY,maxTurns:12,maxReferenceReads:5,timeoutMs:360000});
+  assert.equal(delegate.diagnostics.output_cap,4096);await delegate.close();
 });
 test('Codex uses selected model in its catalog, thread, and factory',async t=>{
   const catalog=benchmarkCatalog(model);assert.equal(catalog.models[0].slug,model);assert.equal(catalog.models[0].model_messages,null);assert.equal(catalog.models[0].base_instructions,'');

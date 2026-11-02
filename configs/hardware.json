@@ -1,0 +1,12 @@
+{
+  "dana-i": {"therapy":{"mode":"pump","pump":{"model":"dana_i","insulin":"aspart"}},"controller":{"enabled":false,"mode":"open"}},
+  "dash": {"therapy":{"mode":"pump","pump":{"model":"omnipod_dash","insulin":"fiasp"}},"controller":{"enabled":false,"mode":"open"}},
+  "combo": {"therapy":{"mode":"pump","pump":{"model":"accu_chek_combo","insulin":"lispro"}},"controller":{"enabled":false,"mode":"open"}},
+  "pens": {"therapy":{"mode":"mdi","mdi":{"bolus_pen":"novopen_6","bolus_insulin":"aspart","basal_pen":"tresiba_flextouch","basal_insulin":"degludec"}},"controller":{"enabled":false,"mode":"open"}},
+  "dana-i-oref": {"therapy":{"mode":"pump","pump":{"model":"dana_i","insulin":"aspart"}},"controller":{"enabled":true,"mode":"closed","algorithm":"oref1","expose_actions":true}},
+  "dana-i-hcl": {"therapy":{"mode":"pump","pump":{"model":"dana_i","insulin":"aspart"}},"controller":{"enabled":true,"mode":"closed","algorithm":"hcl","expose_actions":true}},
+  "dash-oref": {"therapy":{"mode":"pump","pump":{"model":"omnipod_dash","insulin":"fiasp"}},"controller":{"enabled":true,"mode":"closed","algorithm":"oref1","expose_actions":true}},
+  "dash-hcl": {"therapy":{"mode":"pump","pump":{"model":"omnipod_dash","insulin":"fiasp"}},"controller":{"enabled":true,"mode":"closed","algorithm":"hcl","expose_actions":true}},
+  "combo-oref": {"therapy":{"mode":"pump","pump":{"model":"accu_chek_combo","insulin":"lispro"}},"controller":{"enabled":true,"mode":"closed","algorithm":"oref1","expose_actions":true}},
+  "combo-hcl": {"therapy":{"mode":"pump","pump":{"model":"accu_chek_combo","insulin":"lispro"}},"controller":{"enabled":true,"mode":"closed","algorithm":"hcl","expose_actions":true}}
+}

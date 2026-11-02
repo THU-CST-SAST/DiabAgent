@@ -185,7 +185,7 @@ const isObject=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
 // Opt-in fields without a default: absent from normalized configs unless set, so existing world hashes stay unchanged.
 //   therapy.mdi.dose_memory (boolean): smart-pen dose memory; routine and pre-episode long-acting doses remain
 //   visible as device records under I1/I2 record masks (a pump's running basal is always visible).
-const OPTIONAL_FIELDS=new Set(['therapy.mdi.dose_memory','therapy.mdi.max_daily_injections']);
+const OPTIONAL_FIELDS=new Set(['therapy.mdi.dose_memory','therapy.mdi.max_daily_injections','controller.algorithm']);
 function merge(defaults,input,path) {
   if(!isObject(input))throw new Error(`${path||'config'} must be an object`);
   const out={};
@@ -236,6 +236,7 @@ export function normalizeConfig(input={}) {
   for(const k of ['anaerobic','alcohol','illness','menstrual','sleep_loss'])if(typeof c.scenario[k].enabled!=='boolean')throw new Error(`scenario.${k}.enabled must be boolean`);
   if(c.scenario.illness.min_days>c.scenario.illness.max_days)throw new Error('scenario.illness.min_days must be <= max_days');
   if(!['open','closed','lgs'].includes(c.controller.mode))throw new Error('controller.mode must be open, closed or lgs');
+  if(c.controller.algorithm!==undefined)enumOf(c.controller.algorithm,['oref0','oref1','hcl'],'controller.algorithm');
   if(!['none','assisted'].includes(c.self_care.mode))throw new Error('self_care.mode must be none or assisted');
   if(typeof c.profile_switch.enabled!=='boolean')throw new Error('profile_switch.enabled must be boolean');
   for(const k of ['enabled','expose_actions','compute_suggestions'])if(typeof c.controller[k]!=='boolean')throw new Error(`controller.${k} must be boolean`);

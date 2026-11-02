@@ -1,0 +1,7 @@
+{
+  "name":"custom-scene-combo-oref",
+  "dataset":{"spec":"../scenarios/custom-day.json"},
+  "hardware":"combo-oref",
+  "agent_options":{"fixed_interval_minutes":30,"memory":"notes","memory_mode":"full","simulate":false},
+  "model":{"max_tokens":4096}
+}

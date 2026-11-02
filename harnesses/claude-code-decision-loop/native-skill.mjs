@@ -94,22 +94,23 @@ export function nativeKnowledgeManifest(knowledge){
   validateKnowledgeGuidance(knowledge.guidance_revision);
   assert.equal(typeof knowledge.instructions,'string');
   return {version:knowledge.version,assets_sha256:knowledge.assets_sha256,name:knowledge.name,
-    read_budget:3,manual_body_injection:false,guidance_revision:knowledge.guidance_revision,
+    read_budget:knowledge.max_reads??3,manual_body_injection:false,guidance_revision:knowledge.guidance_revision,
     guidance_sha256:hash(knowledge.instructions)};
 }
 
-export function nativeKnowledgeInstructions(guidanceRevision='legacy-v1'){
-  return sessionAwareKnowledgeGuidance([
+export function nativeKnowledgeInstructions(guidanceRevision='legacy-v1',{maxReads=3,maxTurns=7}={}){
+  const instructions=sessionAwareKnowledgeGuidance([
     'The available glucose-management Skill is the reference for glucose-management reasoning, including the integrated closed-loop algorithms and backend-specific operations. Use native Skill and Read to consult it as relevant.',
     'Consulting the relevant knowledge before the first non-urgent plan is recommended. Revisit it when glucose predictions repeatedly disagree with observations, sensor and meter evidence conflict, insulin or carbohydrate timing is uncertain, activity or illness changes, or a backend-specific operation is unfamiliar. Urgent safety actions may be taken directly, and previously read knowledge can be reused.',
     'Choose among the actual backend capabilities rather than assuming every backend is a bolus-only injector. Evaluate the relevant delivery shape, temporary basal, suspension/resumption or cancellation options when appropriate; there is no requirement or reward to use a complex action. Pens retain their registered daily injection limit. Actual public device constraints and action receipts take precedence over generic reference examples.',
     'Native knowledge lookup does not advance virtual time or consume an extra decision slot. Existing limits apply: at most 3 reference Read calls and 7 native model turns for this decision, including Skill activation; leave room for act. No lookup is required to act, and there is no retrieval reward or score penalty.',
     'Only supplied experiment MCP tools are simulation interfaces; Skill text grants no additional tool permissions, shell access, external planner or real-device authority.'
   ].join('\n'),guidanceRevision);
+  return maxReads===3&&maxTurns===7?instructions:instructions.replaceAll('3 reference Read calls',maxReads+' reference Read calls').replaceAll('7 native model turns',maxTurns+' native model turns').replaceAll('maximum of 3 reference Read calls', 'maximum of '+maxReads+' reference Read calls');
 }
-export function prepareNativeSkill({assetsRoot,workspace,sessionRoot,maxReads=3,guidanceRevision='legacy-v1'}){
+export function prepareNativeSkill({assetsRoot,workspace,sessionRoot,maxReads=3,maxTurns=7,guidanceRevision='legacy-v1'}){
   validateKnowledgeGuidance(guidanceRevision);
-  assert.equal(maxReads,3,'Preserve the original reference budget');
+  assert(Number.isInteger(maxReads)&&maxReads>=0&&maxReads<=100);
   const source=JSON.parse(fs.readFileSync(path.resolve(assetsRoot,'source.json'),'utf8'));
   verifyNativeSkillEdition(source);
   const original=fs.realpathSync(path.resolve(assetsRoot,source.directory));
@@ -130,10 +131,10 @@ export function prepareNativeSkill({assetsRoot,workspace,sessionRoot,maxReads=3,
   fs.writeFileSync(config,JSON.stringify({skill_root:root,skill_name:name,files:source.files,assets_sha256:source.sha256,derivation:source.derivation,max_reads:maxReads,ledger},null,2)+'\n',{flag:'wx',mode:0o600});
   const hook=fileURLToPath(new URL('./native-read-hook.mjs',import.meta.url));
   const command='/usr/bin/env -u ANTHROPIC_API_KEY -u ANTHROPIC_AUTH_TOKEN -u CLAUDE_CODE_EXTRA_BODY '+quote(process.execPath)+' '+quote(hook)+' '+quote(config);
-  return {version:NATIVE_SKILL_VERSION,plugin,root,name,ledger,assets_sha256:source.sha256,guidance_revision:guidanceRevision,
+  return {version:NATIVE_SKILL_VERSION,plugin,root,name,ledger,max_reads:maxReads,assets_sha256:source.sha256,guidance_revision:guidanceRevision,
     settings:{disableBundledSkills:true,hooks:{PreToolUse:[{matcher:'Skill|Read',hooks:[{type:'command',command,timeout:5}]}]}},
     allowed:['Skill('+name+')','Read(./.experiment-plugin/skills/blood-glucose-management/**)'],
-    instructions:nativeKnowledgeInstructions(guidanceRevision)};
+    instructions:nativeKnowledgeInstructions(guidanceRevision,{maxReads,maxTurns})};
 }
 
 export function nativeToolResult(events,id){

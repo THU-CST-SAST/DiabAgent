@@ -18,21 +18,22 @@ const facts=r=>({system:r.system,messages:r.messages,tools:r.tools});
 const order=(a,b)=>Number(a.match(/\d+/)[0])-Number(b.match(/\d+/)[0]);
 
 /** Reconstruct facts and knowledge results from original records, not stored green flags. */
-export function inspectCodexSession(location,{calls,modelConfig,transportRecovery=null}){
- const expectedModel=modelConfig.model??'gpt-6.1-sol';
+export function inspectCodexSession(location,{calls,modelConfig,transportRecovery=null,runtime={}}){
+ const expectedModel=modelConfig.model??'gpt-6.1-sol',maxTurns=runtime.max_native_turns??7,maxReads=runtime.max_reference_reads??3;
+ const guidance=nativeKnowledgeInstructions('detailed-reference-v3',{maxReads,maxTurns});
  const replies=fs.readdirSync(location).filter(n=>/^NATIVE-REPLY-\d+\.json$/.test(n)).sort(order).map(n=>read(location+'/'+n));
- assert(replies.length<=7);
+ assert(replies.length<=maxTurns);
  const originalById=new Map();for(const r of replies){assert(!originalById.has(r.id));assert.equal(r.model,expectedModel);originalById.set(r.id,r);}
  const registration=read(location+'/transport/REGISTRATION.json'),knowledge=read(location+'/native/KNOWLEDGE-REGISTRATION.json');
  assert.equal(registration.model,expectedModel,'Transport was registered for another model');
  const manifest=read(knowledge.source+'/source.json');verifyNativeSkillEdition(manifest);
  assert.equal(manifest.sha256,'10f1e522b4ba24fbaa0a6d85ece7c047715f87099cd769ad13d9a2f6c8a24eb7');
- assert.equal(knowledge.assets_sha256,manifest.sha256);assert.deepEqual(knowledge.files,manifest.files);assert.equal(knowledge.max_reads,3);
+ assert.equal(knowledge.assets_sha256,manifest.sha256);assert.deepEqual(knowledge.files,manifest.files);assert.equal(knowledge.max_reads,maxReads);
  for(const [file,sha]of Object.entries(knowledge.files))assert.equal(digest(fs.readFileSync(knowledge.skill_root+'/'+file)),sha);
  const inputRequests=fs.readdirSync(location).filter(n=>/^CONTROLLER-REQUEST-\d+\.json$/.test(n)).sort(order).map(n=>read(location+'/'+n));
  for(const expected of inputRequests)assert(calls.some(c=>isDeepStrictEqual(facts(c.request),facts(expected))),'Archived controller boundary is absent from the original invocation log');
  const tools=[...inputRequests[0].tools.map(t=>({...t,input_schema:compileToolContract(t,'openai').schema})),...CODEX_KNOWLEDGE_TOOLS];
- const policy=tools.map(t=>({...t,strict:inputRequests[0].tools.some(c=>c.name===t.name)&&(modelConfig.strict_tool_names==null||modelConfig.strict_tool_names.includes(t.name))}));
+ const policy=tools.map(t=>({...t,strict:modelConfig.strict_tools!==false&&inputRequests[0].tools.some(c=>c.name===t.name)&&(modelConfig.strict_tool_names==null||modelConfig.strict_tool_names.includes(t.name))}));
  assert.deepEqual(registration.toolPolicy,policy);
  const events=rows(location+'/native/stdout.jsonl'),client=rows(location+'/native/client.jsonl');
  let inherited=null;const state={attempts:[]},results=new Map();
@@ -70,7 +71,7 @@ export function inspectCodexSession(location,{calls,modelConfig,transportRecover
  assert.deepEqual(semanticLedger(recordedLedger),semanticLedger(state));
  for(const row of recordedLedger.attempts)assert(Number.isFinite(Date.parse(row.at)),'A native ledger timestamp must be real, not fabricated by the re-auditor');
  if(inherited)assert.deepEqual(recordedLedger.attempts.slice(0,inherited.ledger.attempts.length),inherited.ledger.attempts);
- assert(state.attempts.filter(a=>a.tool==='Read'&&a.allowed).length<=3);
+ assert(state.attempts.filter(a=>a.tool==='Read'&&a.allowed).length<=maxReads);
  if(replies.length===0){
   assert.equal(inputRequests.length,1);assert.equal(state.attempts.length,0);assert(!inherited);
   const files=fs.readdirSync(location+'/transport').sort(),local=files.includes('1-REJECTED.json');let http=null;
@@ -79,11 +80,11 @@ export function inspectCodexSession(location,{calls,modelConfig,transportRecover
    assert.deepEqual(files,['1-BODY-DELTA.json','1-NATIVE-BYTES.txt','1-NATIVE-REQUEST.json','1-RESPONSE.json','1-RESPONSE.txt','1-UPSTREAM-REQUEST.json','REGISTRATION.json']);
    http=read(location+'/transport/1-RESPONSE.json');assert(http.complete&&[429,500,502,503,504,524].includes(http.status));assert(Number.isFinite(http.elapsed_ms)&&http.elapsed_ms>=0);
    const evidence=readCodexHttpEvidence(location+'/transport/1-RESPONSE.txt',http,{recoveryManifest:transportRecovery});assert(!evidence.recovery);const error=classifyCodexGatewayError(evidence.text,http.status);assert(error.empty&&!error.permanent);
-   const delta=read(location+'/transport/1-BODY-DELTA.json'),native=readCodexRequestEvidence(location+'/transport/1-NATIVE-REQUEST.json',delta),upstream=readCodexRequestEvidence(location+'/transport/1-UPSTREAM-REQUEST.json',delta);assert.deepEqual(upstream.value,adaptCodexWire(native.value,policy,{instructions:registration.instructions,model:expectedModel}).body);
+   const delta=read(location+'/transport/1-BODY-DELTA.json'),native=readCodexRequestEvidence(location+'/transport/1-NATIVE-REQUEST.json',delta),upstream=readCodexRequestEvidence(location+'/transport/1-UPSTREAM-REQUEST.json',delta);assert.deepEqual(upstream.value,adaptCodexWire(native.value,policy,{instructions:registration.instructions,model:expectedModel,maxTokens:modelConfig.max_tokens??16384,effort:modelConfig.reasoning_effort??'high'}).body);
    assert(!events.some(e=>e.method==='item/tool/call'));
   }
   const before=read(location+'/transport/1-NATIVE-REQUEST.json');assert.deepEqual(JSON.parse(fs.readFileSync(location+'/transport/1-NATIVE-BYTES.txt','utf8')),before);
-  assertCodexFactualRequest(before,{request:inputRequests[0],system:inputRequests[0].system+'\n\n'+nativeKnowledgeInstructions('detailed-reference-v3'),knowledge:{root:knowledge.skill_root,path:knowledge.skill_root+'/SKILL.md'},responses:[],knowledgeResults:new Map()});
+  assertCodexFactualRequest(before,{request:inputRequests[0],system:inputRequests[0].system+'\n\n'+guidance,knowledge:{root:knowledge.skill_root,path:knowledge.skill_root+'/SKILL.md'},responses:[],knowledgeResults:new Map()});
   assert(fs.existsSync(location+'/native/EXIT.json'));
   return {independent_factual_contexts:true,original_HTTP_envelopes:false,guarded_without_upstream:local,empty_gateway_error_confirmed:!local,gateway_status:http?.status??null,verified_empty_gateway_elapsed_ms:http?.elapsed_ms??0,knowledge_results_recomputed:true,native_budget:0,Read_allowed:0,requests:local?0:1,inherited_native_replies:0,recovered_transport_evidence:[]};
  }
@@ -94,13 +95,13 @@ export function inspectCodexSession(location,{calls,modelConfig,transportRecover
   const native=readCodexRequestEvidence(location+'/transport/'+n+'-NATIVE-REQUEST.json',delta,{recoveryManifest:transportRecovery}),upstream=readCodexRequestEvidence(location+'/transport/'+file,delta,{recoveryManifest:transportRecovery}),bytes=readCodexRequestEvidence(location+'/transport/'+n+'-NATIVE-BYTES.txt',delta,{recoveryManifest:transportRecovery});
   const before=native.value,after=upstream.value;assert.deepEqual(bytes.value,before);
   for(const e of [native,upstream,bytes])if(e.recovery)recoveries.push(e.recovery);
-  const changed=adaptCodexWire(before,policy,{instructions:registration.instructions??null,model:expectedModel});assert.deepEqual(after,changed.body);
-  assert.equal(after.model,expectedModel);assert.equal(after.reasoning.effort,'high');assert.equal(after.max_output_tokens,16384);assert.equal(after.parallel_tool_calls,false);
+  const changed=adaptCodexWire(before,policy,{instructions:registration.instructions??null,model:expectedModel,maxTokens:modelConfig.max_tokens??16384,effort:modelConfig.reasoning_effort??'high'});assert.deepEqual(after,changed.body);
+  assert.equal(after.model,expectedModel);assert.equal(after.reasoning.effort,modelConfig.reasoning_effort??'high');assert.equal(after.max_output_tokens,modelConfig.max_tokens??16384);assert.equal(after.parallel_tool_calls,false);
   assert.deepEqual(read(location+'/transport/'+n+'-BODY-DELTA.json').changed_fields,changed.changes);
   const record=read(location+'/FACTS-'+n+'.json'),request=inputRequests[record.controller_request-1];assert(request);
   for(const error of codexNativeRouterErrors(before,{responses:[...witnessed.values()],toolNames:policy.map(t=>t.name)})){routerErrors.set(error.call_id,error);results.set(error.call_id,error.result);}
   const previousResults=new Map([...results].filter(([id])=>[...witnessed.values()].some(r=>r.output.some(o=>o.type==='function_call'&&o.call_id===id))));
-  assertCodexFactualRequest(before,{request,system:request.system+'\n\n'+nativeKnowledgeInstructions('detailed-reference-v3'),knowledge:{root:knowledge.skill_root,path:knowledge.skill_root+'/SKILL.md'},responses:[...witnessed.values()],knowledgeResults:previousResults});
+  assertCodexFactualRequest(before,{request,system:request.system+'\n\n'+guidance,knowledge:{root:knowledge.skill_root,path:knowledge.skill_root+'/SKILL.md'},responses:[...witnessed.values()],knowledgeResults:previousResults});
   const witness=read(location+'/transport/'+n+'-RESPONSE.json'),evidence=readCodexHttpEvidence(location+'/transport/'+n+'-RESPONSE.txt',witness,{recoveryManifest:transportRecovery}),text=evidence.text;
   if(evidence.recovery)recoveries.push(evidence.recovery);
   if(witness.status!==200){

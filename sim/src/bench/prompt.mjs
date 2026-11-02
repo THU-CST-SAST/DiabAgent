@@ -328,7 +328,11 @@ export function taskDescription({instance,obs,units='mmol',config,scanTimes,hour
       +(tbr?` Temporary basal on this pump is ${tbr.type==='percent'?`percent-based (steps of ${tbr.step}%, up to ${tbr.max}%)`:'absolute (U/h)'}, duration in steps of ${tbr.duration_step_min} min.`:''));
     // The built-in loop acts only with a real-time CGM; 'open' mode changes nothing on its own.
     const c=cfg.controller;
-    if(obs.cgm&&c?.enabled&&c.mode==='closed')lines.push('- Built-in automated loop (closed loop): the phone app adjusts the basal rate automatically from the CGM readings.');
+    if(obs.cgm&&c?.enabled&&c.mode==='closed')lines.push(c.algorithm==='oref1'
+      ?'- Built-in oref1 closed loop: every 5 minutes the phone app may adjust basal delivery and give automatic microboluses from available CGM and device records. Your explicit temporary basal takes priority until it expires or is cancelled. Automatic and manual insulin share the pump ledger and bolus interval. The loop does not give rescue carbohydrate, calibrate the sensor or repair the infusion set; these remain your responsibility.'
+      :c.algorithm==='hcl'
+        ?'- Built-in predictive HCL: every 5 minutes the device uses public CGM trends to predict 30-minute glucose, adjust basal delivery and consider automatic correction boluses. Explicit user temporary basal takes priority. Device insulin delivery shares the pump ledger and safety constraints; carbohydrate rescue, sensor calibration and infusion-set repair remain user actions.'
+        :'- Built-in automated loop (closed loop): the phone app adjusts the basal rate automatically from the CGM readings.');
     if(obs.cgm&&c?.enabled&&c.mode==='lgs')lines.push('- Low-glucose suspend (LGS): the pump suspends basal automatically on low CGM readings.');
   } else {
     lines.push(`- Insulin pens (multiple daily injections): bolus pen ${d.bolus_pen} with ${obs.insulin.rapid} (dose step ${d.limits.bolus_step_u} U); long-acting pen ${d.basal_pen} with ${obs.insulin.long_acting}. There is no pump: no temporary basal, no suspension.`);
