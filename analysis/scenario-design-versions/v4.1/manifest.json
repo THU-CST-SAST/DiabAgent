@@ -1,0 +1,50 @@
+{
+  "format": "sweet-sim.design-version/v1",
+  "version": "v4.1",
+  "internal_alias": "v4r3",
+  "date": "2026-10-18",
+  "scope": "Design snapshot only; not a registered or evaluated benchmark.",
+  "primary_scenarios": 32,
+  "families": {
+    "A": 4,
+    "B": 4,
+    "C": 4,
+    "D": 6,
+    "E": 4,
+    "F": 6,
+    "H": 4
+  },
+  "original_case_ids_preserved": true,
+  "files": [
+    {
+      "file": "scenario-v4-capability-balanced-design-20261018.zh-CN.md",
+      "sha256": "b1b3a02ebf157369fcbf418c1acb0456bd4d4132717b4c1fcf0447d5b782be8f",
+      "bytes": 8194
+    },
+    {
+      "file": "scenario-v4r3-day-cards-20261018.json",
+      "sha256": "185719a639dd6e8499b70c82e84374753d66edd788c78ed0e8c7bd1afbcb0e42",
+      "bytes": 198961
+    },
+    {
+      "file": "scenario-v4r3-day-cards-20261018.zh-CN.md",
+      "sha256": "fb806b920510ad4873c90855920c212e0e08ef902290a928328f68adbf3b4cb2",
+      "bytes": 79643
+    },
+    {
+      "file": "build-scenario-v4r3-design.mjs",
+      "sha256": "67188aa8b0ec6cf6af5319dd74734b32cf72fd811193cd73612db917f7bead4a",
+      "bytes": 19896
+    },
+    {
+      "file": "scenario-v4-evidence-and-mechanisms-20261018.zh-CN.md",
+      "sha256": "b410e88902dfda476cc602be92437188b41ffe49a7529f0daa8026a6f7cc8cd0",
+      "bytes": 13265
+    },
+    {
+      "file": "scenario-v4-followup-models-and-controls-20261018.zh-CN.md",
+      "sha256": "2ebb0a592e4730dbcfb71413d6a6e95ebfd6a4ec1a39d54124509f7fa5526b54",
+      "bytes": 16174
+    }
+  ]
+}

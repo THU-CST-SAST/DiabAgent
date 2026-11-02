@@ -1,0 +1,62 @@
+{
+  "_doc": "Instance presets (see src/sim/instance.mjs for the spec format) and real-world prevalence weights used by the representative population sampler. Prevalence values are rough, registry-derived and region-dependent; see evidence notes.",
+  "presets": {
+    "reference_default": {
+      "name": "Kernel reference patient, Dana-i + aspart + Dexcom G6 (environment default)",
+      "spec": {"person": null, "therapy": {"mode": "pump", "pump": {"model": "dana_i", "insulin": "aspart"}}, "sensors": {"cgm": "dexcom_g6", "meter": null}, "events": ["baseline"]}
+    },
+    "live_upstream": {
+      "name": "Upstream sweet-sim live patient semantics (ideal pump, legacy sensor, built-in loop actions)",
+      "spec": {"person": null, "therapy": {"mode": "pump", "pump": {"model": "ideal", "insulin": "aspart"}}, "sensors": {"cgm": "legacy_uniform", "meter": null},
+        "events": ["baseline"], "controller": {"mode": "open", "expose_actions": true, "compute_suggestions": true},
+        "overrides": {"safety": {"max_bolus_u": 25, "bolus_min_interval_minutes": 0, "block_bolus_below_mg_dl": 0, "max_rescue_carbs_g": 100, "rescue_absorption_minutes": 40}}}
+    },
+    "adult_dana_g6": {
+      "name": "Adult male on Dana-i with aspart and Dexcom G6",
+      "spec": {"person": {"type": "adult_male"}, "therapy": {"mode": "pump", "pump": {"model": "dana_i", "insulin": "aspart"}}, "sensors": {"cgm": "dexcom_g6", "meter": "contour_next_one"}, "events": ["baseline"]}
+    },
+    "teen_dash_fiasp_g7": {
+      "name": "Adolescent female on Omnipod DASH with Fiasp and Dexcom G7, menstrual cycle",
+      "spec": {"person": {"type": "adolescent_female", "dawn": "present"}, "therapy": {"mode": "pump", "pump": {"model": "omnipod_dash", "insulin": "fiasp"}}, "sensors": {"cgm": "dexcom_g7", "meter": null}, "events": ["menstrual", "high_fat_meals"]}
+    },
+    "child_dash_g7": {
+      "name": "Child on Omnipod DASH with lispro and Dexcom G7",
+      "spec": {"person": {"type": "child_male", "carb_counting": "poor"}, "therapy": {"mode": "pump", "pump": {"model": "omnipod_dash", "insulin": "lispro"}}, "sensors": {"cgm": "dexcom_g7", "meter": null}, "events": ["baseline"]}
+    },
+    "adult_mdi_libre2_scan": {
+      "name": "Adult female on pens (aspart + degludec) scanning a FreeStyle Libre 2",
+      "spec": {"person": {"type": "adult_female", "bmi": "overweight"}, "therapy": {"mode": "mdi", "mdi": {"bolus_pen": "novopen_6", "bolus_insulin": "aspart", "basal_pen": "tresiba_flextouch", "basal_insulin": "degludec"}}, "sensors": {"cgm": "libre_2_scan", "meter": "accu_chek_guide"}, "events": ["baseline"]}
+    },
+    "older_mdi_smbg": {
+      "name": "Older adult on pens (regular insulin + glargine) with fingersticks only",
+      "spec": {"person": {"type": "older_male"}, "therapy": {"mode": "mdi", "mdi": {"bolus_pen": "novopen_6", "bolus_insulin": "regular_human", "basal_pen": "lantus_solostar", "basal_insulin": "glargine_u100"}}, "sensors": {"cgm": null, "meter": "generic_iso15197"}, "events": ["baseline"]}
+    },
+    "adult_combo_guardian3": {
+      "name": "Adult on Accu-Chek Combo with a fingerstick-calibrated Guardian Sensor 3",
+      "spec": {"person": {"type": "adult_male", "bmi": "obese"}, "therapy": {"mode": "pump", "pump": {"model": "accu_chek_combo", "insulin": "lispro"}}, "sensors": {"cgm": "medtronic_guardian_3", "meter": "contour_next_one"}, "events": ["occlusion_faults"]}
+    },
+    "adult_closed_loop_mixed": {
+      "name": "Adult on Medtrum with built-in closed loop and a busy life (alcohol, anaerobic exercise, sleep loss)",
+      "spec": {"person": {"type": "adult_female", "dawn": "present"}, "therapy": {"mode": "pump", "pump": {"model": "medtrum_nano", "insulin": "lyumjev"}}, "sensors": {"cgm": "libre_3", "meter": null},
+        "events": ["alcohol", "anaerobic_exercise", "sleep_loss", "menstrual"], "controller": {"mode": "closed"}}
+    }
+  },
+  "prevalence": {
+    "therapy_mode": {"pump": 0.55, "mdi": 0.45},
+    "pump_model": {"dana_i": 0.35, "omnipod_dash": 0.25, "accu_chek_combo": 0.2, "accu_chek_insight": 0.1, "medtrum_nano": 0.1},
+    "rapid_insulin": {"aspart": 0.45, "lispro": 0.35, "glulisine": 0.03, "fiasp": 0.1, "lyumjev": 0.04, "regular_human": 0.03},
+    "basal_insulin": {"glargine_u100": 0.35, "glargine_u300": 0.2, "degludec": 0.3, "detemir": 0.15},
+    "sensor_setup": {"cgm": 0.6, "flash": 0.15, "calibrated_cgm": 0.03, "meter_only": 0.22},
+    "age_group": {"child": 0.15, "adolescent": 0.15, "adult": 0.6, "older": 0.1},
+    "bmi": {"normal": 0.4, "overweight": 0.33, "obese": 0.27},
+    "evidence": {
+      "therapy_mode": {"level": "review", "sources": [], "note": "T1D Exchange QI ~54% pump (2016-2021); varies 4-80% by region (SWEET)."},
+      "pump_model": {"level": "assumed", "sources": [], "note": "DIY looper surveys 2019-2020 (UK: Combo, Dana, Omnipod); no post-2021 breakdown found."},
+      "rapid_insulin": {"level": "review", "sources": [], "note": "DPV 2021: regular insulin 4%, ultra-rapid 6.5-10%; analog split assumed."},
+      "basal_insulin": {"level": "review", "sources": [], "note": "DPV 2021: second-generation basal 42% in adults."},
+      "sensor_setup": {"level": "review", "sources": [], "note": "T1DX-QI CGM 72% (2021); SWEET youth: MDI without CGM 33%."},
+      "age_group": {"level": "assumed", "sources": []},
+      "bmi": {"level": "review", "sources": ["t1dx_bmi"]}
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "format": "sweet-sim.design-publication-support/v1",
+  "files": [
+    {
+      "file": "PUBLICATION.zh-CN.md",
+      "sha256": "4076d6ef10794273820fbd6384451a5507846a62052b9fcce44961e869dc4984",
+      "bytes": 4891
+    },
+    {
+      "file": "../SCENARIO-DESIGN-CURRENT.zh-CN.md",
+      "sha256": "d3e40cada6b37035a702927e5037cafdf5e1bd8bdabac9ff13917048e433bc04",
+      "bytes": 3007
+    }
+  ]
+}

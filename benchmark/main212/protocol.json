@@ -1,0 +1,57 @@
+{
+  "format": "diabagent.main212-protocol/v1",
+  "model": {
+    "name": "claude-opus-5-5 main212 high",
+    "model": "claude-opus-5-5",
+    "max_tokens": 16384,
+    "strict_tools": true,
+    "strict_tool_names": [
+      "act",
+      "read_glucose_history"
+    ],
+    "tool_contract_repair": true,
+    "tool_choice": "auto",
+    "disable_parallel_tool_use": true,
+    "thinking": {
+      "type": "adaptive",
+      "block_binding": {
+        "prefix_mismatch_behavior": "drop_block"
+      }
+    },
+    "reasoning_effort": "high",
+    "timeout_ms": 300000
+  },
+  "agent_options": {
+    "simulate": true,
+    "simulate_calls": 2,
+    "memory": "notes",
+    "memory_mode": "rolling",
+    "keep_turns": 12,
+    "history_hours": 3,
+    "decision_schedule": "hourly",
+    "max_extra_decisions_per_day": 6,
+    "prompt_revision": "availability-consistency/v8-center-target",
+    "score_range_alerts": true,
+    "reasoning_effort": "high",
+    "cross_day_memory": true,
+    "day_reflection": false,
+    "fixed_interval_minutes": 60
+  },
+  "options": {
+    "units": "mgdl"
+  },
+  "native_skill": {
+    "version": "native-skill-decision-loop/v1",
+    "max_reads_per_decision": 3,
+    "assets_sha256": "10f1e522b4ba24fbaa0a6d85ece7c047715f87099cd769ad13d9a2f6c8a24eb7",
+    "entry_mode": "task-command-v1",
+    "guidance_revision": "detailed-reference-v3",
+    "control_playbook": true
+  },
+  "scoring_version": "COGI-4-8/v1",
+  "max_turns": 400,
+  "max_format_errors": 3,
+  "max_native_turns_per_decision": 7,
+  "logical_timeout_ms": 240000,
+  "outer_API_tries": 1
+}

@@ -1,0 +1,31 @@
+{
+  "format": "sweet-sim.skill-source/v1",
+  "source": {
+    "url": "https://github.com/THU-CST-SAST/sweet-agent-skill.git",
+    "commit": "eb62199ff01267b49a833d493fd91c57bd8fe150"
+  },
+  "directory": "sweet-agent-skill/skills/blood-glucose-management",
+  "files": {
+    "SKILL.md": "9e69fba08c850a78175d393236bdf2c0bb8f1a658272c96f8cc7ff5ae781858e",
+    "references/00-retrieval-index.md": "c4e3137b1cdc13a84dfe20927bedc88a406463bcd9a1c53c6d51cf48d182c99d",
+    "references/00-source-map-and-page-coverage.md": "bde77c7617bddd9e724ce6d71232b056fbbfd0e84b6ab098f4f971c536ba4bf4",
+    "references/01-hormones-and-basal-insulin.md": "a9eab712e57a22769bf37cafeb5c709db50550de231481f92a616e0c02a60019",
+    "references/02-food-digestion-gi-gl.md": "5d1dc2f6c6356c883952bb56f4f4d7f2aafc0fb7eea79fdc366d1f0a7ea9b66e",
+    "references/03-carb-fat-protein-and-mealtime-insulin.md": "54d9904802c0c25d106e7567743fad644195d7fc98aadc96e9b7975439bf9542",
+    "references/04-cgm-agp-and-pattern-analysis.md": "41f8b688081d6c1b917927f1ef4051c7cdabbf76922b5d594a86015ee3c62217",
+    "references/05-insulin-corrections-and-hypoglycemia.md": "a62c24b3cec90e717447200833add97064678bf81009b9accdd42acbf90efb41",
+    "references/06-exercise-management.md": "87fa889e2e73bf30c9bc58bf46874ea9c12c0af2ea5a76287536325ac3976000",
+    "references/07-pump-basal-bolus-and-closed-loop.md": "84ee3d95ad4306225444e5ee009d65dec9d8f3ca4a41c4169c5b8fb2f5f3df9f",
+    "references/08-children-travel-pregnancy-and-special-situations.md": "e1cd4169bda015ed212a6f565487a461332859aef87523dbbd2df7411e6967b5",
+    "references/09-communication-psychology-and-community.md": "f41ec01d766429743edf00eb8bffc04c00ee5995dbe243e3f20473dd4b8fbbc9",
+    "references/10-question-bank-verification-cards.md": "6e6f4a33e5d1003417ad509acd6f57fe3a8cef03420dabb2067114d1819b950a",
+    "references/11-safety-evidence-and-answer-contract.md": "d9f6c923ec1fae9ba0227740d624a67eaf4011287208659d0f087d986fb62d8b",
+    "references/12-glossary-formulas-and-numeric-reference.md": "909b3a92dcb176b12d084d2b814a73bf04042737598b7ed927582fc1f5793b4d",
+    "references/13-cross-topic-reasoning-and-scenario-index.md": "258add1968159ea2b0db85c3200de6096b325aadd84df1f9d116fc510ab86e13",
+    "references/14-pdf-full-text-and-visual-ocr-transcript.md": "ece10a310132dc53a8f65a25758d3cd82106c9d0e4f7f8ef4e9befe5a0bbbc8c",
+    "references/15-aaps-agent-tools.md": "1e0cf57024b4efc8e4c47418c7f56d2400947119e54fa3359b85ada98a183ec2",
+    "references/standalone-runtime.md": "489d93740d3975efc9d0cb2e1389ccfc538e0817e9a113cd61e3f6fcf535af0a"
+  },
+  "sha256": "e9a261b057e60a7b0cce5b80a4ebb988e93f5a5b740eb537152a9e76a7e5c8fd",
+  "usage": "Read-only Markdown from pinned git submodule. No App/DSH/runtime execution, no copied third-party corpus; original upstream attribution and redistribution terms apply."
+}

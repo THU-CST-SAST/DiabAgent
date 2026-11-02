@@ -1,0 +1,39 @@
+{
+  "format": "sweet-sim.design-version-index/v1",
+  "recorded": "2026-10-18",
+  "current": "v4.1",
+  "versions": [
+    {
+      "version": "v4.0",
+      "internal_alias": "v4r2",
+      "primary_scenarios": 40,
+      "manifest": "v4.0/manifest.json"
+    },
+    {
+      "version": "v4.1",
+      "internal_alias": "v4r3",
+      "primary_scenarios": 32,
+      "manifest": "v4.1/manifest.json"
+    }
+  ],
+  "legacy24": {
+    "benchmark": "scenario24-paired-responses-clock-20261017",
+    "primary_scenarios": 24,
+    "benchmark_sha256": "457daa2295ff8d6ac61489db413603fb41feca94df1353d8189cea9f21ee1683",
+    "construction_sha256": "1535db43f68c68b4cd9f60041b15abfd0093b587552bf0bc51743e44ef4d749e"
+  },
+  "relation": {
+    "v40_retains_legacy24": 24,
+    "v41_retains_v40_unchanged": 28,
+    "v41_new": 4,
+    "v41_retains_legacy24": 20,
+    "legacy24_not_in_v41_core": [
+      "A01",
+      "B04",
+      "D01",
+      "D02"
+    ],
+    "legacy24_union_v41": 36
+  },
+  "policy": "Future revisions start from v4.1. Never overwrite frozen snapshots or silently remap historical IDs. Legacy24 remains frozen for experiments."
+}

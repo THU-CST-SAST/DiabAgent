@@ -1,0 +1,94 @@
+{
+  "_doc": "Insulin types. pk applies to the kernel subcutaneous route (rapid/ultra_rapid/regular); depot to long-acting chains. Evidence levels: primary | label | review | fitted | assumed.",
+  "aspart": {
+    "name": "Insulin aspart (NovoRapid/NovoLog)", "class": "rapid", "common": true,
+    "pk": {"depot_scale": 1, "transit_scale": 1, "fast_fraction": 0},
+    "iob": {"curve": "rapid-acting", "peak_minutes": 75}, "min_dia_hours": 5,
+    "evidence": {
+      "pk": {"level": "primary", "sources": ["heise2015_fiasp", "ema_fiasp_epar", "deichmann2023"],
+        "note": "Kernel default absorption: onset 11, early half-Cmax 32, Tmax 88 min vs aspart 11.2 / 31.6 min (Heise 2015) and CSII Tmax 82.3 min (EMA)."},
+      "iob": {"level": "label", "sources": ["aaps_configbuilder"]}
+    }
+  },
+  "lispro": {
+    "name": "Insulin lispro (Humalog)", "class": "rapid", "common": true,
+    "pk": {"depot_scale": 1, "transit_scale": 1, "fast_fraction": 0},
+    "iob": {"curve": "rapid-acting", "peak_minutes": 75}, "min_dia_hours": 5,
+    "evidence": {
+      "pk": {"level": "assumed", "sources": ["humalog_uspi"], "note": "Assumed equal to aspart; label Tmax 30-90 min."},
+      "iob": {"level": "label", "sources": ["aaps_configbuilder"]}
+    }
+  },
+  "glulisine": {
+    "name": "Insulin glulisine (Apidra)", "class": "rapid", "common": false,
+    "pk": {"depot_scale": 1, "transit_scale": 1, "fast_fraction": 0},
+    "iob": {"curve": "rapid-acting", "peak_minutes": 75}, "min_dia_hours": 5,
+    "evidence": {
+      "pk": {"level": "assumed", "sources": ["apidra_uspi"], "note": "Assumed equal to aspart; label Tmax 60 min (40-120)."},
+      "iob": {"level": "label", "sources": ["aaps_configbuilder"]}
+    }
+  },
+  "fiasp": {
+    "name": "Faster insulin aspart (Fiasp)", "class": "ultra_rapid", "common": true,
+    "pk": {"depot_scale": 1.5, "transit_scale": 0.54, "fast_fraction": 0.34},
+    "iob": {"curve": "ultra-rapid", "peak_minutes": 55}, "min_dia_hours": 5,
+    "fit": {"early_half": "16 vs 20 min", "tmax": "65 vs 62", "late_half": "175 vs 176", "auc_0_30": "2.9x vs 3x"},
+    "evidence": {
+      "pk": {"level": "fitted", "sources": ["heise2017_fiasp_csii", "this_work"], "note": "Fitted to CSII deltas vs aspart."},
+      "iob": {"level": "label", "sources": ["aaps_configbuilder"]}
+    }
+  },
+  "lyumjev": {
+    "name": "Ultra rapid lispro (Lyumjev)", "class": "ultra_rapid", "common": false,
+    "pk": {"depot_scale": 1.28, "transit_scale": 0.46, "fast_fraction": 0.39},
+    "iob": {"curve": "ultra-rapid", "peak_minutes": 45}, "min_dia_hours": 5,
+    "fit": {"early_half": "15 vs 18 min", "late_half": "187 vs 193", "auc_0_15": "5.0x vs 7x", "auc_0_30": "2.7x vs 3x", "auc_after_180": "-21% vs -41%"},
+    "evidence": {
+      "pk": {"level": "fitted", "sources": ["lyumjev_smpc", "leohr2021_urli", "this_work"],
+        "note": "Three-parameter route cannot match both the 7x early exposure and the -41% tail; residuals in fit."},
+      "iob": {"level": "label", "sources": ["aaps_configbuilder"]}
+    }
+  },
+  "regular_human": {
+    "name": "Regular human insulin (Actrapid/Humulin R)", "class": "regular", "common": false,
+    "pk": {"depot_scale": 0.46, "transit_scale": 0.46, "fast_fraction": 0},
+    "iob": {"curve": "rapid-acting", "peak_minutes": 120}, "min_dia_hours": 8,
+    "fit": {"tmax": "151 vs 150 min", "late_half": "397 min (label duration 7-8 h)"},
+    "evidence": {
+      "pk": {"level": "fitted", "sources": ["actrapid_smpc", "novolog_uspi", "this_work"], "note": "Tmax target 150 min between label 1.5-2.5 h and ~2x aspart."},
+      "iob": {"level": "assumed", "sources": [], "note": "oref0 rapid-acting curve with custom peak 120 min (oref0 maximum)."}
+    }
+  },
+  "glargine_u100": {
+    "name": "Insulin glargine U100 (Lantus)", "class": "long", "common": true,
+    "depot": {"lag_minutes": 90, "half_life_hours": 12.1}, "doses_per_day": 1,
+    "evidence": {
+      "depot.half_life_hours": {"level": "review", "sources": ["heise2015_basal_review"]},
+      "depot.lag_minutes": {"level": "assumed", "sources": ["lantus_uspi"], "note": "From 1-2 h onset; no pronounced peak."}
+    }
+  },
+  "glargine_u300": {
+    "name": "Insulin glargine U300 (Toujeo)", "class": "long", "common": true,
+    "depot": {"lag_minutes": 485, "half_life_hours": 19}, "doses_per_day": 1,
+    "evidence": {
+      "depot.half_life_hours": {"level": "label", "sources": ["toujeo_smpc"]},
+      "depot.lag_minutes": {"level": "fitted", "sources": ["toujeo_uspi", "this_work"], "note": "Fitted to single-dose Tmax 14 h (label 12-16 h)."}
+    }
+  },
+  "degludec": {
+    "name": "Insulin degludec (Tresiba)", "class": "long", "common": true,
+    "depot": {"lag_minutes": 180, "half_life_hours": 25.4}, "doses_per_day": 1,
+    "evidence": {
+      "depot.half_life_hours": {"level": "review", "sources": ["heise2015_basal_review", "tresiba_uspi"]},
+      "depot.lag_minutes": {"level": "assumed", "sources": []}
+    }
+  },
+  "detemir": {
+    "name": "Insulin detemir (Levemir)", "class": "long", "common": false,
+    "depot": {"lag_minutes": 344, "half_life_hours": 6}, "doses_per_day": 2,
+    "evidence": {
+      "depot.half_life_hours": {"level": "label", "sources": ["levemir_uspi"]},
+      "depot.lag_minutes": {"level": "fitted", "sources": ["levemir_uspi", "this_work"], "note": "Fitted to Tmax 7 h; dose-dependent duration and albumin binding not modeled."}
+    }
+  }
+}

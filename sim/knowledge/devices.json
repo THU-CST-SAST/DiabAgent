@@ -1,0 +1,606 @@
+{
+  "_doc": "Insulin delivery devices. Dose limits follow AndroidAPS PumpType.kt (often narrower than hardware). bolus_speed_u_per_min null = instantaneous. Evidence key '*' is the default for unlisted fields. form: tubed (infusion set) or patch (pod); both use CHANGE_INFUSION_SET to replace the site.",
+  "pumps": {
+    "ideal": {
+      "name": "Ideal virtual pump (upstream sweet-sim semantics)",
+      "form": "tubed",
+      "common": false,
+      "test_only": true,
+      "bolus_step_u": 0,
+      "basal_step_u_h": 0,
+      "min_basal_u_h": 0,
+      "max_basal_u_h": 10,
+      "max_bolus_u": 25,
+      "bolus_speed_u_per_min": null,
+      "tbr": {
+        "type": "absolute",
+        "step": 0,
+        "duration_step_min": 1,
+        "max_duration_min": 1440,
+        "max": 10
+      },
+      "extended": {
+        "step_u": 0,
+        "duration_step_min": 1,
+        "max_minutes": 1440
+      },
+      "reservoir_u": 300,
+      "occlusion_alarm_missed_u": 3,
+      "evidence": {
+        "*": {
+          "level": "assumed",
+          "sources": [
+            "sweet_sim"
+          ],
+          "note": "Not a real device."
+        }
+      },
+      "cancel_bolus": true,
+      "consumable": null
+    },
+    "dana_i": {
+      "name": "SOOIL Dana-i / DanaRS",
+      "form": "tubed",
+      "common": true,
+      "bolus_step_u": 0.05,
+      "basal_step_u_h": 0.01,
+      "min_basal_u_h": 0.04,
+      "max_basal_u_h": 3.3,
+      "max_bolus_u": 40,
+      "bolus_speed_u_per_min": 5,
+      "tbr": {
+        "type": "percent",
+        "step": 10,
+        "duration_step_min": 15,
+        "max_duration_min": 1440,
+        "max": 200
+      },
+      "extended": {
+        "step_u": 0.05,
+        "duration_step_min": 30,
+        "max_minutes": 480
+      },
+      "reservoir_u": 300,
+      "occlusion_alarm_missed_u": 3,
+      "evidence": {
+        "*": {
+          "level": "label",
+          "sources": [
+            "aaps_pumptype",
+            "aaps_dana",
+            "sooil_products"
+          ]
+        },
+        "max_basal_u_h": {
+          "level": "label",
+          "sources": [
+            "aaps_dana"
+          ],
+          "note": "Factory default, raisable."
+        },
+        "max_bolus_u": {
+          "level": "label",
+          "sources": [
+            "sooil_products"
+          ],
+          "note": "Factory default 40 U; hardware 80 U."
+        },
+        "bolus_speed_u_per_min": {
+          "level": "label",
+          "sources": [
+            "aaps_dana"
+          ],
+          "note": "12 s/U; user-selectable 12/30/60 s per U."
+        },
+        "occlusion_alarm_missed_u": {
+          "level": "assumed",
+          "sources": [],
+          "note": "Threshold not published."
+        },
+        "cancel_bolus": {
+          "level": "label",
+          "sources": [
+            "aaps_dana"
+          ]
+        },
+        "consumable": {
+          "level": "review",
+          "sources": [
+            "aaps_dana"
+          ],
+          "note": "Pod 72 h + 8 h grace; Medtrum 3 d + 8 h; tubed sets changed every 2-3 days (general guidance)."
+        }
+      },
+      "cancel_bolus": true,
+      "consumable": {
+        "kind": "infusion_set",
+        "change_hours": 72
+      }
+    },
+    "omnipod_dash": {
+      "name": "Insulet Omnipod DASH",
+      "form": "patch",
+      "common": true,
+      "bolus_step_u": 0.05,
+      "basal_step_u_h": 0.05,
+      "min_basal_u_h": 0.05,
+      "max_basal_u_h": 30,
+      "max_bolus_u": 30,
+      "bolus_speed_u_per_min": 1.5,
+      "tbr": {
+        "type": "absolute",
+        "step": 0.05,
+        "duration_step_min": 30,
+        "max_duration_min": 720,
+        "max": 30
+      },
+      "extended": null,
+      "reservoir_u": 200,
+      "occlusion_alarm_missed_u": 4,
+      "evidence": {
+        "*": {
+          "level": "label",
+          "sources": [
+            "aaps_pumptype",
+            "aaps_dash"
+          ]
+        },
+        "bolus_speed_u_per_min": {
+          "level": "assumed",
+          "sources": [],
+          "note": "0.05 U per 2 s; not verified in the user guide."
+        },
+        "occlusion_alarm_missed_u": {
+          "level": "label",
+          "sources": [
+            "insulet_safety"
+          ],
+          "note": "Average 3-5 U missed."
+        },
+        "cancel_bolus": {
+          "level": "label",
+          "sources": [
+            "aaps_dash"
+          ]
+        },
+        "consumable": {
+          "level": "label",
+          "sources": [
+            "aaps_dash"
+          ],
+          "note": "Pod 72 h + 8 h grace; Medtrum 3 d + 8 h; tubed sets changed every 2-3 days (general guidance)."
+        }
+      },
+      "cancel_bolus": true,
+      "consumable": {
+        "kind": "pod",
+        "life_hours": 72,
+        "grace_hours": 8
+      }
+    },
+    "medtrum_nano": {
+      "name": "Medtrum TouchCare Nano (200 U)",
+      "form": "patch",
+      "common": true,
+      "bolus_step_u": 0.05,
+      "basal_step_u_h": 0.05,
+      "min_basal_u_h": 0.05,
+      "max_basal_u_h": 25,
+      "max_bolus_u": 30,
+      "bolus_speed_u_per_min": 1.5,
+      "tbr": {
+        "type": "absolute",
+        "step": 0.05,
+        "duration_step_min": 30,
+        "max_duration_min": 720,
+        "max": 25
+      },
+      "extended": null,
+      "reservoir_u": 200,
+      "occlusion_alarm_missed_u": 3,
+      "evidence": {
+        "*": {
+          "level": "label",
+          "sources": [
+            "aaps_pumptype",
+            "aaps_medtrum"
+          ]
+        },
+        "occlusion_alarm_missed_u": {
+          "level": "assumed",
+          "sources": [],
+          "note": "Threshold not published."
+        },
+        "cancel_bolus": {
+          "level": "label",
+          "sources": [
+            "aaps_medtrum"
+          ]
+        },
+        "consumable": {
+          "level": "label",
+          "sources": [
+            "aaps_medtrum"
+          ],
+          "note": "Pod 72 h + 8 h grace; Medtrum 3 d + 8 h; tubed sets changed every 2-3 days (general guidance)."
+        }
+      },
+      "cancel_bolus": true,
+      "consumable": {
+        "kind": "patch",
+        "life_hours": 72,
+        "grace_hours": 8
+      }
+    },
+    "accu_chek_insight": {
+      "name": "Roche Accu-Chek Insight",
+      "form": "tubed",
+      "common": false,
+      "bolus_step_u": 0.01,
+      "basal_step_u_h": 0.01,
+      "min_basal_u_h": 0.02,
+      "max_basal_u_h": 25,
+      "max_bolus_u": 25,
+      "bolus_speed_u_per_min": 6,
+      "tbr": {
+        "type": "percent",
+        "step": 10,
+        "duration_step_min": 15,
+        "max_duration_min": 1440,
+        "max": 250
+      },
+      "extended": {
+        "step_u": 0.01,
+        "duration_step_min": 15,
+        "max_minutes": 1440
+      },
+      "reservoir_u": 200,
+      "occlusion_alarm_missed_u": 2.2,
+      "evidence": {
+        "*": {
+          "level": "label",
+          "sources": [
+            "aaps_pumptype"
+          ]
+        },
+        "bolus_speed_u_per_min": {
+          "level": "assumed",
+          "sources": [],
+          "note": "Selectable 3/6/9/12 U/min; 6 assumed."
+        },
+        "occlusion_alarm_missed_u": {
+          "level": "label",
+          "sources": [
+            "roche_insight_errors"
+          ],
+          "note": "Alarm within 2.2 h at 1 U/h."
+        },
+        "cancel_bolus": {
+          "level": "label",
+          "sources": [
+            "aaps_insight"
+          ]
+        },
+        "consumable": {
+          "level": "review",
+          "sources": [
+            "aaps_insight"
+          ],
+          "note": "Pod 72 h + 8 h grace; Medtrum 3 d + 8 h; tubed sets changed every 2-3 days (general guidance)."
+        }
+      },
+      "cancel_bolus": true,
+      "consumable": {
+        "kind": "infusion_set",
+        "change_hours": 72
+      }
+    },
+    "accu_chek_combo": {
+      "name": "Roche Accu-Chek Combo",
+      "form": "tubed",
+      "common": false,
+      "bolus_step_u": 0.1,
+      "basal_step_u_h": 0.01,
+      "min_basal_u_h": 0.05,
+      "max_basal_u_h": 25,
+      "max_bolus_u": 25,
+      "bolus_speed_u_per_min": 12,
+      "tbr": {
+        "type": "percent",
+        "step": 10,
+        "duration_step_min": 15,
+        "max_duration_min": 720,
+        "max": 500
+      },
+      "extended": null,
+      "reservoir_u": 315,
+      "occlusion_alarm_missed_u": 3,
+      "evidence": {
+        "*": {
+          "level": "label",
+          "sources": [
+            "aaps_pumptype",
+            "roche_combo"
+          ]
+        },
+        "bolus_speed_u_per_min": {
+          "level": "assumed",
+          "sources": [],
+          "note": "About 5 s/U."
+        },
+        "occlusion_alarm_missed_u": {
+          "level": "assumed",
+          "sources": [],
+          "note": "Not published in units."
+        },
+        "extended": {
+          "level": "label",
+          "sources": [
+            "aaps_combo_v2"
+          ],
+          "note": "Extended and multiwave boluses are not supported by the v2 driver."
+        },
+        "cancel_bolus": {
+          "level": "assumed",
+          "sources": [
+            "aaps_combo_v2"
+          ],
+          "note": "Bolus cancel not documented for the v2 driver."
+        }
+      },
+      "cancel_bolus": false,
+      "consumable": {
+        "kind": "infusion_set",
+        "change_hours": 72
+      }
+    }
+  },
+  "pens": {
+    "novopen_6": {
+      "name": "NovoPen 6",
+      "common": true,
+      "step_u": 1,
+      "max_u": 60,
+      "evidence": {
+        "*": {
+          "level": "label",
+          "sources": [
+            "novopen_guide"
+          ]
+        }
+      }
+    },
+    "novopen_echo": {
+      "name": "NovoPen Echo",
+      "common": true,
+      "step_u": 0.5,
+      "max_u": 30,
+      "evidence": {
+        "*": {
+          "level": "label",
+          "sources": [
+            "novopen_guide"
+          ]
+        }
+      }
+    },
+    "humalog_kwikpen": {
+      "name": "Humalog KwikPen",
+      "common": true,
+      "step_u": 1,
+      "max_u": 60,
+      "evidence": {
+        "*": {
+          "level": "label",
+          "sources": [
+            "humalog_kwikpen"
+          ]
+        }
+      }
+    },
+    "humalog_junior_kwikpen": {
+      "name": "Humalog Junior KwikPen",
+      "common": true,
+      "step_u": 0.5,
+      "max_u": 30,
+      "evidence": {
+        "*": {
+          "level": "label",
+          "sources": [
+            "humalog_junior_pil"
+          ]
+        }
+      }
+    },
+    "lantus_solostar": {
+      "name": "Lantus SoloStar",
+      "common": true,
+      "step_u": 1,
+      "max_u": 80,
+      "evidence": {
+        "*": {
+          "level": "review",
+          "sources": [
+            "ada_lantus"
+          ]
+        }
+      }
+    },
+    "toujeo_solostar": {
+      "name": "Toujeo SoloStar (U-300)",
+      "common": true,
+      "step_u": 1,
+      "max_u": 80,
+      "evidence": {
+        "*": {
+          "level": "label",
+          "sources": [
+            "toujeo_uspi"
+          ]
+        }
+      }
+    },
+    "tresiba_flextouch": {
+      "name": "Tresiba FlexTouch U-100",
+      "common": true,
+      "step_u": 1,
+      "max_u": 80,
+      "evidence": {
+        "*": {
+          "level": "label",
+          "sources": [
+            "tresiba_uspi"
+          ]
+        }
+      }
+    },
+    "levemir_flexpen": {
+      "name": "Levemir FlexPen",
+      "common": false,
+      "step_u": 1,
+      "max_u": 60,
+      "evidence": {
+        "*": {
+          "level": "assumed",
+          "sources": [],
+          "note": "Assumed equal to other Novo FlexPens."
+        }
+      }
+    },
+    "lyumjev_kwikpen": {
+      "name": "Lyumjev KwikPen",
+      "common": false,
+      "step_u": 1,
+      "max_u": 60,
+      "evidence": {
+        "*": {
+          "level": "assumed",
+          "sources": [
+            "lyumjev_smpc"
+          ],
+          "note": "Assumed equal to Humalog KwikPen limits."
+        }
+      }
+    },
+    "apidra_solostar": {
+      "name": "Apidra SoloStar",
+      "common": false,
+      "step_u": 1,
+      "max_u": 80,
+      "evidence": {
+        "*": {
+          "level": "assumed",
+          "sources": [
+            "apidra_uspi"
+          ],
+          "note": "Assumed equal to other Sanofi SoloStar limits."
+        }
+      }
+    }
+  },
+  "pen_insulins": {
+    "_doc": "Which insulins each pen family delivers (compatibility rule for instances).",
+    "novopen_6": [
+      "aspart",
+      "fiasp",
+      "regular_human"
+    ],
+    "novopen_echo": [
+      "aspart",
+      "fiasp",
+      "regular_human"
+    ],
+    "humalog_kwikpen": [
+      "lispro"
+    ],
+    "humalog_junior_kwikpen": [
+      "lispro"
+    ],
+    "lantus_solostar": [
+      "glargine_u100"
+    ],
+    "toujeo_solostar": [
+      "glargine_u300"
+    ],
+    "tresiba_flextouch": [
+      "degludec"
+    ],
+    "levemir_flexpen": [
+      "detemir"
+    ],
+    "lyumjev_kwikpen": [
+      "lyumjev"
+    ],
+    "apidra_solostar": [
+      "glulisine"
+    ]
+  },
+  "faults": {
+    "occlusion_rate_per_day": {
+      "value": 0.011,
+      "evidence": {
+        "level": "primary",
+        "sources": [
+          "kanapka2022_sets"
+        ],
+        "note": "3.3% of 72 h wears failed (1.9% adults) ~ 4 per patient-year at one set per 3 days."
+      }
+    }
+  },
+  "aaps": {
+    "disconnect_pump_minutes": [
+      15,
+      30,
+      60,
+      120,
+      180
+    ],
+    "temp_targets": {
+      "eating_soon": {
+        "mg_dl": 90,
+        "minutes": 30
+      },
+      "activity": {
+        "mg_dl": 144,
+        "minutes": 40
+      },
+      "hypo": {
+        "mg_dl": 126,
+        "minutes": 30
+      }
+    },
+    "hard_limits": {
+      "child": {
+        "max_bolus_u": 5,
+        "max_basal_u_h": 2,
+        "max_iob_smb_u": 7
+      },
+      "teenage": {
+        "max_bolus_u": 10,
+        "max_basal_u_h": 5,
+        "max_iob_smb_u": 13
+      },
+      "adult": {
+        "max_bolus_u": 17,
+        "max_basal_u_h": 10,
+        "max_iob_smb_u": 22
+      },
+      "insulin_resistant": {
+        "max_bolus_u": 25,
+        "max_basal_u_h": 12,
+        "max_iob_smb_u": 30
+      }
+    },
+    "evidence": {
+      "*": {
+        "level": "label",
+        "sources": [
+          "aaps_screens",
+          "aaps_temptargets",
+          "aaps_configbuilder"
+        ],
+        "note": "Docs list conflicting maxIOB values; table values used."
+      }
+    }
+  }
+}

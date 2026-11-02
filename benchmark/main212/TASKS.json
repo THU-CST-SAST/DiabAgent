@@ -1,0 +1,2122 @@
+[
+  {
+    "task_id": "a01-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a01-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "2187820cae54ab5f7c73e8ed4cb84571bde3277cee6537d8fe1ae9f36fe27bce",
+    "scene": "a01",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "5cdb7f6df54148be0817c02a57068c66bc0ed18934e0945cb2ec686ed60291fc"
+  },
+  {
+    "task_id": "a01-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a01-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "7d7310303320834d21682d1ed9518389bc7fb9d188489bd9248be336cef3d5b1",
+    "scene": "a01",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "d3bf158b43c04dc4857318352f2edb28a92fc47255d006cd3006f6b377b7e0cb"
+  },
+  {
+    "task_id": "a01-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a01-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "1a052b8152f6d960894b6358c08686f7df79d3e45f086081e1017fea279384da",
+    "scene": "a01",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "820d317d5f5891964bde602f4f0029f4a26a7a346c8de3eea2369255860dbf8b"
+  },
+  {
+    "task_id": "a01-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a01-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "8269c493b8e7f3361ae9565c65cacb3f8f907423f0cdfa6d3a8254356d960c72",
+    "scene": "a01",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "cac82c82f61e75e470594d2241f5cde6dd49b848fb31e34aac8a5b4f7b3b3ec1"
+  },
+  {
+    "task_id": "a01-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a01-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "d341d01a750ffa61e63303e78af4ea6d64ba1500c03aa46df1bd1962633a869b",
+    "scene": "a01",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "4091af80d198eba3b02f6de6bf6ed0d91ac09edb74dd9a406cfef324b83d9dad"
+  },
+  {
+    "task_id": "a01-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a01-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "c2eb3c0f6f27af2062bb6584576891a6e6e2099d14422d147f4600fdb525976d",
+    "scene": "a01",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "b975fdae26847f63860f4b02c027abed7cdda81356e3114999a33a23b7c5bd4f"
+  },
+  {
+    "task_id": "a02-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a02-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "dcdcd19cf09ef64c0f585e64647de5e1e786190d4238444f785d06f42ede9088",
+    "scene": "a02",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "cbfe0113a75bd7d981ac928e24faa14952fb766925316090a753020d9c98fcfa"
+  },
+  {
+    "task_id": "a02-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a02-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "87867959c98d1f86de7832cd2215d2ed9e815aa4476182d93943adddf07b9bf4",
+    "scene": "a02",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "dca60266e0aeda8aae8bb3c09e9252fa4b67bd53e2be9a767a254bca6e51248b"
+  },
+  {
+    "task_id": "a02-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a02-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "ad79456b44e63552188f4ddc9f9f4d91720a70ef8bb04fa3d0ba011c82543681",
+    "scene": "a02",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "a78bf1722057edda93a4657a1559e55d6dbfeaf20dde92fa5b096904f82341d8"
+  },
+  {
+    "task_id": "a02-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a02-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "606a16bfd935b84b1fd136070c0eca8b67799693c59d2251c896ecec818d10e8",
+    "scene": "a02",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "c03ddbb12472159e30394250eb1929c36fb17a4f705bd5316c8a54a2cfd67281"
+  },
+  {
+    "task_id": "a02-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a02-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "ac549d6e803bc3d93a6a8fdb5b9398f9f53a81f38a5df80457b2f8ae13cd8076",
+    "scene": "a02",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "6ba59645dc622a58b5f8255d264a4b707af4209150bd69865799ddeebf7095bd"
+  },
+  {
+    "task_id": "a02-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a02-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "dbb8d02a2bd28978c9f8632d12617c9640ad5c9a469f619a10967b3700258631",
+    "scene": "a02",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "de8b6944e9a51a14897dff773e8b450df8de07095f4ff2745474cf7e823d34e8"
+  },
+  {
+    "task_id": "a02-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a02-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "114172d7da6a5011a5a16498f2f49753220eeae7fa6a13272337c0b8b7bd45a1",
+    "scene": "a02",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "2b6d35a3339372d7c24f413b5b0c44f0b4eefbb28ae4093d3efd7956fcf71198"
+  },
+  {
+    "task_id": "a02-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a02-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "bb3969c9d09da102f089c7740fcdca734e3abae7854357ff731a0b5d7be91abb",
+    "scene": "a02",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "4d07f3546db27cd54b7ea3f793fab7f37c07ac8a3728259c0100f81e71e443c5"
+  },
+  {
+    "task_id": "a03-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a03-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "0f0528fd689b4bc645caa555b9a5a4a4422912c29eca8a32ef5aca6d966d96d1",
+    "scene": "a03",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "9bb0dcceab82671d341cf3418e5c4eccea1cc123e2ab658113dc72b14fd61a29"
+  },
+  {
+    "task_id": "a03-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a03-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "c7d78c4bcc44bb86342dd2b654cad8bf2286808e97e3b2b94d8bf06060034ced",
+    "scene": "a03",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "d790cdb3cf926b413b16fb87ea6bf482fb1ba5ecac46ed5a781d97b705668e10"
+  },
+  {
+    "task_id": "a03-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a03-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "10f58526e6460df5e3a4f4e50e9ba3cfe03b36baf1efe91543c6415103308555",
+    "scene": "a03",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "c95acdb08e062b8aed0bc41910dbe78998f86efe8e3a0c879c8ebf7271747d8f"
+  },
+  {
+    "task_id": "a03-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a03-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "cd7bfeed93be1729107b3c5f112c5786be72baf133444db2d745cee9081a10fb",
+    "scene": "a03",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "bb8d819c100a4e6c98d4d84c4b4f272915d7a7e1924c38024d5419e3f28b3eb1"
+  },
+  {
+    "task_id": "a03-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a03-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "0779cec4675fa44319a9fd45e0c65f7a3c2b6ec0df52877d2d7b77cb703cd46e",
+    "scene": "a03",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "47b757f89c68a423718f1e62130428c499557341251078a29299ea5a377028d7"
+  },
+  {
+    "task_id": "a03-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a03-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "54035f57e81a3fc9bbd8a4957b52b2253b916547eef7bd12748cef8db77cf2f7",
+    "scene": "a03",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "09d6e9906dfbfc9e0a7d0491e864ce12e7f9e4c58167386f0e0a3462ce30c498"
+  },
+  {
+    "task_id": "a03-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a03-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "1716730f5c17d62cb886ca9f8746129ffe6551fa15f77d80b92115a601a2573f",
+    "scene": "a03",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "4f103ed761aa284b7b14bb330eadc28b65452420881bd6a7c62cf4873665b96e"
+  },
+  {
+    "task_id": "a03-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a03-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "8053dca155dc7c41f81ebd45d0e5d1c4486ed7cc09b90e442326fc7396fe8a3d",
+    "scene": "a03",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "3a911059d7e8e65ef4bc1251e43e642baca76b3fbbb9ea08496eedb8ee284589"
+  },
+  {
+    "task_id": "a04-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a04-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "df15f9cc356d098b59ac973b683f703c70cc11bc1a2112e655539969ec84c210",
+    "scene": "a04",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "704228656a6394dc653fb7e5315307656466e20b55bf24d7b96f2c259c9eedd9"
+  },
+  {
+    "task_id": "a04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "3b86986ccfd0961c32ba268532b80ecdef47f250ea276fa7fd6847c7f6b011f7",
+    "scene": "a04",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "d4ad369cbdddca085bcb88d2e209bc8b8a80aeebbf50d027135bd6684dfc0340"
+  },
+  {
+    "task_id": "a04-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a04-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "044670667c0f21bc981433dd344e6a77cabd6e188b1823809cb9797d30c034a6",
+    "scene": "a04",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "86133a69aa724935d884c8ab700889028a3fc5acf927709b51a4b9d2dc69fad6"
+  },
+  {
+    "task_id": "a04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "db54dd5b1819331745a7636e013526e7c22c2f1da30aede47db2fd976f26a0be",
+    "scene": "a04",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "585de5283f2554a070819e7bfe5ed06b03cfa0d356285f2b2da1820ee9bc9e85"
+  },
+  {
+    "task_id": "a04-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a04-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "f04d97f3f6e6051d5afab30ce2c1cecc0ea10e516bfede0a67ac04ff2c8dbd70",
+    "scene": "a04",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "2595e8fd51f091294f3a7356d9c6d28cdbc186b2c2e1fe6a0617d52aca312926"
+  },
+  {
+    "task_id": "a04-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "a04-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "71983605b66d80293fe871c9f725c982e12514842cd57a8f3459d51ed7a42135",
+    "scene": "a04",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "f3571b203a41ff2bf2049d0d7498b0b790f538faae645563f711a362ef90cfec"
+  },
+  {
+    "task_id": "b01-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b01-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "d3d4f821ac722d402a1d0d64c655d54aa3b1b152041f75342cee35e51c0f6baa",
+    "scene": "b01",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "d8ca5d5f5f59353a47bbc99698acf5f6bd3a4013fc1f2973eef8efffc631e898"
+  },
+  {
+    "task_id": "b01-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b01-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "d512836f5f601f873df784daf65e06c29640c9fa2c17a617a4b823e17b150b52",
+    "scene": "b01",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "629fa1f5386a50a672b5e820695c1bcbb920f38eab5aac6188832009035627ad"
+  },
+  {
+    "task_id": "b01-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b01-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "c2a88543733091e6f40aa3c058145156178b2c2e725e135e600393f5abffcd30",
+    "scene": "b01",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "087b04389a6b3fa3c8d2cf539dadac0300c0e0c4b013f6b65d767496d78e828c"
+  },
+  {
+    "task_id": "b01-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b01-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "84ca9db0d88645883f1a7a9c873f940ea9a3fce51cffe59912e8a89ae3295947",
+    "scene": "b01",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "9d584ba4fb80194bd79a8a5180320323c7800aca5c0470bdd4354a6d3f2de4e8"
+  },
+  {
+    "task_id": "b01-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b01-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "c3a2aebd80ae5a3fea2d68922ffd5ae5dc87b5ce63d75ba10634914c68a685ee",
+    "scene": "b01",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "31c7d3e7be45434a18c62506b23b024b99d224ddc72125546792916c827e6231"
+  },
+  {
+    "task_id": "b01-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b01-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "5169e71dab752316c92769153a930fac5aa8fc5bedb5c1f5f1269bd528ffa2a4",
+    "scene": "b01",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "5cd80de85e85c05ee070a1ffc2b72486ededbc8544ed886ac28c1e9ea33a6c6a"
+  },
+  {
+    "task_id": "b02-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b02-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "a057cbc2156f522e4a6f9eff02ccac2dc4cee004f9816536cef6e096c4559338",
+    "scene": "b02",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "ec1ebf639989505153d2b5bd3f166ca7f0cdefdd38c32c9aae64b1a346e34314"
+  },
+  {
+    "task_id": "b02-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b02-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "951f31d1327cce2f5173dba140adfdbdabc9955e4b0b4a7c247728c0ab2b9dd5",
+    "scene": "b02",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "44dd52fbc688c6934d19fb6ace050140a74483d5029afe7f6d3c79af8fb86aa5"
+  },
+  {
+    "task_id": "b02-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b02-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "a2dfb31b33982cdde644a2d58b1d99e82b3030c1eb06610c35df15d3e40d6cf1",
+    "scene": "b02",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "ff47456ddc93f835513f0e5d549e96268493a564c32571968f964fa6eeb5051f"
+  },
+  {
+    "task_id": "b02-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b02-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "bf3b1ae2999d54ac77e1330b2516e9ee9bd7234cfbf4148e6b0a1b7fafb797bd",
+    "scene": "b02",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "ebeb8f030bb41705d9e818740acf4bc4e292aba203db7faab4e3ae47d713281f"
+  },
+  {
+    "task_id": "b02-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b02-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "7cb08bf950c3ee057f5c04b9b34b3e5fe597248dc3605ce2a6e96939a0cbe8e3",
+    "scene": "b02",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "2486a2dfef2143b1e749a6db4507e89c5e41c798069160c4437025527bec53d6"
+  },
+  {
+    "task_id": "b02-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b02-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "6fc5c3eb4caeac1cb72b3251dd49f012cc77f0432910bb0616ef340bf704dc4e",
+    "scene": "b02",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "284e45afd30975d9989f2718544da042b66d12b474d430751478dee5ccfeff47"
+  },
+  {
+    "task_id": "b02-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b02-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "93d2b73408e473ec02cd5773150af5a098cbf1ea05cae8158db5b069d8ff18ec",
+    "scene": "b02",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "0e42bad5ff67aacd596602e651f9b9b25c5716e61c6e96378700512be9cb5da8"
+  },
+  {
+    "task_id": "b02-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b02-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "55f22f8bcbb048855d92ba0e4fa9489d4f4111a3f76d192f51cc4f8500fa4f68",
+    "scene": "b02",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "d78f4ff04c3e70c0d33f81266d1dbf76e3ee52a784b65fef9228620cc240b757"
+  },
+  {
+    "task_id": "b03-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b03-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "db7348ffed4c13680cd8a472af4fc37d71b44af64896b1cfb840ee26e32c85a3",
+    "scene": "b03",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "f5fa10e7e51b10eb1a2138d4706502e233a6f666a1584abd9c33b9c5f65b7289"
+  },
+  {
+    "task_id": "b03-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b03-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "218d88c83ef74e3833a175caa1704d448dce55d1c3e076def17f2b2cbe4ea5a4",
+    "scene": "b03",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "bc3ed9a62a7ce4f2f7fdc78a39e018bc8cce919e8eaef85bb9b92a266bc7e3cf"
+  },
+  {
+    "task_id": "b03-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b03-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "7955262e9e2a257e927763fc97a17461e715924283a695651f6a5ad3b3ae0e4b",
+    "scene": "b03",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "e3871e1af1979b0544c2a37fb66c2115373ec68b6fd43fbee3d0fec61f9a2f8e"
+  },
+  {
+    "task_id": "b03-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b03-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "31f3fdb7e764d49b09ce6b7a2bdc5935668378ecf37d51e58e5617acd3354759",
+    "scene": "b03",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "a99dc8d17bdaca385f48fcbd9e294e0248f196f6ac9ec8f1a97c413a2a7d5383"
+  },
+  {
+    "task_id": "b03-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b03-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "f378c95b8845115acef1077474beade6f8323cb4b84eed29359c13602ea3cddf",
+    "scene": "b03",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "c9e50375ecf646323f672917b7cd523edb7709d88be3e2d5b6398e539a0c27f3"
+  },
+  {
+    "task_id": "b03-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b03-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "477ad5bbaa4d85407b059de3b6f2d2fa6252dfc0901576c87b5b88e3c2cabeaa",
+    "scene": "b03",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "c7e8af25de38eec989a10f254c79088bdb70e5f1685a60604b61af8e8546a98d"
+  },
+  {
+    "task_id": "b04-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b04-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "cb5e9a04d5cf4cb589be21c0f84e61334bcdfc46db83cd7a1bf646c3026286d4",
+    "scene": "b04",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "e33c468b821268e22c04c183b33161beffb48294f87ae4057dba57e7decc5f38"
+  },
+  {
+    "task_id": "b04-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b04-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "74cbb944be49dab907ace46668c0928d6e448542bdff97a523ebb285f6b79f65",
+    "scene": "b04",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "04ae08e7de10b370821fb52d7f21abb2523831cbaecb1d5bbdadd4a3f6f3d5c2"
+  },
+  {
+    "task_id": "b04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "7aef8761466c04bb9639ba1faf0c5e163c0106a6c73f6455f21f05e8870424a3",
+    "scene": "b04",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "836f6aebcb75bbc25abf47ee097fc03b53a19a3a16972de1de999f758192c602"
+  },
+  {
+    "task_id": "b04-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b04-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "48fa9adc1226cc663711fc8cfde42de42263928f522bdf85b3a841736956942b",
+    "scene": "b04",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "d5fbfadbb25c545a0af9281a0528ea7053a0d6d8b56557fff13d51e427be04ee"
+  },
+  {
+    "task_id": "b04-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b04-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "1715176a14a110f74e3d7139ce6dd3c2e1741c586925e7de845724b317e3b4dd",
+    "scene": "b04",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "87d6fa12617f8394f2865b038e0e88fc62671baa87c5c82a3ad79e4d1f6e0042"
+  },
+  {
+    "task_id": "b04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "72f17d53e37c8c09429e237c4b7f84e4eba61d9b4389f4f35496f4ffc106076f",
+    "scene": "b04",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "e95ebd47d52b93eb8cd0359c18e0fd73332705e85bc27aee7a1007d753e5d395"
+  },
+  {
+    "task_id": "b04-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b04-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "814b14f9c4af27433b6067c846054fbebfee2482cb224a4a7174ec6654bdee9f",
+    "scene": "b04",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "b826ae4bca91b9a9971dc149c41102c9f64041e63607f94b0f8be37ae416cd50"
+  },
+  {
+    "task_id": "b04-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "b04-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "cc181311453489758d6b8163525ef3c2007624dc1b2fbffa0fca470b430294b5",
+    "scene": "b04",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "ba0e54c093b77f074f74d851fd5fbd2c04908189d18f1a113d5bb8d5b43ccf68"
+  },
+  {
+    "task_id": "c01-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c01-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "c80c6c0ece4768444990d486a1c0877660bee6a90d9c381d8c0042a9b520117c",
+    "scene": "c01",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "1284baf847023034fbd55a3493b88b4fb824b190bbec2998c7dd721652fbce55"
+  },
+  {
+    "task_id": "c01-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c01-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "c2c562f3fa02b157578199d895a5ca1d9f5d0a5eeb4af4d8803bc40eeb40e4f8",
+    "scene": "c01",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "b1db5a4eebc77c0db0dbac945e49cbeb914b9d9f2b15a5c636d046e5ccf160a7"
+  },
+  {
+    "task_id": "c01-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c01-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "f02475f06b3d20165a676ccf3ace1ab6d788058fa37da5e082d1ee411a0138ee",
+    "scene": "c01",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "a2cef1764120591712fb4940e15e9d380a1fb711685fd2cfc17e11dad82ce1ff"
+  },
+  {
+    "task_id": "c01-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c01-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "c7e5e3d43b4c25342cbe4bbc4e1d22eaee67aa058381b3a9241747468e0ade48",
+    "scene": "c01",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "926a2903a4b92e4c26d4c5913b1ae0d6b69257d6f7adf604b530956f10b8102a"
+  },
+  {
+    "task_id": "c01-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c01-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "4588afe4e3c2ae7e18874a3e7a9d9305f2ec38b249e2b364fac2708c1170708b",
+    "scene": "c01",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "50b928c9c4ff52b8820f5da0fef79cfd2f84a4e5378b242263e48e32a613d6d8"
+  },
+  {
+    "task_id": "c01-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c01-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "e070b022c70c5e64d812c0a42c7a076d1b6e86cb282af515f05fa0f1390333a2",
+    "scene": "c01",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "ea591fc3b057466020caa3c0ba10605ee06ed06487e3bd09e20251c82fa59130"
+  },
+  {
+    "task_id": "c01-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c01-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "dc501158a280a38c0f43dfbfaeefbae2b5f420f1deae33bf2de90e0226172f0b",
+    "scene": "c01",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "347c24c04b369a18275037472ade8cee7b1ad48bea39f6d571ef7e27f826144b"
+  },
+  {
+    "task_id": "c01-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c01-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "2779597b5df4af1416c2625532864cd8411045401c63f733292004d17fa5a20d",
+    "scene": "c01",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "180e5539e0ec58bae4149b5854fa97c1db384bcc9eab84e4679ee992502b6880"
+  },
+  {
+    "task_id": "c02-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c02-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "a9a9ef20293b3477c05f14cb9310cc6c717474c87572c1138f15c87ed50aa491",
+    "scene": "c02",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "fc75b8c92bab742e526ba74a6a056920f97fe48b5e142c7215f28354754972ba"
+  },
+  {
+    "task_id": "c02-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c02-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "3b9fa5323500ae7743c8c02fb326e3c704e992b78daf08a5effba44a12517667",
+    "scene": "c02",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "b0c6e6678803b6ca5a61564a0119d537a460a2ec2df139f17acd0b012b8e03c3"
+  },
+  {
+    "task_id": "c02-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c02-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "31760079babe62d2a2a4e38183a13c1fc68294e504185b93334aef452700ff7e",
+    "scene": "c02",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "e59da6b84e22806b8e23781dc61e77a1e853e17e0b096e2844401ba4762b61c7"
+  },
+  {
+    "task_id": "c02-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c02-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "2af8861d21ad3de29849a9e2e1052c12fb5690e0f5737d207c064c36c4438cd2",
+    "scene": "c02",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "4ac211060582be4a6ed87c721a52676436b1a11ee4356f0022b9411e364cdf15"
+  },
+  {
+    "task_id": "c02-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c02-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "8a9289f9a6378bc7637dc431c17dabae7ad4f2674ed96e74407720c1491f1d75",
+    "scene": "c02",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "e1ce7e4ebb94ce07a798161a193967154ffe457ced85527040b6206b2c4d9414"
+  },
+  {
+    "task_id": "c02-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c02-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "97ba222ce7fc3489d8ca22a796a134cce3306e7ae978d27a5e288b9855ee413c",
+    "scene": "c02",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "87fe3fa27933931914cd0860f5ce6c639676c4f26ac0bedb92cad7c30f6cde7b"
+  },
+  {
+    "task_id": "c03-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c03-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "81fa265f0b1b1c90814742c2d88557661cdf4d11c17a656952b23562c387a08d",
+    "scene": "c03",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "30791768edbe7cb863c4babbf6af355262a9da5df6cf2c71bf0675ea286f0bdf"
+  },
+  {
+    "task_id": "c03-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c03-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "77c13ed2db4d6a2887fed2291244904ff2f3bf2e4c30fab8eb1d31c7af1290f2",
+    "scene": "c03",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "dd871708d5ddadab54bd88b51a8366328c6b52b27c8c6ee61b8978ce707239f7"
+  },
+  {
+    "task_id": "c03-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c03-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "c511a1daa8607fbfb68464a7765f618544d63c1f20496be11411138479142b5f",
+    "scene": "c03",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "852f9363aea9fd2af3fd6171e28a5c3fd4b93b44f84368bfcdde94e91430972e"
+  },
+  {
+    "task_id": "c03-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c03-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "dff44d7fa01cab8d0f322164234e9db16a2d5e285a3d16dff531f45254000648",
+    "scene": "c03",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "a5b9587041ffc5a8eb93a4cd28f2db58765f1b3dd74bc49e4456caf40fe1de5a"
+  },
+  {
+    "task_id": "c04-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c04-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "a53d7dd90bd8192451e88a78cbe00da2e40ef4f5f6b388384beba4fddfbf58b4",
+    "scene": "c04",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "85bf8eee458c4a3f52606c0d4423ca5ce9ed920b9c75c52c66780e4cd4d42433"
+  },
+  {
+    "task_id": "c04-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c04-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "d49eae9b665537097f13ad61ba5c17569d1efa141d87d3689aee2eab2245015f",
+    "scene": "c04",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "90511f711105762c645f11ea9d019ccb953e3f8aef53ea63fb41b4cff4c416f8"
+  },
+  {
+    "task_id": "c04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "2fc827f3d99e5d9dd67c67b2dbd620cdce320a6c9c3e145dd9729e8ed6b8a9a4",
+    "scene": "c04",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "d4e6604ed789eb04446b41d332455bd39b280e00b3f5826923fd85ba62c2c51c"
+  },
+  {
+    "task_id": "c04-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c04-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "c365f0e885c42820bfb5c5edb60a88f71411248672a73b1850532a31de89c922",
+    "scene": "c04",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "423df5d0ab7e748e9a5e9c0604baa1ed5db66dd08885139d7f8315256dc87c45"
+  },
+  {
+    "task_id": "c04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "5b4e1358c6a2d60dfd6b14c900669f046615b6c8997a12a2a7e8800d02883c4b",
+    "scene": "c04",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "9b8457f2acc1ccaaf3593fac536dd8938b85d512eb279e1e4f8c2b2387df3ed9"
+  },
+  {
+    "task_id": "c04-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "c04-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "b275c17bcb004efb3bd50f4d80c60a087c1aad86aa642a178f9046ea9117fb03",
+    "scene": "c04",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "787fb7a695fc4a4ace69dbfdeac49618a52050575ee32222090dd175990d1127"
+  },
+  {
+    "task_id": "d01-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d01-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "f34dbab8d736295c291786a3648b3a3898210fa0e8241638e539241a1407e89a",
+    "scene": "d01",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "8e09c63e62b2272d85cee37bf8d78542e15c9100100b9e067ecba7ca86cbbdf2"
+  },
+  {
+    "task_id": "d01-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d01-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "da10ad27f984d3aaaf68650bc81aca6cca8da184f37efe999b138c73abd1aebe",
+    "scene": "d01",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "7ca8a4f66770b86c311464d51906a4d6ec05471e94750ec474dfc118e13c8426"
+  },
+  {
+    "task_id": "d01-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d01-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "d54be1d0cc3183d38ac7bee9b5e8ac6718c0b06420929ca44001e26b3155bb82",
+    "scene": "d01",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "b4985925c8673a7e26c65879733a47811171c511ac4c34e1634d8afcb3efa41f"
+  },
+  {
+    "task_id": "d01-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d01-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "1310103df89f711ac51618057a6acead73b81ad9db48b558663380f40491dc67",
+    "scene": "d01",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "63bb2c3f334b846467c2b373708211edff063ca0d0115eb9e0ecd1790b0acea3"
+  },
+  {
+    "task_id": "d01-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d01-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "f2f9870d6c953de4bba4d2ec40cba9410a707c9f4700b4cf89e494c48e4c5cad",
+    "scene": "d01",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "35fe6a22eafe1901ba1fd18860926a6830af3429b679f00bf6f921d6278a8fc6"
+  },
+  {
+    "task_id": "d01-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d01-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "210700e601ea271b7757718d141288cd3ee2b73097e84bcfc3ee29f83c4b7fbd",
+    "scene": "d01",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "b9a02e95b921f7769d77cc0fc987f6a10fce10012a13d08ff4d9b95322c49ca7"
+  },
+  {
+    "task_id": "d02-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d02-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "74128f4dc981ab68ca1ada66081dc5c4ca111ffad7160b1598ff7bf94452e8ca",
+    "scene": "d02",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "0983904992e989b375b1e0eeff15c7d162f7e2d3db600ca0dd5d1ebfb14240d5"
+  },
+  {
+    "task_id": "d02-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d02-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "39a85323a3ce4b1fe06bfc95bac18face7d6c5e5475cfcfb2a2ce9f36e2ff036",
+    "scene": "d02",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "f4f9586f30492106320421f9d586e79be9967561422fa08a8a45497d4cfffba2"
+  },
+  {
+    "task_id": "d02-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d02-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "befa8f6b39f1d2d7ae2e74332f8fffe7f877189595b75019bfd7af36c9447777",
+    "scene": "d02",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "e0bf5a416ac78bbad2949a1bef18b2cc314a5ae038a6d4230d15c444a6f71522"
+  },
+  {
+    "task_id": "d02-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d02-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "1a997476044cb747c4f8920d954cb443148e6564caf2b4594eb27eff07be5a69",
+    "scene": "d02",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "4f2e54b8a6c11e3b216f67e85c2a3c6a80890578ff9f0f72349ea1c45c21619e"
+  },
+  {
+    "task_id": "d02-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d02-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "ae82d7060251f666a468413e99bfab9faf1f18f4fb8a8ae8ed43f8d03a825e03",
+    "scene": "d02",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "4e74c959ea5c1d2d2e6f6e8e39d85cfdad0d0315cf027b26ae12a79d4f71ae2a"
+  },
+  {
+    "task_id": "d02-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d02-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "f1a61f8495d69d85a908046490bb1ba5ae39756d006644703e725aa92d9a3621",
+    "scene": "d02",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "d367b4bc7596df3afd51e645e9f6ea3cd07868006bd0d66524b4ab618a285084"
+  },
+  {
+    "task_id": "d02-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d02-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "9378ba6364b610c7cb68072c24a03efa653ec3ec66d49a9a4f19a4c3df7d5d47",
+    "scene": "d02",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "82f33c8f503bb80df7aed5e8002572d63fa3f512817ee9c5a657f7d8e92706b2"
+  },
+  {
+    "task_id": "d02-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d02-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "5af036204e3c605fada48bfc154710ed2f5c3f8f04ad348816dadb907ddc76d0",
+    "scene": "d02",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "634fd4a6a0f8a29ed0943c759376775d00ef4707d34fbc639b66ffaedd482597"
+  },
+  {
+    "task_id": "d03-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d03-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "b75ae407f61ffc721f9ed006b0eb7dfca47c4c11d48ea4351e3a128038fe2f04",
+    "scene": "d03",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "363e2604d5be9e03a2c6e6fc673eb47a0e5d52efd9c49447242b4a887ef2f80a"
+  },
+  {
+    "task_id": "d03-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d03-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "009f11c20f296af7f1e459bb6c3c3b244815a6be97845d57e5657061c71be19b",
+    "scene": "d03",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "2e504447386524859186afa4ca2758fe589f49660957e93750068421b2fa83b6"
+  },
+  {
+    "task_id": "d03-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d03-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "98f2ee186ed447a029d7aeb0e5d837a2a68f7e8f5f8b4efce528591e55113dd0",
+    "scene": "d03",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "5eb0eeebf0bf864f080bba497de1a5f6c00b1ffbf937b3519e77b6384bb12361"
+  },
+  {
+    "task_id": "d03-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d03-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "294f5c9b200081b39de02faf040fc9129c67adada1259ec79330c3c1b28e49a6",
+    "scene": "d03",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "c6bbccc3e670e4da211a634b52cecdb4f895229898f95c06af1c3152ad148e1d"
+  },
+  {
+    "task_id": "d03-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d03-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "613242424a04efade45a034a5c615dedc66f163f85a04cc35fa802df280886d3",
+    "scene": "d03",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "5a58a8ba093dea14d0d3684bcd3d47030f8c09e8306b8716b79f62029571029a"
+  },
+  {
+    "task_id": "d03-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d03-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "0d57f92671a4c9fc67cd126de5db1b18cac3cf48bedd216511a5bc4ecbf6f2ac",
+    "scene": "d03",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "f72db42dabd6477577dbc5212777117c04b3924738cfbf953a864c8f7bc953b9"
+  },
+  {
+    "task_id": "d04-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d04-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "6250996bbc555eebab43dd266a695c646e31cbc49c5c2c15bc70ac052c2d8e20",
+    "scene": "d04",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "7fadeaae3a2c990fa631b89ba6aabdcf961a992ae619b58ee1c0cc0b865638ec"
+  },
+  {
+    "task_id": "d04-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d04-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "8a09133275732a3c5c6f4db962c44a57a8e1812457578ae3eaa408cef224d068",
+    "scene": "d04",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "39ad3396fb28726afd779795375ad2991ee665bf46e6d5fd1f4b12821c1a2654"
+  },
+  {
+    "task_id": "d04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "0f6e96381726862a485e0623631c0e072802973fc40ba6eb0eb9a888d9d18314",
+    "scene": "d04",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "f142fa900f27cc88fcaf62358fac501d0a91b55ddb1acd368c9191c60507f5f3"
+  },
+  {
+    "task_id": "d04-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d04-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "ea44da3971bab60bcaa95770b49803d682185039af6cafae6aa89a69ec0fdf80",
+    "scene": "d04",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "a30949c5ba39b85d4ba3994cb089e42223031be567fefe5a7fbf401863d15805"
+  },
+  {
+    "task_id": "d04-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d04-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "fd1ae51f48af87f2c08b0cd3a78c943223122bd593aba94ddd3399dd916496f0",
+    "scene": "d04",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "efc90ec31cea9fb46d6b57f07c915fabf6c922c094679d6ac8ac5fa2d3263926"
+  },
+  {
+    "task_id": "d04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "2fd5ae07f6fc44db0194741659e9223f8bf017cd43531b2f441723c6011d632e",
+    "scene": "d04",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "ff047030be6322e03e407105427f6d07b462f8bcbc6c0fd9593d647433dacb2d"
+  },
+  {
+    "task_id": "d04-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d04-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "d5dbf038d83a69b5099849c0116378d8772bfb46df3152ef1b311671462a0893",
+    "scene": "d04",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "29d73ce5b458e8263afa89e93bdaaa12eb9277782a2d5362972c655ba25115e3"
+  },
+  {
+    "task_id": "d04-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d04-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "4c9588d2fe4f466cbfe13f42e1b2dbf30a13ad895fdce1b9e4550c57fde2c8c1",
+    "scene": "d04",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "fbad29c21a82d6ec7d9531aa7fe996856ef8eb13df365fbae4fd5e16f161235e"
+  },
+  {
+    "task_id": "d05-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d05-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "ed928b7fb2dc52fc0a4115e8ed6ec5ec656579fae6f7afdbb97f51eb0768cf6c",
+    "scene": "d05",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "9728b715db2881ac5d6104a5ac757d00f852e56b6c58ba3c854c916ed92f5b62"
+  },
+  {
+    "task_id": "d05-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d05-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "d973e55c0445dad5f4e3ea1e14f88b834ac2d56209c08154c2fd8a384524c756",
+    "scene": "d05",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "7ac18bbd62e212fbdaad970705477a185374cfb9378ba9044228447430c91ba2"
+  },
+  {
+    "task_id": "d05-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d05-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "713f11e345c0fce84073da45c990f9e3a1aa3f6dcae477cc868f643b9ab9e44a",
+    "scene": "d05",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "d68ac90e935da62d47ef9ccedf8ba7892a3a015d0b55d4e8212229dd80957df9"
+  },
+  {
+    "task_id": "d05-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d05-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "c3611b2e916688ed0cfa6b2f5d5c80028abe6e200900beb677ad56c3c88a155e",
+    "scene": "d05",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "14e361e347ca9c5b2b32e92ce15b88241a2f47f292a571c25dea93e43bd23a19"
+  },
+  {
+    "task_id": "d05-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d05-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "57343e2b76d622aa423b392d240f31d5d40bc8c6733b7ae5ee1af5583fe0b9e2",
+    "scene": "d05",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "cf507bf1695eb9fd848e271d7a89ab3dc2dd74518cf8a912cd1cb1c0a1b1c655"
+  },
+  {
+    "task_id": "d05-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d05-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "58403580f30c07a2d3f190c246823053369b24959d179835e51c484b712bf195",
+    "scene": "d05",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "9ea1a018af87fe9e2fd63a5047c958f5e6f833e4e6c640d12e4ed65855c25456"
+  },
+  {
+    "task_id": "d06-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d06-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "ac95f802812cd138ad08c9595ef82f986f0f14f3aa6bec667c0bef162d39572d",
+    "scene": "d06",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "7081ebaa07e241cae4f768607385becdd09e1ae3638e094380b9ec94d667373d"
+  },
+  {
+    "task_id": "d06-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d06-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "26e94f3f86f6e3da711efddcd44fa8cae0121d27d7245a3358c8efa92b8d02ca",
+    "scene": "d06",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "bb67cdcb4a7c0aacb019105504caaa09d8fbc643d7af82647bcb2fba3e4511cd"
+  },
+  {
+    "task_id": "d06-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d06-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "7f72f9d7292659c6e36c451fb8699a41e06f5e2ecac31ced6c9e333cbf2c3424",
+    "scene": "d06",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "4c2cda2fd93dcec4362b810dcbbe16529545fd779b7cc39f8fdb24fbbb76f607"
+  },
+  {
+    "task_id": "d06-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "d06-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "5c33df7621a148a70e7a365736be0debf5e3d16090c750546bf08e4b05dc2e2b",
+    "scene": "d06",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "b610e2b04f409c1a4f4914f94fb44f12c5d0e9c8f7ee4b45853d9bac7cd7ab0c"
+  },
+  {
+    "task_id": "e01-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e01-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "40e265189f48b523abf42e425f35aa64cece475e789e4a1dd9ae87c015e96f3b",
+    "scene": "e01",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "6724cc9c59a156180c2ba9436a7224f8414479982e912fa601bee5ecaff1d558"
+  },
+  {
+    "task_id": "e01-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e01-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "a18f7c7be8ecb98e274986a0119bbfafb7a3e01d717b6720680a12f25be46751",
+    "scene": "e01",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "c6abc70b72855a72d5a7850875405522ebeb4c4b9baaecf4191a4b574330ce29"
+  },
+  {
+    "task_id": "e01-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e01-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "3bb42bf97b6bf6c1893d57657a709e192ddf45e095efd96c34aaf0e0a9ff7d06",
+    "scene": "e01",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "175724f0598536a912a8975240acf0c87371c9078d2a05a50d4a4c2dbeeee4f1"
+  },
+  {
+    "task_id": "e01-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e01-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "dfe4c57ca261370b21185f3a78d2b41baad3a3abcccf41e9acb2199a5e45f2c9",
+    "scene": "e01",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "6908d48ef54333eacc3cdcd0c0ed76ecbd69a70530d0aebb6614ed292d02a8f3"
+  },
+  {
+    "task_id": "e01-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e01-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "f68536fb4675a6e685a5d1f1c74024d987135a84a26ffb622b8df97043d845f3",
+    "scene": "e01",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "58b5845b2df4c433791b90a719fb88cb83f508330e645b6d4f227d8694ef2783"
+  },
+  {
+    "task_id": "e01-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e01-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "7efc0bbce36afade03ab08099194123ff1aba10411210dd991c4df8b15adc7c8",
+    "scene": "e01",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "0025041d517b84836de103c758f440f112bab6062a42013879768daa99f0a365"
+  },
+  {
+    "task_id": "e01-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e01-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "e594a4502fb376aca55fa247a40542d4701805abb80638eff57c9ba137e54b43",
+    "scene": "e01",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "a85898139ca2f1c17204dc52b52e91389f40f129a1ceb3d9c9a4dbd87566bf3c"
+  },
+  {
+    "task_id": "e01-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e01-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "04409dfc23f8fd34f13c1059db4a2d8a90cb518fbda25e40938ae59adc9ba371",
+    "scene": "e01",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "58c63926d80c19eb1471ec936b2691e48a64f7f9a16de42bf242b13bbd7107db"
+  },
+  {
+    "task_id": "e02-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e02-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "22c8be3911b722493831ccbbb6b28493c0cfc315bf3e54aaca85797e72439bbf",
+    "scene": "e02",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "1d7f6b7f9d8febea9ef12b6dbf22ef5ad25fc1b68eff9a9d69745cfae811f383"
+  },
+  {
+    "task_id": "e02-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e02-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "6538da86e4a0443093d61d8587ecc12e474439b1e68d3c289f148c7ef9f12cea",
+    "scene": "e02",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "0d72bebeed177725658b2003f21ef7851df65d59a7091fbfc7789ad2fb94f1bf"
+  },
+  {
+    "task_id": "e02-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e02-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "fc84d36bfbb2348b0cf06afbcdbc0e50d6aa0ebea4bbde0c94ef63c0699e1e92",
+    "scene": "e02",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "7392655a3da48c6fecddafd671167ad9a5f7c5fca994b307eca986b553028443"
+  },
+  {
+    "task_id": "e02-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e02-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "f429837ce74c0137b765005820bf96053cb6fad112e1dbfe437d4a4a1decdce9",
+    "scene": "e02",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "51353fb72b2ebd5b7ad90715300ef96f0d9591d2eca1f1be56c75789bb4b12e7"
+  },
+  {
+    "task_id": "e02-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e02-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "2a6c2517e7a15dd2ea4569bb1729724bd90f453b1ac5dc6d037716dd53ca6b3c",
+    "scene": "e02",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "a0205e607543ed4b5d65c9af3c9b6ae1db2b1bdbc6a46307f9d856fe8a363825"
+  },
+  {
+    "task_id": "e02-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e02-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "9bf30b2615bda9cdd9ccfafee79f725c8770f2207ec3507b34690aed76b5409a",
+    "scene": "e02",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "f4696b2599c49619e226ee04443dc526ad033263189969cfd6cca38b829892fc"
+  },
+  {
+    "task_id": "e03-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e03-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "9d124f15f593cc4f08cba93bebc69c755d500757fa1bebad18891771125b68e6",
+    "scene": "e03",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "610094558482ec787102136143fa0043912011cfe15039b856712c0553f655bb"
+  },
+  {
+    "task_id": "e03-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e03-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "b112f7ec994efe9688e754ac0200ce1e61429dda23b16abdbc1933d9cd51e1a1",
+    "scene": "e03",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "7e61f12afc6070a6708480472342f879e227bf3745a86fcbf8247f46661f12c8"
+  },
+  {
+    "task_id": "e03-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e03-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "4dd2c7fbf91026c7c34fe18396b5d1b9b6fed3616d804716d6f0c7b6fcd9707e",
+    "scene": "e03",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "6945aa09f2608c4352c792e2bddd62c0ddb2e2ab2162fd77255074c9d0f2a748"
+  },
+  {
+    "task_id": "e03-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e03-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "0fbc218538a8dd08a8f84170c8e865b57b9640cdeda74b0792aef611cd9c1e0c",
+    "scene": "e03",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "472e5eb9166eb5479b3be25e8e3fd44b55713feacb4aa480dff9c9fc8edf3b3b"
+  },
+  {
+    "task_id": "e03-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e03-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "abd463c9fb1e223c103989637fbf2610d58e47bc7f0722ca0fa0c9c610b6565b",
+    "scene": "e03",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "759c5c9aa1770f42dadb89cb1ef4db06147c43cd0b0f873f7363741c4d4b4b14"
+  },
+  {
+    "task_id": "e03-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e03-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "7739ae304f73ab86c5775526a4db8b419517a3b755f465032a3ede487859f16b",
+    "scene": "e03",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "5521ebc38f857aa8091696bd66deff0a5fdf957c9c29eb9cbacb457a14370928"
+  },
+  {
+    "task_id": "e03-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e03-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "639cf8313a7a7cae0702ea6bc030b9785669f16ad19a6705028c6d468f719bd8",
+    "scene": "e03",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "4a5e7aa7376e0adb2a3f396bd65da087f39f2017b645e7bbc139992c1e0390e5"
+  },
+  {
+    "task_id": "e03-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e03-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "d25c10fc2770a9e352a4ab68b0ddf5b6a437de61a5813cd60659c4bab191696b",
+    "scene": "e03",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "aec78ecaaf2d4b7bcc39ea67a912e87281fa9a69dafbbc57416a5202a6cc5ccf"
+  },
+  {
+    "task_id": "e04-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e04-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "062cdb2dce056b5b44b5980700b51e8da5b4224a5584903695a8fdd901b97bf6",
+    "scene": "e04",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "28049b8813ebf2658615abfd08bb38748117379da19a6c451c9bb477343cfc52"
+  },
+  {
+    "task_id": "e04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "c10a2b9aa9a8865c5a2e8f67c115763dcf22bcd41f3ab4840b846b73d708f63a",
+    "scene": "e04",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "6ea827ae4781a5818e64dbf9b66d31399751cf9ac7964c4015a0fb69b4da6f3a"
+  },
+  {
+    "task_id": "e04-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e04-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "0717220236226a11fa0873fe27d83a4dce75c29e9b64245eba224ea43f709ff1",
+    "scene": "e04",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "fc4a01efa3afc2afc25fdb1ac01b5bcc19b48020b740b58f20a7855c1b5cc342"
+  },
+  {
+    "task_id": "e04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "8bb7908f5d9fa9ea0791a4be523cf27e54858001b29e203eb003294524a20bde",
+    "scene": "e04",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "3b0d4ecc1f89b60240017911bb74ac3192655b789027bc3618bb013e448787d8"
+  },
+  {
+    "task_id": "e04-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e04-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "8a0d91af863c839a62dac245e0f8aba3e721613449889e8b1a9c6afb35329b82",
+    "scene": "e04",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "421fefd717f6e1f0d7f1c1980fe46cee2fd85bdf2898c348444510c3eef13ff0"
+  },
+  {
+    "task_id": "e04-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "e04-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "face1821e8c51661ad44dc7cd5f05f6330a7a72766914646b6ae202f39c6a11d",
+    "scene": "e04",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "2f93ea8792acca2c0974a7d2ee8098346e3ca257518256ec0bd638cb2acf981e"
+  },
+  {
+    "task_id": "f01-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f01-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "b8864b86d11f017f0bb4b52c6c7f8306c2cd208609fd2dd3bda6571debe9b260",
+    "scene": "f01",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "4e963cfee4bc87b4d68ec7e7624b83e4d603222d8028d288c3917d64f4992a56"
+  },
+  {
+    "task_id": "f01-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f01-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "56f99213b8c7f8a6045ba9dfdd38bb4d84cbc1b7926c5d9bfdada8413d16730d",
+    "scene": "f01",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "68ba305260a7822a3790bb79166294b35672bd7d02b73a5a1254b82b45ea9636"
+  },
+  {
+    "task_id": "f01-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f01-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "58155d757e0515f001dd444c509445e4080d89cc32edfc08a5d09990ab8aa87a",
+    "scene": "f01",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "c7880cf753d6e3dccd195317ddfd792b82733e98bf21c3839c2a931fdf347ce3"
+  },
+  {
+    "task_id": "f01-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f01-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "d2cb86cf0f26432b32e2871cd027354d7386bc00dffa357379f791609dd79fcd",
+    "scene": "f01",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "f33b17ab944164d8f9bdee36ef0a8fb05743cbe7b231446a946ac25f5f9e424c"
+  },
+  {
+    "task_id": "f01-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f01-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "d66044d5bb48079ab6e5b7b380c8c07996bb65717cb0e0d4955dc5d265f6c244",
+    "scene": "f01",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "912952c9e49dbd44a4e4e407c43f1c4328ec3fa932603c5167e771acacd41daa"
+  },
+  {
+    "task_id": "f01-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f01-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "e1495eaf0e7f073e0830d5c393d568177faec1ec71c29eba2a1b99a898da21d1",
+    "scene": "f01",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "9e526b7e9cd0debfb68ce0482264354ecc5654d9ec8ec3b134fcd64594fcbd48"
+  },
+  {
+    "task_id": "f02-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f02-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "b7a072f9805e20324952ccae8c1487c2c0540e99516a7b67625e3f859fe7ae0f",
+    "scene": "f02",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "69953ae9b7faea468b766050a33a9bd3e3afd2f71eddeebf97eab037c2e2d85f"
+  },
+  {
+    "task_id": "f02-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f02-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "dc031d94f4ab85009d6ac4500ae75f3e8fee736d06ce87b18d459b852baceaf4",
+    "scene": "f02",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "f6663c18c9a60bfefa1f493c6458b09bad2e950aa5587170f13899f054b621f6"
+  },
+  {
+    "task_id": "f02-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f02-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "7d54966a0b15efadf4151d3f5fca62b7c54979b791c3e71575a919a17d85f44b",
+    "scene": "f02",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "70c9d4eb531acc201f9d912c06c8405e34762f0c567bf1d2ef36a4c4fd338f8a"
+  },
+  {
+    "task_id": "f02-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f02-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "7ac654dcc072dadc51ae65b1fd48c893f4cebe95837730a40059277b4ef3e261",
+    "scene": "f02",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "d2925bf0a0d2b5a00f8996fa050cdb2385a0caec0b8ea8aa83e6ae1fe1c2abc4"
+  },
+  {
+    "task_id": "f02-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f02-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "e2f2d7451f3dc8abc46c5fe5f904ca8ec05d390fd98797d9ce92ad6db29d29c1",
+    "scene": "f02",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "f9673fe1dbd56548ad8955bba074f3c27094668822a274f47ee17375fd2c474b"
+  },
+  {
+    "task_id": "f02-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f02-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "29f746ab74a7265197cae4d29df8255a3cc329c8bf2da6d6d96d8ad5c861c59b",
+    "scene": "f02",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "51985dc8b8ea3695164e622274d131fe3c1cbc8647607b131c86e1da4f6261eb"
+  },
+  {
+    "task_id": "f03-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f03-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "31c943b1e5e450644bf25bfdf897b832d1dd92691221728a3120550bd2f59e3d",
+    "scene": "f03",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "58c9279cc30e6f518c375b9735e9b73a2f5b9169599bcbc8ad7f989664b0c578"
+  },
+  {
+    "task_id": "f03-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f03-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "ca1fa72e6e5f9c122f5fedd16daaf96b76ae40ee6cf1222d4d3a2ca894f27e17",
+    "scene": "f03",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "46f97befaa5dcd36be2aed7f88dc32be462a53f758b99fa1380a46721ea6a54d"
+  },
+  {
+    "task_id": "f03-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f03-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "7b6babca006d64d7751a49bca014c58fe918f610059e9281a924e45f6424e343",
+    "scene": "f03",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "3b3e1b6df02221d83a92ae65518c93aa7867b9431ee8529249260e80fe1322ef"
+  },
+  {
+    "task_id": "f03-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f03-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "8055b7df6c132e8bf5e9710078754e55fdfbb8b7bbc08b4890f14fcde89758c2",
+    "scene": "f03",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "46bf26a7eebd7bf0fc49284ac2aa1b0cbdba0c27cd53ee84e0427943e0d362c7"
+  },
+  {
+    "task_id": "f03-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f03-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "88a528282f3c277e6144c30ef479a6cc3b5333a638086215e8a94820bacd05a3",
+    "scene": "f03",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "0c328a6b2ddb9ca869fd7cd66a8949c419a2e29cf61a175bbd70aa1df737b94e"
+  },
+  {
+    "task_id": "f03-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f03-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "e84842c19458053c8a0ab4e148cb8d67d8bf086966bc0f07e35f264ab4c53afa",
+    "scene": "f03",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "7af2ccfe06685b837fb0a16de48fe5979d2e95496e574485ab85e82fb23e10fd"
+  },
+  {
+    "task_id": "f04-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f04-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "3c2069056ecb43ddf9314178525cfcd65a87b1527089c0d0ce91e9dfe965ce96",
+    "scene": "f04",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "c1eb02b311a7c4cc94cc1a56915cafa7d832ddf2cb4d7ded1267e1068e9500dd"
+  },
+  {
+    "task_id": "f04-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f04-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "6c5c46f4f9174bf3d2b79699d12048cea7a0eee97c51fa194db2c45ac6c09534",
+    "scene": "f04",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "6d8325727e2abaf7405af377dbd229a74b9c1110f4fd0e0969e59e921325b68e"
+  },
+  {
+    "task_id": "f04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "27dfdf0de64a0f2edbb004eb259fc60baf163b56814e474bad3c879b78931188",
+    "scene": "f04",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "9fc9188eb36f3e3afdcfb6bbe3d9e4a1423964945090f4259557991a0ffad711"
+  },
+  {
+    "task_id": "f04-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f04-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "b87dcf3b2a1692f2b28bb86829541cbb353ccb5967e053a8ecf4e60723b91ca8",
+    "scene": "f04",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "552e86b9ef013d321dc5c3fdb2ea5df2f004bb8f4330aa0002f9447a109af0ac"
+  },
+  {
+    "task_id": "f04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "4c18631eca3a4e5fb21af5cf33a287a41b84ea7740db6db1aee593f82f4eb35a",
+    "scene": "f04",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "a8a5be7fb54aa2509034b08176cf138701b00f622ef72eff409df7fb0651aaf4"
+  },
+  {
+    "task_id": "f04-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f04-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "3cda0083aa803ec611c9d491b9884257d9a46d2ffced503eee053a7f39596243",
+    "scene": "f04",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "ce70ffed63156e991081868e2a636251df5d8ffc942071595637210da7f07c63"
+  },
+  {
+    "task_id": "f05-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f05-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "a83685b8cf6a2ad85f0b1b928b49d370d2083e13f9cb7991b4cf03fe8e15b53b",
+    "scene": "f05",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "955a4dd08af682f2a77a9507d817c872ff33c2a6c166be2697e5ec06123befb6"
+  },
+  {
+    "task_id": "f05-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f05-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "b224b3b60022af4ca1f6a51fb5cdc85382ea48acd69bb9c32ca265aa6f28df6e",
+    "scene": "f05",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "a3c366f56aba5d99a09fe825a5d86cba1868d57ab300f185a89f851137791ab3"
+  },
+  {
+    "task_id": "f05-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f05-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "615d6618c003acab378833fc5d2757c983b93c37854f44c806a61d930c61d1e7",
+    "scene": "f05",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "f5074c0f8c7c4eb1dbcc2624a7fb3e16e5f55199f064590d8b457812f1c8ee43"
+  },
+  {
+    "task_id": "f05-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f05-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "b25b609fe2101f8e1a1f33507a3e4a960e9a092ff42edc038d9cecb9236833f8",
+    "scene": "f05",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "09d7e2d38cb132c4106ae6f45c31c16402f27dab1bb818b3484f1589a47914fa"
+  },
+  {
+    "task_id": "f05-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f05-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "086351644837bf986ea74037df6fd92b78338757e57df853ea480ddc75e36a67",
+    "scene": "f05",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "36272784a65519cbf6f7ef3665b343d4fa7ddb7d82aa22b741ed12756bd20e31"
+  },
+  {
+    "task_id": "f05-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f05-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "288e540b4d7998cb416c3d4001e528e9e925b7375269a30655e10c2440257c5e",
+    "scene": "f05",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "cb39c42f35141efe0b8d9588e79e74b90642eaa04e6fe013650421505e53f831"
+  },
+  {
+    "task_id": "f06-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f06-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "f759d74071f3e3686928c758ad605175b3e39626ed8fbc3c8d695cc6990cf6f3",
+    "scene": "f06",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "6788c393c651db9a80fa3b6b06ba821d7166b209a123e58f462ba14b9e47b891"
+  },
+  {
+    "task_id": "f06-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f06-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "2b0afc5e5dd16c81533a8b29fd5a48a88e9af19daf8c51458182d06003b6cc8b",
+    "scene": "f06",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "bdcac6c16a10907a330b0a48f7828b8b53831e916ad525196e6ca84d22bcf11f"
+  },
+  {
+    "task_id": "f06-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f06-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "138f94ab673e66e8405eb5273819fa971c838c3afcc990c9b32e0b6d79f9c7ef",
+    "scene": "f06",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "08b3ab16213efc1aaeacb047d2af7bcdb409ffac947f2f2a5d43dab929b55466"
+  },
+  {
+    "task_id": "f06-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f06-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "42a069aa211edb91cd908c6de2a47c40b0d61e92bc6536939013e6ca9e93406a",
+    "scene": "f06",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "ad21de47eefc8001c72cc2b3c1742e400a9f976b7c5203a043083a739d44ea28"
+  },
+  {
+    "task_id": "f06-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f06-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "aa7e4685aff78e3065e7e3bbaefa6dca226e407547e9bdeb3f776ba1787f0500",
+    "scene": "f06",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "9a09e0fe0e90b03506d1249c998346687bef4fefea93febf72d92defc6a97f3f"
+  },
+  {
+    "task_id": "f06-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "f06-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "63fb6b98689a0bdda44c2a62231c64de517f56c644655ba2c68cd03feaa2379f",
+    "scene": "f06",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "94ce393e3db69dddcb3a24d26a3f714fc9d03056e054e8cd37667c83793d80e0"
+  },
+  {
+    "task_id": "h01-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h01-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "3c6538fa37b7e77be7d7abf125f8e79810469ea1b219b4525d040061b8c9eafa",
+    "scene": "h01",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "aad7b4f8b0fa1f008cd0d024ed1c4edff35a9039581d25fbe758e7d2aa6c2e5c"
+  },
+  {
+    "task_id": "h01-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h01-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "0d204ced0a0df39b7ebb9079fe052f82aa4f6fd81b085b9844e3da16a3414ebe",
+    "scene": "h01",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "30d541ea2799d43b62f381730334d363ff1f2a7adeb547e5cabb5f8f00e9742f"
+  },
+  {
+    "task_id": "h01-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h01-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "746a8f5a21e0944aaadf2d55a97639efb36e61fe43719954bde4a695d3206503",
+    "scene": "h01",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "8f4fcb7a01088d64bb332cd460f2b47f314af3cada85b18eae6b483edfa303f4"
+  },
+  {
+    "task_id": "h01-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h01-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "46f9bb96c37e1e0518b184e48a83aeef0c3cceac5c19687ca3c502aad93978c1",
+    "scene": "h01",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "e804e869893b8199a12911f459bce520bc208a32478f5e1bde7a625e9eefdb14"
+  },
+  {
+    "task_id": "h01-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h01-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "6da7e4504c31c8107b17152e9e1b69611588a3fd0f70e28d4e6fccd0854045f2",
+    "scene": "h01",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "a71a9f8e2ba1595f12cdfe9b0fd9d2098a7a2df85972508d372ee874f7fe4b0f"
+  },
+  {
+    "task_id": "h01-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h01-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "446d62608a5d305f94f9dd4181ff1c94bdd158d4f6b563cc585d4bcac9f91fd6",
+    "scene": "h01",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "b0068de54a278a42e7b5f63091a2bde5236b06c46e3639a90efde999aeda3f41"
+  },
+  {
+    "task_id": "h02-child-male-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h02-child-male-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "080ae53158a2eed4c1d9b23095ab74c106ca1b146e5474fc03a68a1032a0ca7b",
+    "scene": "h02",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "44977bb5cff38c673bec5bd60f498fd8da5a494b359f7cba57fa32c8c23333cd"
+  },
+  {
+    "task_id": "h02-child-female-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h02-child-female-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "b181b70accf5375460f55e2b7e434e865c41c60c9eff00ba41a063d2ec53a2c6",
+    "scene": "h02",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "ce6a38283b5753b695f024f0905707fce928299ff784081e896133467fed3b8d"
+  },
+  {
+    "task_id": "h02-adolescent-male-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h02-adolescent-male-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "416c29856aa8b39f204abe1c4ea95df62c005adbcb36c64183a3474a6c8c5c42",
+    "scene": "h02",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "ffeb9ea6ba88afe83cf1d29cf714adc5c99bb05d8db4b5d318e97178d4b61659"
+  },
+  {
+    "task_id": "h02-adolescent-female-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h02-adolescent-female-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "77269837cfd1d794c1c3ae94a908700a3f2e459f05d42333a60a00447b7162fe",
+    "scene": "h02",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "47c91ee8ff321a1b0eaa7daa24dfcbda0bad05f6013ffb3e729ad1c4182844fb"
+  },
+  {
+    "task_id": "h02-adult-male-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h02-adult-male-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "275ea5a202e434c1eac7ffccf3ba46e4bbaab072ea2045288437f5747a48ec14",
+    "scene": "h02",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "7983273de5963f8cd91e660d5b0995f203cf1147afaaf8ba5f056a06355c112e"
+  },
+  {
+    "task_id": "h02-adult-female-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h02-adult-female-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "2f628254f29fd656c87052bbab45da317748deca3793c71311b4f99e754a4a5a",
+    "scene": "h02",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "af95ea515589eaf1b4c3c799f08c8a23b2150b600406b4c54ebbb91a0085b432"
+  },
+  {
+    "task_id": "h02-older-male-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h02-older-male-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "fb895f477d467770fb93a286c447797761f72b2d383371d55de9944f8bde9b7d",
+    "scene": "h02",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "f23fd446ed28b204345177c4274361ca9b0ab4093e51e7df705e49866d73c274"
+  },
+  {
+    "task_id": "h02-older-female-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h02-older-female-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "81992843c3c26548714bafe5875a2aec230b3974090fed4ea885c374c3483b9b",
+    "scene": "h02",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "3fffc3144739da611bdfae4512d347da5a36165cc4eb74e3fd76ce4120154ee2"
+  },
+  {
+    "task_id": "h03-child-male-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h03-child-male-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "1ddc855983295ffdb40c7ccdaca1d9769b1fe4140b7985837791f82a358ad8b7",
+    "scene": "h03",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "6f48c7d9a2a46f998236fe7f3a869569316b517c505f4b75dc86174781962cdd"
+  },
+  {
+    "task_id": "h03-child-female-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h03-child-female-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "61ccf27cac44f3298205ac18ad20c7e1657c76e3077a5a966ad78c046bc3dc9f",
+    "scene": "h03",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "c3ae846055369c7185eb441f71a492f0a19fb52d34edeed9c642f73f7fa7359d"
+  },
+  {
+    "task_id": "h03-adolescent-male-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h03-adolescent-male-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "46ea1981f5165fadfaa7b388db8a92f0c1e0b468424588e7e159e2db37ff2fca",
+    "scene": "h03",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "2bf69080a5c09167b8ecc7b61016decda153066ca73d21e1b9ce2d7f8059c4ea"
+  },
+  {
+    "task_id": "h03-adolescent-female-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h03-adolescent-female-typical-pump-pct-ageqty-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "aba397708fc407d23b514e0b64bd2ae2393eda9a5108402547835516f9cfd08c",
+    "scene": "h03",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "59e9eda55e4ef61d5da7fff18728bc805728d1b77bed36bf5e24b6a9b30e4b14"
+  },
+  {
+    "task_id": "h03-adult-male-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h03-adult-male-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "63ec5c0faa3a982dc3549aa50e15ff46bde61dbea52f27f5c7073e65fbadb45e",
+    "scene": "h03",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "58fddf3f7a5b9c4e2c199552e8c40c1e1256444cb3045556910e52987a419c37"
+  },
+  {
+    "task_id": "h03-adult-female-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h03-adult-female-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "2ee25ebca96d18252299c581fee0b0bbd1436324a1537bd999df12f758ebaf10",
+    "scene": "h03",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "1aa08ce4a801b4891dd9d903707ea248b5c62620700c9157950c34ff402f09b4"
+  },
+  {
+    "task_id": "h03-older-male-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h03-older-male-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "8fa947e49899e73d3db7ba5caaf089d4c1edfea090cbdbadd4a9a6645fb96794",
+    "scene": "h03",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "cdba99fa2f4732c85a9055915aa147003e058b9571e0afe4c015379c85418932"
+  },
+  {
+    "task_id": "h03-older-female-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h03-older-female-typical-pump-pct-hfix-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "267127d37ffde5a26e21dc738bc0be9cd60a82a950b09256bd3f824d9a9e072c",
+    "scene": "h03",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "ecd040b698f1c1524e2c010eb7790898154fe2c0be390db04c28c2ebcf5414df"
+  },
+  {
+    "task_id": "h04-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h04-child-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "5daa74e8eb230d6a0ba3b6cc2c502fe0be53c79121f553c668f88d843058cfc4",
+    "scene": "h04",
+    "patient": "child-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "54eaa24deeb7fd30a36bd370f81abdf559039a15e5208442472e68d56d252ea9"
+  },
+  {
+    "task_id": "h04-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h04-child-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "a0a093d52d510e1733bf6859ef283e1898fb8641ab7f8c11d585b53cabcaa7be",
+    "scene": "h04",
+    "patient": "child-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "65fb218aefbb7d70f40268a9757ed8abadb9b3486e65cccd4321680b893b4643"
+  },
+  {
+    "task_id": "h04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h04-adolescent-male-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "bb7a0b29da0ca0353585172479f175c40fe664adfd937f71e9756cd9c249f744",
+    "scene": "h04",
+    "patient": "adolescent-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "0294371fb33628f72860c6c08926e9ccd64eda105d60b3f4cbf4f39c14f97812"
+  },
+  {
+    "task_id": "h04-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h04-adolescent-female-typical-pump-pct-ageqty-v1-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "d0aa496f582cceedc4e11b8c115f012c3ca27f4b3063ec5a47edc7645cdc9199",
+    "scene": "h04",
+    "patient": "adolescent-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "d8249938b528d5b1c29f32e36e1ce0501e1aa651c7a718a85476564575c03640"
+  },
+  {
+    "task_id": "h04-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h04-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "ab41d29c8d1faded215e8f9292217ecc3e69b93120363cb46878337bf4ece730",
+    "scene": "h04",
+    "patient": "adult-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "eb01801ee792b6422de864b6b22728768738bd5b12bf6535020575c607feeae4"
+  },
+  {
+    "task_id": "h04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h04-adult-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "db2f8359a8133cbe8bdb37c0bc5c569ea7097e29142bbe56dc51afa8d3f86cae",
+    "scene": "h04",
+    "patient": "adult-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "26b4506f30666562c39e569199f1f89bb1445c71c00fca37872b4a0015234b72"
+  },
+  {
+    "task_id": "h04-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h04-older-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "4a5599d79e43706796cd27e2b815af91a3090d7eeb49f1a9a6324aa4789e5c77",
+    "scene": "h04",
+    "patient": "older-male-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "a01af58e471e8434e915cba5de9ec8b70514085752601934ef24c13d135f7526"
+  },
+  {
+    "task_id": "h04-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "trial_id": "h04-older-female-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2__main212_fresh",
+    "fixture_sha256": "87859fc0cb82637a45bb8ef5b16b43a6837cb80e7b815b0259212a85536284ea",
+    "scene": "h04",
+    "patient": "older-female-typical",
+    "hardware": "pump-pct",
+    "branch": "patient-main",
+    "source_config_sha256": "f8e3d5fef8eb195920e493effed64e53058d54a68941156673b6f3e1a2c2f63b"
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "format": "sweet-sim.design-publication-support/v1",
+  "version": "v4.2",
+  "frozen_manifest_sha256": "6c45a7572eecde4d1acb119d08df4b5fbe41ec0a90a756d0ba21f6f2c4e05f5c",
+  "builder": {
+    "file": "../../../sweet-sim/scripts/build-scenario-version.mjs",
+    "sha256": "6a7be88e30e26bd9c70a3ef14ba64efbed76782687d4834f1f9b11f62c1158f5"
+  },
+  "files": [
+    {
+      "file": "build.mjs",
+      "sha256": "7be436c0a22ad31ff2a5cafff29a378f1469b06646be4acb18d187eea36eccaf",
+      "bytes": 146
+    },
+    {
+      "file": "GUIDE.zh-CN.md",
+      "sha256": "c04ff83e12d32962a3aac539be4adcf0cafc80714e9b2c43cf96782f3572464b",
+      "bytes": 3531
+    },
+    {
+      "file": "DAY-SCHEDULES.zh-CN.md",
+      "sha256": "d99c8268bdb023e086ac4f9a0a5666903604fe9d8a480ecc9aca84dc0e4c8b7f",
+      "bytes": 188522
+    }
+  ]
+}

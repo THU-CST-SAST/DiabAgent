@@ -1,0 +1,650 @@
+{
+  "instance": {
+    "id": "f05-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "config": {
+      "seed": 20261020,
+      "start_time": "2026-10-17T22:00:00.000Z",
+      "utc_offset_minutes": 480,
+      "horizon_minutes": 4320,
+      "decision_interval_minutes": 5,
+      "patient": {
+        "sex": "male",
+        "age_years": 39,
+        "height_cm": 176.6,
+        "weight_kg": 97.4,
+        "initial_glucose_mg_dl": 120
+      },
+      "person": {
+        "type": "adult_male",
+        "bmi": "normal",
+        "dawn": "absent",
+        "carb_counting": "typical",
+        "sample": false,
+        "seed": 20261020,
+        "resolved": {
+          "type": "adult_male",
+          "name": "Adult, male (18-64 y)",
+          "age_group": "adult",
+          "sex": "male",
+          "bmi": "normal",
+          "carb_counting": "typical",
+          "sampled": false,
+          "weight_kg": 97.4,
+          "tdd_u_per_kg_day": 0.65,
+          "basal_fraction": 0.42,
+          "true_basal_u_h": 1.107925,
+          "true_tdd_u_day": 63.31000000000001,
+          "insulin_sensitivity": 0.7626373626373626,
+          "dawn_fraction": 0,
+          "carbs_g_per_day": 200,
+          "carb_estimation": {
+            "bias": -0.07,
+            "sd": 0.25
+          },
+          "profile": {
+            "basal_u_h": 1.11,
+            "isf_mg_dl_per_u": 26,
+            "carb_ratio_g_per_u": 7.5,
+            "max_basal_u_h": 4.4
+          },
+          "height_cm": 176.6,
+          "anthropometry": {
+            "height_cm": 176.6,
+            "weight_kg": 97.4
+          }
+        },
+        "anthropometry": {
+          "height_cm": 176.6,
+          "weight_kg": 97.4
+        }
+      },
+      "physiology": {
+        "sensitivity": 0.7626373626373626,
+        "glucose_effectiveness": null,
+        "basal_glucose": null,
+        "carb_bioavailability": null,
+        "meal_absorption_scale": 1,
+        "dawn_fraction": 0,
+        "daily_sensitivity_cv": 0
+      },
+      "profile": {
+        "basal_u_h": 1.11,
+        "isf_mg_dl_per_u": 26,
+        "carb_ratio_g_per_u": 7.5,
+        "target_mg_dl": 110,
+        "dia_hours": 5,
+        "max_basal_u_h": 4.4
+      },
+      "therapy": {
+        "mode": "pump",
+        "pump": {
+          "model": "dana_i",
+          "insulin": "aspart",
+          "reservoir_u": null,
+          "refill_every_days": 3,
+          "refill_time": "20:00"
+        },
+        "mdi": {
+          "bolus_pen": "novopen_echo",
+          "bolus_insulin": "aspart",
+          "basal_pen": "tresiba_flextouch",
+          "basal_insulin": "degludec",
+          "basal_dose_u": null,
+          "basal_times": [
+            "22:00"
+          ],
+          "auto_basal_injection": true,
+          "missed_doses_before_start": 0,
+          "extra_doses_before_start": []
+        }
+      },
+      "cgm": {
+        "model": "medtronic_guardian_3",
+        "noise_mg_dl": 1.5,
+        "gaps": {
+          "start_probability_per_sample": 0,
+          "mean_length_samples": 3
+        },
+        "scan_interval_minutes": 90,
+        "scan_window": [
+          "07:00",
+          "23:00"
+        ],
+        "error_draw": "median",
+        "sensor_age_days_at_start": 2,
+        "forced_gaps": [],
+        "calibration_overdue_at_start": false,
+        "compression_lows": [],
+        "error_scale": 1
+      },
+      "meter": {
+        "model": "contour_next_one",
+        "routine_times": []
+      },
+      "faults": {
+        "occlusion_rate_per_day": 0,
+        "occlusions": []
+      },
+      "estimates": {
+        "cob_absorption_minutes": 180
+      },
+      "scenario": {
+        "meals": {},
+        "announcement": {
+          "probability": 1,
+          "carb_error_fraction": 0,
+          "model": "normal",
+          "bias": -0.07,
+          "sd": 0.25,
+          "report_composition": false,
+          "information_mode": "native",
+          "report_delay": {
+            "probability": 0,
+            "min_minutes": 15,
+            "max_minutes": 45
+          }
+        },
+        "masking": {
+          "meal_announcement": 0,
+          "exercise": 0,
+          "alcohol": 0,
+          "illness": 0,
+          "sleep_loss": 0,
+          "composition": 0,
+          "basal_injection_notice": 0,
+          "device_alarms": 0
+        },
+        "activity": {
+          "enabled": false,
+          "probability": 0.35,
+          "time": "16:00",
+          "time_jitter_minutes": 60,
+          "duration_minutes": 30,
+          "accelerometer_counts": 2095,
+          "announced": true,
+          "advance_notice_minutes": 0
+        },
+        "stress": {
+          "enabled": false,
+          "probability": 0.15,
+          "time": "10:00",
+          "time_jitter_minutes": 90,
+          "duration_minutes": 45,
+          "hepatic_delta_mg_dl_per_min": 0.05
+        },
+        "anaerobic": {
+          "enabled": false,
+          "probability": 0.15,
+          "time": "18:00",
+          "time_jitter_minutes": 60,
+          "duration_minutes": 30,
+          "hepatic_delta_mg_dl_per_min": 0.5,
+          "announced": true,
+          "advance_notice_minutes": 0
+        },
+        "alcohol": {
+          "enabled": false,
+          "probability": 0.1,
+          "time": "21:00",
+          "time_jitter_minutes": 60,
+          "onset_hours": 6,
+          "duration_hours": 10,
+          "hepatic_delta_mg_dl_per_min": -0.3,
+          "announced": true
+        },
+        "illness": {
+          "enabled": false,
+          "probability_per_day": 0.01,
+          "min_days": 2,
+          "max_days": 5,
+          "insulin_need_increase": 0.3,
+          "announced": true
+        },
+        "menstrual": {
+          "enabled": false,
+          "cycle_days": 28,
+          "luteal_need_increase": 0.08,
+          "cycle_day_at_start": null
+        },
+        "sleep_loss": {
+          "enabled": false,
+          "probability": 0.1,
+          "sensitivity_decrease": 0.15,
+          "announced": true
+        },
+        "extra_events": [
+          {
+            "id": "d0-meal-75-plan",
+            "type": "record",
+            "at_minute": 55,
+            "category": "meal",
+            "text": "Current intention: approximately 25 g carbohydrate around 2026-10-18T07:30 local; ordinary meal. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d0-meal-75",
+            "type": "meal",
+            "at_minute": 90,
+            "grams": 25,
+            "announced_grams": 25,
+            "absorption_minutes": 30
+          },
+          {
+            "id": "d0-meal-360-plan",
+            "type": "record",
+            "at_minute": 350,
+            "category": "meal",
+            "text": "Current intention: approximately 55 g carbohydrate around 2026-10-18T12:25 local; ordinary meal. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d0-meal-360",
+            "type": "meal",
+            "at_minute": 385,
+            "grams": 55,
+            "announced_grams": 55,
+            "absorption_minutes": 90
+          },
+          {
+            "id": "d0-meal-630-plan",
+            "type": "record",
+            "at_minute": 590,
+            "category": "meal",
+            "text": "Current intention: approximately 20 g carbohydrate around 2026-10-18T16:25 local; ordinary meal. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d0-meal-630",
+            "type": "meal",
+            "at_minute": 625,
+            "grams": 20,
+            "announced_grams": 20,
+            "absorption_minutes": 20
+          },
+          {
+            "id": "d0-meal-780-plan",
+            "type": "record",
+            "at_minute": 725,
+            "category": "meal",
+            "text": "Current intention: approximately 56 g carbohydrate around 2026-10-18T18:40 local; mixed meal reported high in fat/protein. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d0-meal-780",
+            "type": "meal",
+            "at_minute": 760,
+            "grams": 56,
+            "announced_grams": 56,
+            "absorption_minutes": 150
+          },
+          {
+            "id": "d0-meal-1100-plan",
+            "type": "record",
+            "at_minute": 1040,
+            "category": "meal",
+            "text": "Current intention: approximately 16 g carbohydrate around 2026-10-18T23:55 local; ordinary meal. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d0-meal-1100",
+            "type": "meal",
+            "at_minute": 1075,
+            "grams": 16,
+            "announced_grams": 16,
+            "absorption_minutes": 30
+          },
+          {
+            "id": "patient-input-2-1",
+            "type": "patient_treatment",
+            "at_minute": 1410,
+            "action": {
+              "type": "BOLUS",
+              "units": 3
+            },
+            "announced": true
+          },
+          {
+            "id": "d2-meal-75-plan",
+            "type": "record",
+            "at_minute": 1470,
+            "category": "meal",
+            "text": "Current intention: approximately 23 g carbohydrate around 2026-10-19T07:05 local; ordinary meal. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d2-meal-75",
+            "type": "meal",
+            "at_minute": 1505,
+            "grams": 23,
+            "announced_grams": 23,
+            "absorption_minutes": 30
+          },
+          {
+            "id": "d2-meal-360-plan",
+            "type": "record",
+            "at_minute": 1755,
+            "category": "meal",
+            "text": "Current intention: approximately 50 g carbohydrate around 2026-10-19T11:50 local; ordinary meal. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d2-meal-360",
+            "type": "meal",
+            "at_minute": 1790,
+            "grams": 50,
+            "announced_grams": 50,
+            "absorption_minutes": 90
+          },
+          {
+            "id": "d2-meal-630-plan",
+            "type": "record",
+            "at_minute": 2055,
+            "category": "meal",
+            "text": "Current intention: approximately 22 g carbohydrate around 2026-10-19T16:50 local; ordinary meal. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d2-meal-630",
+            "type": "meal",
+            "at_minute": 2090,
+            "grams": 22,
+            "announced_grams": 22,
+            "absorption_minutes": 20
+          },
+          {
+            "id": "d2-meal-780-plan",
+            "type": "record",
+            "at_minute": 2175,
+            "category": "meal",
+            "text": "Current intention: approximately 65 g carbohydrate around 2026-10-19T18:50 local; mixed meal reported high in fat/protein. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d2-meal-780",
+            "type": "meal",
+            "at_minute": 2210,
+            "grams": 65,
+            "announced_grams": 65,
+            "absorption_minutes": 150
+          },
+          {
+            "id": "d2-meal-1100-plan",
+            "type": "record",
+            "at_minute": 2500,
+            "category": "meal",
+            "text": "Current intention: approximately 16 g carbohydrate around 2026-10-20T00:15 local; ordinary meal. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d2-meal-1100",
+            "type": "meal",
+            "at_minute": 2535,
+            "grams": 16,
+            "announced_grams": 16,
+            "absorption_minutes": 30
+          },
+          {
+            "id": "history-meal-3-0",
+            "type": "meal",
+            "at_minute": 2820,
+            "grams": 65,
+            "announced_grams": 65,
+            "absorption_minutes": 180
+          },
+          {
+            "id": "patient-input-3-1",
+            "type": "patient_treatment",
+            "at_minute": 2850,
+            "action": {
+              "type": "BOLUS",
+              "units": 3
+            },
+            "announced": true
+          },
+          {
+            "id": "d3-meal-75-plan",
+            "type": "record",
+            "at_minute": 2920,
+            "category": "meal",
+            "text": "Current intention: approximately 25 g carbohydrate around 2026-10-20T07:15 local; ordinary meal. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d3-meal-75",
+            "type": "meal",
+            "at_minute": 2955,
+            "grams": 25,
+            "announced_grams": 25,
+            "absorption_minutes": 30
+          },
+          {
+            "id": "d3-meal-360-plan",
+            "type": "record",
+            "at_minute": 3225,
+            "category": "meal",
+            "text": "Current intention: approximately 59 g carbohydrate around 2026-10-20T12:20 local; ordinary meal. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d3-meal-360",
+            "type": "meal",
+            "at_minute": 3260,
+            "grams": 59,
+            "announced_grams": 59,
+            "absorption_minutes": 90
+          },
+          {
+            "id": "d3-meal-630-plan",
+            "type": "record",
+            "at_minute": 3495,
+            "category": "meal",
+            "text": "Current intention: approximately 21 g carbohydrate around 2026-10-20T16:50 local; ordinary meal. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d3-meal-630",
+            "type": "meal",
+            "at_minute": 3530,
+            "grams": 21,
+            "announced_grams": 21,
+            "absorption_minutes": 20
+          },
+          {
+            "id": "d3-meal-780-plan",
+            "type": "record",
+            "at_minute": 3620,
+            "category": "meal",
+            "text": "Current intention: approximately 55 g carbohydrate around 2026-10-20T18:55 local; mixed meal reported high in fat/protein. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d3-meal-780",
+            "type": "meal",
+            "at_minute": 3655,
+            "grams": 55,
+            "announced_grams": 55,
+            "absorption_minutes": 150
+          },
+          {
+            "id": "d3-meal-1100-plan",
+            "type": "record",
+            "at_minute": 3960,
+            "category": "meal",
+            "text": "Current intention: approximately 15 g carbohydrate around 2026-10-21T00:35 local; ordinary meal. Timing and actual intake may change; this is not a future glucose prediction."
+          },
+          {
+            "id": "d3-meal-1100",
+            "type": "meal",
+            "at_minute": 3995,
+            "grams": 15,
+            "announced_grams": 15,
+            "absorption_minutes": 30
+          }
+        ]
+      },
+      "safety": {
+        "max_bolus_u": 17,
+        "bolus_min_interval_minutes": 15,
+        "block_bolus_below_mg_dl": 70,
+        "max_rescue_carbs_g": 50,
+        "rescue_absorption_minutes": 20,
+        "max_temp_minutes": 720
+      },
+      "alarms": {
+        "low_mg_dl": 70,
+        "urgent_low_mg_dl": 54,
+        "high_mg_dl": 250
+      },
+      "controller": {
+        "mode": "open",
+        "enabled": false,
+        "expose_actions": false,
+        "compute_suggestions": false,
+        "temp_targets": {
+          "meal": 100,
+          "activity": 150,
+          "hypo": 140,
+          "duration_minutes": 60
+        }
+      },
+      "self_care": {
+        "mode": "none",
+        "meal_bolus": {
+          "miss_probability": 0.05,
+          "max_delay_minutes": 15,
+          "correction_above_mg_dl": 180,
+          "correction_fraction": 1,
+          "forced_miss": []
+        },
+        "low_treatment": {
+          "threshold_mg_dl": 70,
+          "grams": 15,
+          "recheck_minutes": 15
+        }
+      },
+      "profile_switch": {
+        "enabled": false,
+        "max_change_factor": 2
+      },
+      "initial_state": {
+        "history_minutes": 720,
+        "history": [
+          {
+            "type": "calibrate_cgm",
+            "minutes_before": 710
+          },
+          {
+            "type": "meal",
+            "minutes_before": 60,
+            "grams": 65,
+            "announced_grams": 65,
+            "absorption_minutes": 180
+          },
+          {
+            "type": "bolus",
+            "minutes_before": 30,
+            "units": 3
+          }
+        ]
+      },
+      "information": {
+        "mode": "I2",
+        "rules": [],
+        "policy": "record-derived-v3",
+        "own_records": true
+      }
+    }
+  },
+  "pub": {
+    "format": "sweet-sim.public/v1",
+    "task_id": "f05-adult-male-typical-pump-pct-frozen-3d-hypo-v2-s20261020-bnone-i2",
+    "simulation_only": true,
+    "horizon_minutes": 4320,
+    "decision_interval_minutes": 5,
+    "self_care": "none",
+    "description": {
+      "start_time": "2026-10-17T22:00:00.000Z",
+      "utc_offset_minutes": 480,
+      "horizon_minutes": 4320,
+      "person": {
+        "type": "adult_male",
+        "bmi": "normal",
+        "dawn": "absent",
+        "carb_counting": "typical"
+      },
+      "patient": {
+        "sex": "male",
+        "age_years": 39,
+        "height_cm": 176.6,
+        "weight_kg": 97.4
+      },
+      "profile": {
+        "basal_u_h": 1.11,
+        "isf_mg_dl_per_u": 26,
+        "carb_ratio_g_per_u": 7.5,
+        "target_mg_dl": 110,
+        "dia_hours": 5,
+        "max_basal_u_h": 4.4
+      },
+      "therapy": {
+        "mode": "pump",
+        "pump": {
+          "model": "dana_i",
+          "insulin": "aspart"
+        }
+      },
+      "sensors": {
+        "cgm": "medtronic_guardian_3",
+        "meter": "contour_next_one",
+        "meter_routine_times": [],
+        "scan_window": [
+          "07:00",
+          "23:00"
+        ],
+        "scan_interval_minutes": 90
+      },
+      "events": [
+        "baseline"
+      ],
+      "controller": {
+        "enabled": false,
+        "mode": "open"
+      },
+      "self_care": {
+        "mode": "none"
+      },
+      "safety": {
+        "max_bolus_u": 17,
+        "bolus_min_interval_minutes": 15,
+        "block_bolus_below_mg_dl": 70,
+        "max_rescue_carbs_g": 50,
+        "rescue_absorption_minutes": 20,
+        "max_temp_minutes": 720
+      },
+      "alarms": {
+        "low_mg_dl": 70,
+        "urgent_low_mg_dl": 54,
+        "high_mg_dl": 250
+      }
+    },
+    "prompt_context": {
+      "person": {
+        "resolved": {
+          "age_group": "adult",
+          "sex": "male",
+          "type": "adult_male"
+        }
+      },
+      "patient": {
+        "sex": "male",
+        "age_years": 39,
+        "height_cm": 176.6,
+        "weight_kg": 97.4
+      },
+      "meter": {
+        "routine_times": []
+      },
+      "alarms": {
+        "low_mg_dl": 70,
+        "urgent_low_mg_dl": 54,
+        "high_mg_dl": 250
+      },
+      "safety": {
+        "max_bolus_u": 17,
+        "bolus_min_interval_minutes": 15,
+        "block_bolus_below_mg_dl": 70,
+        "max_rescue_carbs_g": 50,
+        "rescue_absorption_minutes": 20,
+        "max_temp_minutes": 720
+      },
+      "scan_times": null
+    },
+    "scoring_version": "COGI-4-8/v1"
+  }
+}

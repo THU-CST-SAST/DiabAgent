@@ -1,0 +1,14 @@
+{
+  "name": "diabagent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=24.0.0 <26"},
+  "scripts": {
+    "setup": "npm ci --prefix sim && node scripts/setup-skill.mjs",
+    "verify": "node scripts/benchmark.mjs verify",
+    "bench": "node scripts/benchmark.mjs",
+    "test": "node --test --test-concurrency=4 test/*.test.mjs && npm test --prefix sim"
+  },
+  "license": "MIT"
+}

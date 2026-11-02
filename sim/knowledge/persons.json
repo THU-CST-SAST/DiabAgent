@@ -1,0 +1,138 @@
+{
+  "_doc": "Person types: sex x age group defaults (median and spread) plus variants. Values feed core/person.mjs, which maps them onto the Deichmann2023 kernel (insulin sensitivity relative to the reference patient) and onto profile, meal plan, carb-counting and activity settings. Distributions are literature-based for now and are meant to be replaced by trace2sim reconstructions.",
+  "reference": {
+    "_doc": "The kernel's default patient (66 kg, Ib 12 uU/mL): equilibrium basal 0.5726 U/h = 0.208 U/kg/day. Sensitivity 1 corresponds to this basal need per kg.",
+    "basal_u_per_kg_day": 0.2082, "weight_kg": 66, "profile_isf_mg_dl_per_u": 50, "profile_carb_ratio_g_per_u": 10,
+    "evidence": {"*": {"level": "assumed", "sources": ["sweet_sim", "deichmann2023"]}}
+  },
+  "persons": {
+    "child_male": {
+      "name": "Child, male (6-12 y)", "sex": "male", "age_group": "child", "age_years": 9, "height_cm": 135,
+      "weight_kg": {"median": 32, "sd": 7, "min": 18, "max": 60},
+      "tdd_u_per_kg_day": {"median": 0.85, "sd": 0.2, "min": 0.4, "max": 1.5}, "basal_fraction": {"median": 0.40, "sd": 0.07, "min": 0.25, "max": 0.6},
+      "carbs_g_per_day": {"median": 190, "sd": 40},
+      "meal_plan": {"breakfast": {"time": "07:15", "share": 0.25}, "lunch": {"time": "12:00", "share": 0.27}, "snack": {"time": "15:30", "share": 0.15, "probability": 0.8}, "dinner": {"time": "18:30", "share": 0.33}},
+      "carb_estimation": {"bias": -0.05, "sd": 0.30}, "exercise_probability_per_day": 0.6, "dawn_prevalence": 0.5,
+      "max_bolus_u": 5,
+      "evidence": {
+        "tdd_u_per_kg_day": {"level": "review", "sources": ["ispad_insulin", "molinsky2026_tdd"]},
+        "basal_fraction": {"level": "primary", "sources": ["reinauer2025_dpv"], "note": "bolus share 58-62% in children on pumps"},
+        "carbs_g_per_day": {"level": "primary", "sources": ["carbs_youth"]},
+        "carb_estimation": {"level": "primary", "sources": ["smart2010_carbcount"], "note": "mean absolute error 23% for meals"},
+        "max_bolus_u": {"level": "label", "sources": ["aaps_configbuilder"], "note": "AAPS child hard limit"},
+        "weight_kg": {"level": "assumed", "sources": [], "note": "growth-chart estimate; no T1D registry kg distribution found"},
+        "exercise_probability_per_day": {"level": "assumed", "sources": []},
+        "dawn_prevalence": {"level": "primary", "sources": ["dawn_pump_2019"]},
+        "meal_plan": {"level": "review", "sources": ["carbs_youth"], "note": "meals 47/49/57 g plus snacks"}
+      }
+    },
+    "child_female": {
+      "name": "Child, female (6-12 y)", "sex": "female", "age_group": "child", "age_years": 9, "height_cm": 134,
+      "weight_kg": {"median": 31, "sd": 7, "min": 18, "max": 60},
+      "tdd_u_per_kg_day": {"median": 0.85, "sd": 0.2, "min": 0.4, "max": 1.5}, "basal_fraction": {"median": 0.40, "sd": 0.07, "min": 0.25, "max": 0.6},
+      "carbs_g_per_day": {"median": 180, "sd": 40},
+      "meal_plan": {"breakfast": {"time": "07:15", "share": 0.25}, "lunch": {"time": "12:00", "share": 0.27}, "snack": {"time": "15:30", "share": 0.15, "probability": 0.8}, "dinner": {"time": "18:30", "share": 0.33}},
+      "carb_estimation": {"bias": -0.05, "sd": 0.30}, "exercise_probability_per_day": 0.55, "dawn_prevalence": 0.5,
+      "max_bolus_u": 5,
+      "evidence": {"*": {"level": "assumed", "sources": [], "note": "as child_male; see its evidence"}}
+    },
+    "adolescent_male": {
+      "name": "Adolescent, male (13-17 y)", "sex": "male", "age_group": "adolescent", "age_years": 15, "height_cm": 170,
+      "weight_kg": {"median": 62, "sd": 12, "min": 38, "max": 110},
+      "tdd_u_per_kg_day": {"median": 1.0, "sd": 0.25, "min": 0.5, "max": 2.0}, "basal_fraction": {"median": 0.42, "sd": 0.07, "min": 0.25, "max": 0.6},
+      "carbs_g_per_day": {"median": 230, "sd": 50},
+      "meal_plan": {"breakfast": {"time": "07:00", "share": 0.22}, "lunch": {"time": "12:30", "share": 0.30}, "snack": {"time": "16:00", "share": 0.13, "probability": 0.7}, "dinner": {"time": "19:00", "share": 0.35}},
+      "carb_estimation": {"bias": -0.05, "sd": 0.30}, "exercise_probability_per_day": 0.5, "dawn_prevalence": 0.5,
+      "max_bolus_u": 10,
+      "evidence": {
+        "tdd_u_per_kg_day": {"level": "review", "sources": ["ispad_insulin", "molinsky2026_tdd"], "note": "puberty raises needs (ISPAD 1.2-2.0); registry mean 0.86 across 2-25 y"},
+        "weight_kg": {"level": "review", "sources": ["minges2017_teens", "pmc11395955_young"], "note": "ages 14-24: 74+-16 kg; adolescents assumed lighter"},
+        "max_bolus_u": {"level": "label", "sources": ["aaps_configbuilder"]},
+        "*": {"level": "assumed", "sources": []}
+      }
+    },
+    "adolescent_female": {
+      "name": "Adolescent, female (13-17 y)", "sex": "female", "age_group": "adolescent", "age_years": 15, "height_cm": 162,
+      "weight_kg": {"median": 57, "sd": 11, "min": 38, "max": 105},
+      "tdd_u_per_kg_day": {"median": 1.0, "sd": 0.25, "min": 0.5, "max": 2.0}, "basal_fraction": {"median": 0.42, "sd": 0.07, "min": 0.25, "max": 0.6},
+      "carbs_g_per_day": {"median": 200, "sd": 45},
+      "meal_plan": {"breakfast": {"time": "07:00", "share": 0.22}, "lunch": {"time": "12:30", "share": 0.30}, "snack": {"time": "16:00", "share": 0.13, "probability": 0.7}, "dinner": {"time": "19:00", "share": 0.35}},
+      "carb_estimation": {"bias": -0.05, "sd": 0.30}, "exercise_probability_per_day": 0.45, "dawn_prevalence": 0.5,
+      "max_bolus_u": 10,
+      "evidence": {"*": {"level": "assumed", "sources": [], "note": "as adolescent_male"}}
+    },
+    "adult_male": {
+      "name": "Adult, male (18-64 y)", "sex": "male", "age_group": "adult", "age_years": 39, "height_cm": 177,
+      "weight_kg": {"median": 82, "sd": 15, "min": 50, "max": 140},
+      "tdd_u_per_kg_day": {"median": 0.65, "sd": 0.15, "min": 0.3, "max": 1.3}, "basal_fraction": {"median": 0.42, "sd": 0.07, "min": 0.25, "max": 0.6},
+      "carbs_g_per_day": {"median": 200, "sd": 60},
+      "meal_plan": {"breakfast": {"time": "07:30", "share": 0.25}, "lunch": {"time": "12:30", "share": 0.35}, "dinner": {"time": "19:00", "share": 0.32}, "snack": {"time": "21:30", "share": 0.08, "probability": 0.4}},
+      "carb_estimation": {"bias": -0.07, "sd": 0.25}, "exercise_probability_per_day": 0.35, "dawn_prevalence": 0.5,
+      "max_bolus_u": 17,
+      "evidence": {
+        "weight_kg": {"level": "review", "sources": ["t1dx_bmi"], "note": "BMI ~26-27 in adults with T1D"},
+        "tdd_u_per_kg_day": {"level": "primary", "sources": ["kuroda2011_pump", "king2007_pump"], "note": "0.56-0.71 on pumps"},
+        "basal_fraction": {"level": "primary", "sources": ["king2007_pump"], "note": "38-42%"},
+        "carbs_g_per_day": {"level": "primary", "sources": ["carbs_t1dx", "carbs_sweden"]},
+        "carb_estimation": {"level": "primary", "sources": ["brazeau2013_carbcount"], "note": "absolute error 20.9%, 63% of meals underestimated"},
+        "exercise_probability_per_day": {"level": "review", "sources": ["t1dexi_activity"], "note": "2-3 sessions/week assumed for the general population"},
+        "dawn_prevalence": {"level": "primary", "sources": ["dawn_pump_2019"]},
+        "max_bolus_u": {"level": "label", "sources": ["aaps_configbuilder"]},
+        "meal_plan": {"level": "assumed", "sources": ["sweet_sim"]}
+      }
+    },
+    "adult_female": {
+      "name": "Adult, female (18-64 y)", "sex": "female", "age_group": "adult", "age_years": 39, "height_cm": 164,
+      "weight_kg": {"median": 70, "sd": 14, "min": 42, "max": 130},
+      "tdd_u_per_kg_day": {"median": 0.65, "sd": 0.15, "min": 0.3, "max": 1.3}, "basal_fraction": {"median": 0.42, "sd": 0.07, "min": 0.25, "max": 0.6},
+      "carbs_g_per_day": {"median": 170, "sd": 50},
+      "meal_plan": {"breakfast": {"time": "07:30", "share": 0.25}, "lunch": {"time": "12:30", "share": 0.33}, "snack": {"time": "16:00", "share": 0.10, "probability": 0.5}, "dinner": {"time": "19:00", "share": 0.32}},
+      "carb_estimation": {"bias": -0.07, "sd": 0.25}, "exercise_probability_per_day": 0.35, "dawn_prevalence": 0.5,
+      "max_bolus_u": 17,
+      "evidence": {"*": {"level": "assumed", "sources": [], "note": "as adult_male with sex-specific weight and intake"}}
+    },
+    "older_male": {
+      "name": "Older adult, male (65+ y)", "sex": "male", "age_group": "older", "age_years": 70, "height_cm": 174,
+      "weight_kg": {"median": 80, "sd": 13, "min": 50, "max": 130},
+      "tdd_u_per_kg_day": {"median": 0.55, "sd": 0.15, "min": 0.25, "max": 1.1}, "basal_fraction": {"median": 0.45, "sd": 0.07, "min": 0.25, "max": 0.65},
+      "carbs_g_per_day": {"median": 170, "sd": 45},
+      "meal_plan": {"breakfast": {"time": "07:00", "share": 0.30}, "lunch": {"time": "12:00", "share": 0.35}, "dinner": {"time": "18:00", "share": 0.35}},
+      "carb_estimation": {"bias": -0.07, "sd": 0.25}, "exercise_probability_per_day": 0.3, "dawn_prevalence": 0.5,
+      "max_bolus_u": 17,
+      "evidence": {"*": {"level": "assumed", "sources": [], "note": "no older-adult T1D distributions found yet"}}
+    },
+    "older_female": {
+      "name": "Older adult, female (65+ y)", "sex": "female", "age_group": "older", "age_years": 70, "height_cm": 160,
+      "weight_kg": {"median": 68, "sd": 12, "min": 42, "max": 120},
+      "tdd_u_per_kg_day": {"median": 0.55, "sd": 0.15, "min": 0.25, "max": 1.1}, "basal_fraction": {"median": 0.45, "sd": 0.07, "min": 0.25, "max": 0.65},
+      "carbs_g_per_day": {"median": 150, "sd": 40},
+      "meal_plan": {"breakfast": {"time": "07:00", "share": 0.30}, "lunch": {"time": "12:00", "share": 0.35}, "dinner": {"time": "18:00", "share": 0.35}},
+      "carb_estimation": {"bias": -0.07, "sd": 0.25}, "exercise_probability_per_day": 0.3, "dawn_prevalence": 0.5,
+      "max_bolus_u": 17,
+      "evidence": {"*": {"level": "assumed", "sources": []}}
+    }
+  },
+  "variants": {
+    "bmi": {
+      "normal": {"weight_x": 1.0, "tdd_per_kg_x": 1.0},
+      "overweight": {"weight_x": 1.18, "tdd_per_kg_x": 1.10},
+      "obese": {"weight_x": 1.40, "tdd_per_kg_x": 1.25},
+      "evidence": {"*": {"level": "assumed", "sources": ["t1dx_bmi"], "note": "35% overweight / 30% obese in adults; insulin resistance multipliers assumed"}}
+    },
+    "dawn": {
+      "absent": {"fraction": 0},
+      "present": {"fraction": 0.24},
+      "evidence": {"*": {"level": "primary", "sources": ["perriello1991_dawn", "dawn_pump_2019"], "note": "24% rise in insulin need (Perriello); median 58% among pump users who have it"}}
+    },
+    "carb_counting": {
+      "typical": {},
+      "accurate": {"bias": 0, "sd": 0.10},
+      "poor": {"bias": -0.15, "sd": 0.40},
+      "evidence": {"*": {"level": "assumed", "sources": ["brazeau2013_carbcount", "smart2010_carbcount"]}}
+    }
+  },
+  "profile_mismatch": {"basal_cv": 0.10, "isf_cv": 0.15, "carb_ratio_cv": 0.15,
+    "evidence": {"*": {"level": "assumed", "sources": [], "note": "programmed settings vs true needs; to be measured with trace2sim"}}},
+  "daily_sensitivity_cv": {"value": 0.13, "evidence": {"*": {"level": "primary", "sources": ["moberg1995_variability"], "note": "insulin sensitivity CV 13% two weeks apart"}}},
+  "populations": {}
+}

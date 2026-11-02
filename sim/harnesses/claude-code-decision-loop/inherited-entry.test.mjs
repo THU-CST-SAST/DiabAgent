@@ -1,0 +1,12 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {verifyInheritedTaskEntries as verify} from './inherited-task-entry.mjs';
+const original={type:'user',isMeta:true,uuid:'original',message:{role:'user',content:[{type:'text',text:'pinned entry'}]}};
+const skill=id=>({type:'assistant',message:{role:'assistant',content:[{type:'tool_use',name:'Skill',id}]}});
+const reload=id=>({...structuredClone(original),uuid:id});
+test('original entry is inherited without a new model Skill call',()=>assert.equal(verify({history:[original],entries:[original],sourceEntries:[original],successfulFreshSkillIds:[]}).model_selected_reloads,0));
+test('one verified fresh Skill call can produce one reload',()=>{const next=reload('reload');assert.equal(verify({history:[original,skill('fresh'),next],entries:[original,next],sourceEntries:[original],successfulFreshSkillIds:['fresh']}).model_selected_reloads,1);});
+test('original entry bytes cannot be replaced',()=>assert.throws(()=>verify({history:[],entries:[reload('changed')],sourceEntries:[original],successfulFreshSkillIds:[]})));
+test('an automatic extra body without a new model call is rejected',()=>{const next=reload('extra');assert.throws(()=>verify({history:[original,next],entries:[original,next],sourceEntries:[original],successfulFreshSkillIds:[]}));});
+test('a single Skill call cannot justify two reloads',()=>{const a=reload('a'),b=reload('b');assert.throws(()=>verify({history:[original,skill('fresh'),a,b],entries:[original,a,b],sourceEntries:[original],successfulFreshSkillIds:['fresh']}));});
+test('an inherited or unsuccessful Skill id is not fresh authorization',()=>{const next=reload('extra');assert.throws(()=>verify({history:[original,skill('old'),next],entries:[original,next],sourceEntries:[original],successfulFreshSkillIds:['different']}));});
+test('a later Skill call cannot justify an earlier body',()=>{const next=reload('extra');assert.throws(()=>verify({history:[original,next,skill('fresh')],entries:[original,next],sourceEntries:[original],successfulFreshSkillIds:['fresh']}));});

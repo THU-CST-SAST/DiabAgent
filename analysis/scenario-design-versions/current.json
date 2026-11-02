@@ -1,0 +1,11 @@
+{
+  "format": "sweet-sim.current-design/v1",
+  "current": "v4.2",
+  "recorded": "2026-10-19",
+  "manifest": "v4.2/manifest.json",
+  "catalog": "v4.2/scenario-v42-day-cards-20261019.json",
+  "primary_scenarios": 32,
+  "relation": {"reference": "v4.1", "unchanged_worlds": 20, "revised_worlds": 12, "new_families": 0},
+  "history": ["v4.0/manifest.json", "v4.1/manifest.json"],
+  "policy": "Old snapshots and the dated v4.0/v4.1 index are immutable. Use this pointer for the current design; experimental completion requires actual jobs, not this metadata."
+}

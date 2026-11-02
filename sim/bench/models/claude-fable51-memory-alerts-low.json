@@ -1,0 +1,20 @@
+{
+  "name": "claude-fable-5-1-memory-alerts-low",
+  "harness": "legacy",
+  "adapter": "anthropic",
+  "model": "claude-fable-5-1",
+  "base_url": "https://example.invalid/v1",
+  "api_key_env": "BENCH_CLAUDE_API_KEY",
+  "reasoning_effort": "low",
+  "thinking": {
+    "type": "adaptive"
+  },
+  "disable_parallel_tool_use": true,
+  "max_tokens": 8192,
+  "timeout_ms": 180000,
+  "price_per_mtok": {
+    "input": 0,
+    "output": 0
+  },
+  "pricing_note": "Unverified relay tariff; zero placeholders are not a free price estimate."
+}

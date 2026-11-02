@@ -1,0 +1,3 @@
+[submodule "sim/skills/sweet-agent-skill"]
+	path = sim/skills/sweet-agent-skill
+	url = https://github.com/THU-CST-SAST/sweet-agent-skill.git

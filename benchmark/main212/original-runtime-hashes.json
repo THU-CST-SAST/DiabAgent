@@ -1,0 +1,328 @@
+{
+  "files": [
+    {
+      "path": "knowledge/devices.json",
+      "sha256": "e5e0c568ee7e4310a44b97027623ebc7febca3df225a7fdc7b6d31092b02f743"
+    },
+    {
+      "path": "knowledge/instances.json",
+      "sha256": "495a78ca3e0bf48f0ce3cc248022d6fd525d25ade7912f9e0936196beb74eaaf"
+    },
+    {
+      "path": "knowledge/insulins.json",
+      "sha256": "038577c13e3b33e7a4db3004ea52791c1d5c49aa46a11c8fcb9fea0f1831228e"
+    },
+    {
+      "path": "knowledge/persons.json",
+      "sha256": "ce3f140a630700cd5869afcf48e0967fbc06211f3377530f4f6d4ecff4845ef2"
+    },
+    {
+      "path": "knowledge/sensors.json",
+      "sha256": "9d1bbed66f817b39aed66e2b8316d488a016ccca3713693356bf239fba1f8560"
+    },
+    {
+      "path": "knowledge/sources.json",
+      "sha256": "a5f77cd6336b8fe52d7e85cd080587d5d7bea6462a61400b6750b019d75bd14d"
+    },
+    {
+      "path": "model/Deichmann2023.ts",
+      "sha256": "b6949e065bf2bd7b64a9b6d934da88c7184a645a9f5f034c41a30e8e44818e7d"
+    },
+    {
+      "path": "src/bench/agent-options.mjs",
+      "sha256": "ebe4e894a02e773b86dae3482de9e0aea8aec08e9bc1e87493e80f90120e321a"
+    },
+    {
+      "path": "src/bench/cogi.mjs",
+      "sha256": "ff0003d0c7ecc4ce2b3486bb8b8a27ba89f4c8d128d9d1dabd645f612d3c8fdf"
+    },
+    {
+      "path": "src/bench/cogi48.mjs",
+      "sha256": "2639b4b98fa61cec5b243fcb2015932fd41649e480637a2ae317e7c1e51ae5ee"
+    },
+    {
+      "path": "src/bench/controller.mjs",
+      "sha256": "1848171c7c612f4573fa06aa4bf29375874d3f0b502439e36a9785092ea9b3fb"
+    },
+    {
+      "path": "src/bench/glucose-history.mjs",
+      "sha256": "791999fe0fcdd2f9f5ce678035a4e899a622e0c7a1470078187a5b35d107f685"
+    },
+    {
+      "path": "src/bench/harness.mjs",
+      "sha256": "f487a1439e8ae95510e84239bab9b180197c5bfc05e25ab92047308ecc43152d"
+    },
+    {
+      "path": "src/bench/hourly-policy.mjs",
+      "sha256": "6e66645c728ab2c609d652e6667ac2ec3740c08ddf186af968e3a718185022e1"
+    },
+    {
+      "path": "src/bench/hourly-schedule.mjs",
+      "sha256": "2f55453bbb29367e54b1af734aa4eaf3b6d2b680163bc2d2603a513281d6775c"
+    },
+    {
+      "path": "src/bench/models/anthropic.mjs",
+      "sha256": "77e4dc65c6b883666720f523229655fbdba958a4ddddf54c8e980ce43d1fa477"
+    },
+    {
+      "path": "src/bench/models/http.mjs",
+      "sha256": "e9552e8d7a70c299086cad428eb7456cfe80bb91c8f679831a41a38119a1bb1d"
+    },
+    {
+      "path": "src/bench/models/index.mjs",
+      "sha256": "371d11fd981b3a6f5afafc1e2ca7423ac030b0eb1f2326c0cde4ddbd45628b84"
+    },
+    {
+      "path": "src/bench/models/invocation-log.mjs",
+      "sha256": "e1bd7289a74c7d0dfd1be7400a6ba5cb3c07dfca45f972588aa1674a1bfe50ab"
+    },
+    {
+      "path": "src/bench/models/openai-compatible.mjs",
+      "sha256": "b4b202708b4e7ae6e69b4e18dae39459cc5f6cf2dda07213a3fda95692761f6d"
+    },
+    {
+      "path": "src/bench/models/replay-prefix.mjs",
+      "sha256": "a9f99843a6dcfb20ce7111381949c902842ad423df57d3d666bc84db37c800f0"
+    },
+    {
+      "path": "src/bench/models/scripted.mjs",
+      "sha256": "ed20b2a09a982943773db60d8c819ddf27c982291262e95438b2eb94676c567a"
+    },
+    {
+      "path": "src/bench/models/tool-contract.mjs",
+      "sha256": "39b5e8482ba66717726677852ba0460653d3269357b68ca52fb1d14cf83f089f"
+    },
+    {
+      "path": "src/bench/models/trace.mjs",
+      "sha256": "1232d0997edc4faaf1796471f9de202f1da23e983400b0bbb8b8448fc4364f30"
+    },
+    {
+      "path": "src/bench/prompt-revisions.mjs",
+      "sha256": "4833d0c64af9610162be1c740a69ee48f8ec22890b49048de5ec6df74cea9a8c"
+    },
+    {
+      "path": "src/bench/prompt-v3.mjs",
+      "sha256": "bac32f94bac3c6b05558609c80f15d88ee2ae780381c1bba18d149cbc3e002b6"
+    },
+    {
+      "path": "src/bench/prompt.mjs",
+      "sha256": "e111dd6bf010827d083fd6865d08389921135d93cd8b3b7387e4923793be4aba"
+    },
+    {
+      "path": "src/bench/records.mjs",
+      "sha256": "69d0b6a16022c156b7994895dd65fecc7db0a618ed746cb106a73577416b8de5"
+    },
+    {
+      "path": "src/bench/revise-closed-loop-skill.mjs",
+      "sha256": "a0e14beab1e47df8adfc767b1ccc796c91857b6d32dd0bbc28cc226ede3586fe"
+    },
+    {
+      "path": "src/bench/revise-hardware-skill.mjs",
+      "sha256": "8f3bc91d57f1041f55a58a36e6fae1479fde05d3afa625a9ceac89b8dbaf9c0b"
+    },
+    {
+      "path": "src/bench/score.mjs",
+      "sha256": "14588b6f2c02c0fcc47b4c0bffe32f7c79e5c53f1a5ef50fcccbbd4812ca5642"
+    },
+    {
+      "path": "src/bench/scoring-target.mjs",
+      "sha256": "b315002b782cbe55a79888558c962c0fe62798a56f845714ecf99c8f6317bab8"
+    },
+    {
+      "path": "src/bench/simulate.mjs",
+      "sha256": "1706d4018c8a65f91e7432ce9e6c68ddc02f06c164a74637a3cb33b065b18fdc"
+    },
+    {
+      "path": "src/bench/skill-assets.mjs",
+      "sha256": "937ea54e95c1c96703f29772aedb8aa75db7ee3d5a3601d73fb9a3ce91c11cb7"
+    },
+    {
+      "path": "src/bench/skill-context.mjs",
+      "sha256": "e68ba0e05cb0d2fed77ae69eb080bf8c0c3a3a24ef6dfa756789146c680c5f48"
+    },
+    {
+      "path": "src/bench/suite.mjs",
+      "sha256": "65e32c60bcfab748c144649c6c912b859b1ecf41aef9fc5c1306482ba3b76714"
+    },
+    {
+      "path": "src/bench/tracks.mjs",
+      "sha256": "02bcf9f0d7e044c4eecb7e0a7755e89ffa7e2f4f3530da954c25f8a9e598a891"
+    },
+    {
+      "path": "src/benchmark/failures.mjs",
+      "sha256": "a69356c3d55e6c7cbb72ccd406aaa95aacde7781c00107d85efe77c493c2f5ba"
+    },
+    {
+      "path": "src/benchmark/llm-agent.mjs",
+      "sha256": "ae04ef726ebb42b480cee80de996ec6a0da1f5ba9842b9cd6acaebd683653d96"
+    },
+    {
+      "path": "src/core/cgm.mjs",
+      "sha256": "56ddf7655c54b0f47fdfe9eee5cd21281435361e67df4d9bd36e27cf6d235f34"
+    },
+    {
+      "path": "src/core/config.mjs",
+      "sha256": "bd99b45350207d78261aa2d95b58ce18c26760d8b1fc87f990a6cdbfc8b3c7eb"
+    },
+    {
+      "path": "src/core/delivery.mjs",
+      "sha256": "67c3ad7271d3c1bf0c8d711bcbb1a65428e0a3a2a424b38c7e7feff449db9522"
+    },
+    {
+      "path": "src/core/devices.mjs",
+      "sha256": "f10b5ffa975ec024b96bb5b2dbf3f90884df6076ba3d7e922a87a808aaad3d3f"
+    },
+    {
+      "path": "src/core/estimators.mjs",
+      "sha256": "53fcb9a817eae4df5fe7486e2243e59c21cb034e7a55a1254abbc7bf9c6b137e"
+    },
+    {
+      "path": "src/core/insulins.mjs",
+      "sha256": "5235d0c7eba1a3fdf8780d48d59efb5570ea58e551ddfc9b7c577a042b38d80e"
+    },
+    {
+      "path": "src/core/meter.mjs",
+      "sha256": "b3cb50b2108af023b88ecdcf886afe8ae514edccefee1793e80f18e6d4a76bd1"
+    },
+    {
+      "path": "src/core/person.mjs",
+      "sha256": "6d2a344a1a845df1131fd3193c7973d37110c007664609273980afc68cef6d6a"
+    },
+    {
+      "path": "src/core/physiology.mjs",
+      "sha256": "7701b01cc58f42219f1a06b349399c9fcb7e5d943fe7d5c5cc604e4d0686b0d8"
+    },
+    {
+      "path": "src/core/pk.mjs",
+      "sha256": "e97505a2d86a9edc42fab2ce37346c3ba61df07d5d21d32cdef05bb723f7035b"
+    },
+    {
+      "path": "src/core/rng.mjs",
+      "sha256": "919a0a1774559f9d6900546075c569c4a7b851aa16c31b40d799c92ce0041ba5"
+    },
+    {
+      "path": "src/core/scenario.mjs",
+      "sha256": "d6a1a6337354702e16cbab95f91ab497db3275e6262b786ed68593a281d68617"
+    },
+    {
+      "path": "src/env/hooks.mjs",
+      "sha256": "8be7bf7a4a8b48dddad58337fe277f1f048f3a5965e6436e3e89e74ea52f1022"
+    },
+    {
+      "path": "src/env/pomdp.mjs",
+      "sha256": "dc30b2895cabe63d855c97423785edfae50fd2d727ac9578290e58a5a3594c19"
+    },
+    {
+      "path": "src/export/harbor.mjs",
+      "sha256": "6fe97a7a98617f4ac59073fb06485d4e7d5802ae939173f5931b385434196546"
+    },
+    {
+      "path": "src/export/harbor/score.mjs",
+      "sha256": "9b063d178a23a5f2d6f15499541647d5d959a8457af56659951d3c764ce1de08"
+    },
+    {
+      "path": "src/knowledge.mjs",
+      "sha256": "70c6df724a562c531ec73bc7e4215c93a78933701bc5b7371b15a66e89110b28"
+    },
+    {
+      "path": "src/oracle/belief-model.mjs",
+      "sha256": "240d5688f116ebaabaa74de692158543eda5a7d833879dc2f3f41a738b65316d"
+    },
+    {
+      "path": "src/oracle/belief.mjs",
+      "sha256": "0a82a1bff07737fd05a1c52a20613007902ec7066f197f3b0b45997681961b49"
+    },
+    {
+      "path": "src/oracle/common.mjs",
+      "sha256": "2731c31e232f71af5e555490f5acf3412ff435678214819ca1ec14fdb1d9df78"
+    },
+    {
+      "path": "src/policies/care.mjs",
+      "sha256": "adfc0e1f09fe572064e08843d0bd82becb93827fe4f58628fdf05934094c06af"
+    },
+    {
+      "path": "src/policies/hcl.mjs",
+      "sha256": "45fa4f92bc990ce79ebe4fd3b3642a370ecc57111cfc4f69b4ad696aea2fd447"
+    },
+    {
+      "path": "src/policies/oref0.mjs",
+      "sha256": "f93627898cf14f5f724118413a5ea2abdeb560f020923146e1e826d3813d4786"
+    },
+    {
+      "path": "src/policies/oref1.mjs",
+      "sha256": "7827779244284e349883691f06b2ceb56ae9c8edf4575cfb46ba9b843cb1577e"
+    },
+    {
+      "path": "src/policies/patient.mjs",
+      "sha256": "bf1083e7ab4f726b123f151defe0b9b5aae640544c797e14555d2acb70505b9b"
+    },
+    {
+      "path": "src/population/catalog.mjs",
+      "sha256": "e921de16f1fabbd9d8a09a0c66d94893c991e0d34831b0ef149498f75f34909d"
+    },
+    {
+      "path": "src/sim/actions.mjs",
+      "sha256": "a1595c883abc83666af5945085b23b237853d5da5337cd3a37835aadee9510f2"
+    },
+    {
+      "path": "src/sim/instance.mjs",
+      "sha256": "ecba8e77cce1780b047a174b6dbd788b46f5b076c48d1df1128ad1307359fa4f"
+    },
+    {
+      "path": "src/sim/world.mjs",
+      "sha256": "bfa6f84ce549996e1a785c5ccf5f87bfbf5dfe154888ed358a050698e258d465"
+    },
+    {
+      "path": "src/trace2sim/ingest.mjs",
+      "sha256": "10a56a95619bac9402d1c46341e30e00b6fefe818f1234b2600cf072aacf83dc"
+    },
+    {
+      "path": "src/trace2sim/replay.mjs",
+      "sha256": "f20b4cf482711e18c50efda1ccca5d03519f4f7ffcf9bbe39a5feda0fa737fda"
+    },
+    {
+      "path": "src/trace2sim/util.mjs",
+      "sha256": "48aeb84a0015d74aa2b8087d2cbd0a6fa943471cd8c0c8e73d4f3f12cffc855b"
+    },
+    {
+      "path": "src/viz/run.mjs",
+      "sha256": "9719f76ef1e8864caa5ac1693a531cf055ea9ccaac4d9e5e92a4bde2683e962e"
+    },
+    {
+      "path": "vendor/deichmann2023/LICENSE",
+      "sha256": "f0d8ea18cded2056697dfd34850e8716ab27daa56f13c9dcc1d04a4249299d21"
+    },
+    {
+      "path": "vendor/deichmann2023/PROVENANCE.md",
+      "sha256": "216e916ae74c0e81655a569e4ef9381f40d539969bdf9bd5b6e0b0d180be528d"
+    },
+    {
+      "path": "vendor/oref0/LICENSE.txt",
+      "sha256": "5966cdf482e00a7f03459fc3367af609c6fc56e26542ba01d6200e549fb88e02"
+    },
+    {
+      "path": "vendor/oref0/PROVENANCE.md",
+      "sha256": "7ba104b542de12688f5fff3c227788a63a920bde6ca75d9ac3d6f89059c3222d"
+    },
+    {
+      "path": "vendor/oref0/lib/basal-set-temp.js",
+      "sha256": "25aabd47d538f23015e13a4f891fae33636d2320c34c92511f759854529aa56b"
+    },
+    {
+      "path": "vendor/oref0/lib/determine-basal/determine-basal.js",
+      "sha256": "6d9ce9f726cb23ec95dacab4717d0cf7519627022719e0c62bd21f728667e135"
+    },
+    {
+      "path": "vendor/oref0/lib/iob/calculate.js",
+      "sha256": "ca8b738cd5c4db037760949c09028448e01b155680f0bac6c3c081e24300d348"
+    },
+    {
+      "path": "vendor/oref0/lib/round-basal.js",
+      "sha256": "8f88bae055856b529639a91059d6d069efb2d593f9ae5051a889382ca4883301"
+    },
+    {
+      "path": "vendor/oref0/package.json",
+      "sha256": "c0aee4fd9a15f87a93005282ee560fc426c9dceb11dbf70eaf11ea306ca21276"
+    }
+  ]
+}

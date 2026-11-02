@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenDiabet MVP 结果 · Sweet Sim</title>
+<style>
+  :root{--ink:#1f2328;--ink2:#57606a;--muted:#8c959f;--line:#d0d7de;--grid:#eaeef2;--surface:#fff;--page:#f6f8fa;--hi:#fff8c5;--bad:#b42318;--good:#1a7f37}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+  header{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);padding:10px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  header h1{font-size:18px;margin:0}
+  header nav a{color:var(--ink2);text-decoration:none;margin-right:12px;font-size:13px}
+  header nav a:hover{color:var(--ink)}
+  header .sp{flex:1}
+  select,input{font:inherit;padding:3px 8px;border:1px solid var(--line);border-radius:6px;background:#fff}
+  main{max-width:1280px;margin:0 auto;padding:16px 24px 64px}
+  section{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:18px 0}
+  h2{font-size:19px;margin:0 0 6px}
+  h3{font-size:15px;margin:18px 0 6px}
+  p{margin:6px 0}
+  .q{font-size:15px;font-weight:600}
+  .muted{color:var(--ink2)}.small{font-size:12px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+  .card{border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:#fff}
+  .card h3{margin:0 0 4px}
+  .card a{color:inherit}
+  table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+  th,td{border-bottom:1px solid var(--grid);padding:4px 6px;text-align:right;white-space:nowrap}
+  th{background:var(--page);font-weight:600;color:var(--ink2);position:sticky;top:0;white-space:normal;vertical-align:bottom;font-size:12px}
+  th:first-child,td:first-child,td.l,th.l{text-align:left}
+  td.wrap{white-space:normal}
+  tr.click{cursor:pointer}tr.click:hover{background:var(--hi)}
+  #trials th{white-space:nowrap}
+  .ci{color:var(--muted);font-size:11px}
+  .bad{color:var(--bad);font-weight:600}.good{color:var(--good)}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+  .tw{overflow:auto;max-height:640px;border:1px solid var(--grid);border-radius:6px}
+  .row{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start}.row>div{flex:1;min-width:360px}
+  svg text{font:11px -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;fill:var(--ink2)}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink2);margin:4px 0}
+  .filters{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0}
+  #tip{position:fixed;pointer-events:none;background:#1f2328;color:#fff;font-size:12px;padding:5px 8px;border-radius:6px;display:none;z-index:10;max-width:360px;white-space:pre-line}
+  code{background:var(--page);padding:0 4px;border-radius:4px;font-size:12px}
+  .note{background:#fff8e6;border:1px solid #f0d58c;border-radius:6px;padding:8px 12px;font-size:13px;margin:8px 0}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="title">OpenDiabet MVP 结果</h1>
+  <nav id="nav"></nav>
+  <span class="sp"></span>
+  <label class="small muted">单位 <select id="units"><option value="mmol">mmol/L</option><option value="mgdl">mg/dL</option></select></label>
+</header>
+<main id="main"></main>
+<div id="tip"></div>
+<script>const DATA=/*DATA*/null;</script>
+<script>
+// ---- units (same convention as scripts/preview.js: data in mg/dL, mmol/L = mg/dL / 18.016) ----
+const MGDL_PER_MMOL=18.016;
+let UNITS=localStorage.getItem('sweet-sim-units')??'mmol';
+const UL=()=>UNITS==='mmol'?'mmol/L':'mg/dL';
+const fmtG=v=>v==null?'–':UNITS==='mmol'?(v/MGDL_PER_MMOL).toFixed(1):String(Math.round(v));
+const TH=()=>UNITS==='mmol'?{low:'3.9',vlow:'3.0',high:'10.0',vhigh:'13.9'}:{low:'70',vlow:'54',high:'180',vhigh:'250'};
+
+// ---- helpers ----
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const f3=v=>v==null?'–':Number(v).toFixed(3);
+const pct=(v,d=1)=>v==null?'–':(100*v).toFixed(d)+'%';
+const ciT=c=>c&&c.mean!=null?`${f3(c.mean)} <span class="ci">[${f3(c.ci95[0])}, ${f3(c.ci95[1])}]</span>`:'–';
+const sgn=v=>v==null?'–':(v>0?'+':'')+Number(v).toFixed(3);
+const ciD=c=>c&&c.mean!=null?`${sgn(c.mean)} <span class="ci">[${sgn(c.ci95[0])}, ${sgn(c.ci95[1])}]</span>`:'–';
+const COLORS={wait:'#8c959f',patient:'#E69F00',oref0:'#0072B2',causal:'#009E73',oracle:'#CC79A7',adaptive:'#D55E00',fixed:'#E69F00',llm:'#6f42c1',cmd:'#56B4E9'};
+const LLM_COLORS=['#6f42c1','#56B4E9','#B8860B','#D81B60','#1E88E5','#004D40'];
+let LLM_KEYS=[];
+const colorOf=k=>COLORS[k]??(String(k).startsWith('llm')?LLM_COLORS[Math.max(0,LLM_KEYS.indexOf(k))%LLM_COLORS.length]:'#56B4E9');
+const keyOf=agent=>/adaptive/.test(agent)?'adaptive':/^llm:/.test(agent)?`llm:${agent.slice(4).split('/').pop().replace(/\.json$/,'')}`:/^cmd:/.test(agent)?'cmd':agent;
+LLM_KEYS=[...new Set(DATA.trials.map(t=>keyOf(t.agent)).filter(k=>k.startsWith('llm')))].sort();
+const sw=k=>`<span class="sw" style="background:${colorOf(k)}"></span>`;
+const playerHref=(e,id)=>{const ex=DATA.experiments.find(x=>x.id===e);return ex?.player?`${ex.player}?id=${encodeURIComponent(id)}&units=${UNITS}`:null;};
+const tip=$('#tip');
+function bindTips(root){for(const el of root.querySelectorAll('[data-tip]')){
+  el.addEventListener('mousemove',ev=>{tip.style.display='block';tip.textContent=el.dataset.tip;tip.style.left=Math.min(innerWidth-370,ev.clientX+14)+'px';tip.style.top=(ev.clientY+14)+'px';});
+  el.addEventListener('mouseleave',()=>{tip.style.display='none';});}}
+
+// ---- SVG charts ----
+// Line chart: series [{key,label,points:[{x,y,lo,hi,tip}]}]; shared y axis; optional CI band.
+function lineChart(series,{w=560,h=260,xLabel='',yLabel='',yMin=null,yMax=null,xTicks=null,yFmt=v=>v.toFixed(2)}={}) {
+  const P={l:52,r:16,t:12,b:36},all=series.flatMap(s=>s.points);
+  if(!all.length)return '<p class="muted">无数据</p>';
+  const xs=all.map(p=>p.x),ys=all.flatMap(p=>[p.y,p.lo??p.y,p.hi??p.y]).filter(v=>v!=null);
+  const x0=Math.min(...xs),x1=Math.max(...xs);let y0=yMin??Math.min(...ys),y1=yMax??Math.max(...ys);
+  if(y1-y0<1e-9){y0-=0.05;y1+=0.05;}const pad=(y1-y0)*0.06;if(yMin==null)y0-=pad;if(yMax==null)y1+=pad;
+  const X=v=>P.l+(x1===x0?0.5:(v-x0)/(x1-x0))*(w-P.l-P.r),Y=v=>P.t+(1-(v-y0)/(y1-y0))*(h-P.t-P.b);
+  let s=`<svg viewBox="0 0 ${w} ${h}" width="100%" style="max-width:${w}px">`;
+  for(let i=0;i<=4;i++){const v=y0+(y1-y0)*i/4;s+=`<line x1="${P.l}" x2="${w-P.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="#eaeef2"/><text x="${P.l-6}" y="${Y(v)+4}" text-anchor="end">${yFmt(v)}</text>`;}
+  for(const t of xTicks??[...new Set(xs)])s+=`<text x="${X(t)}" y="${h-P.b+16}" text-anchor="middle">${t}</text>`;
+  if(xLabel)s+=`<text x="${(P.l+w-P.r)/2}" y="${h-4}" text-anchor="middle">${esc(xLabel)}</text>`;
+  if(yLabel)s+=`<text x="12" y="${P.t+(h-P.t-P.b)/2}" text-anchor="middle" transform="rotate(-90 12 ${P.t+(h-P.t-P.b)/2})">${esc(yLabel)}</text>`;
+  for(const se of series){const c=colorOf(se.key),pts=se.points.filter(p=>p.y!=null);
+    const band=pts.filter(p=>p.lo!=null&&p.hi!=null);
+    if(band.length>1)s+=`<path d="M${band.map(p=>`${X(p.x)},${Y(p.hi)}`).join('L')}L${band.slice().reverse().map(p=>`${X(p.x)},${Y(p.lo)}`).join('L')}Z" fill="${c}" opacity=".12"/>`;
+    s+=`<path d="M${pts.map(p=>`${X(p.x)},${Y(p.y)}`).join('L')}" fill="none" stroke="${c}" stroke-width="2"${se.dash?' stroke-dasharray="5 4"':''}/>`;
+    for(const p of pts)s+=`<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="4" fill="${c}" stroke="#fff" stroke-width="2"/><circle cx="${X(p.x)}" cy="${Y(p.y)}" r="10" fill="transparent" data-tip="${esc(se.label+'\n'+(p.tip??`${p.x}: ${yFmt(p.y)}`))}"/>`;}
+  return s+'</svg>';
+}
+// Dot-and-whisker: rows [{label,key,mean,lo,hi,tip}] on a shared x axis (0..1 by default).
+function dotWhisker(rows,{w=560,x0=0,x1=1,fmt=v=>v.toFixed(2),zero=null}={}) {
+  const rh=26,P={l:190,r:20,t:8,b:26},h=P.t+P.b+rows.length*rh;
+  const X=v=>P.l+(Math.max(x0,Math.min(x1,v))-x0)/(x1-x0)*(w-P.l-P.r);
+  let s=`<svg viewBox="0 0 ${w} ${h}" width="100%" style="max-width:${w}px">`;
+  for(let i=0;i<=4;i++){const v=x0+(x1-x0)*i/4;s+=`<line x1="${X(v)}" x2="${X(v)}" y1="${P.t}" y2="${h-P.b}" stroke="#eaeef2"/><text x="${X(v)}" y="${h-8}" text-anchor="middle">${fmt(v)}</text>`;}
+  if(zero!=null)s+=`<line x1="${X(zero)}" x2="${X(zero)}" y1="${P.t}" y2="${h-P.b}" stroke="#8c959f" stroke-dasharray="3 3"/>`;
+  rows.forEach((r,i)=>{const y=P.t+i*rh+rh/2,c=colorOf(r.key);
+    s+=`<text x="${P.l-8}" y="${y+4}" text-anchor="end" style="fill:#1f2328">${esc(r.label)}</text>`;
+    if(r.mean==null)return;
+    s+=`<line x1="${X(r.lo)}" x2="${X(r.hi)}" y1="${y}" y2="${y}" stroke="${c}" stroke-width="2"/><circle cx="${X(r.mean)}" cy="${y}" r="5" fill="${c}" stroke="#fff" stroke-width="2"/>`;
+    s+=`<rect x="${P.l}" y="${y-rh/2}" width="${w-P.l-P.r}" height="${rh}" fill="transparent" data-tip="${esc(r.tip??`${r.label}: ${fmt(r.mean)} [${fmt(r.lo)}, ${fmt(r.hi)}]`)}"/>`;});
+  return s+'</svg>';
+}
+// Scatter twin (x) vs real (y) with y=x diagonal.
+function scatter(points,{w=420,h=380,lo=0,hi=1,xLabel='',yLabel=''}={}) {
+  const P={l:48,r:14,t:12,b:40},X=v=>P.l+(v-lo)/(hi-lo)*(w-P.l-P.r),Y=v=>P.t+(1-(v-lo)/(hi-lo))*(h-P.t-P.b);
+  let s=`<svg viewBox="0 0 ${w} ${h}" width="100%" style="max-width:${w}px">`;
+  for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4;s+=`<line x1="${P.l}" x2="${w-P.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="#eaeef2"/><text x="${P.l-6}" y="${Y(v)+4}" text-anchor="end">${v.toFixed(2)}</text><text x="${X(v)}" y="${h-P.b+16}" text-anchor="middle">${v.toFixed(2)}</text>`;}
+  s+=`<line x1="${X(lo)}" y1="${Y(lo)}" x2="${X(hi)}" y2="${Y(hi)}" stroke="#8c959f" stroke-dasharray="4 4"/>`;
+  s+=`<text x="${(P.l+w-P.r)/2}" y="${h-4}" text-anchor="middle">${esc(xLabel)}</text><text x="12" y="${(P.t+h-P.b)/2}" text-anchor="middle" transform="rotate(-90 12 ${(P.t+h-P.b)/2})">${esc(yLabel)}</text>`;
+  for(const p of points){const c=colorOf(p.key);
+    s+=`<circle cx="${X(Math.max(lo,p.x))}" cy="${Y(Math.max(lo,p.y))}" r="5" fill="${c}" fill-opacity=".85" stroke="#fff" stroke-width="1.5"${p.href?` style="cursor:pointer" onclick="location.href='${p.href}'"`:''} data-tip="${esc(p.tip)}"/>`;}
+  return s+'</svg>';
+}
+const legend=items=>`<div class="legend">${items.map(([k,l])=>`<span>${sw(k)}${esc(l)}</span>`).join('')}</div>`;
+
+// ---- sections ----
+function render() {
+  $('#title').textContent=DATA.title??'OpenDiabet 结果';document.title=`${DATA.title??'OpenDiabet 结果'} · Sweet Sim`;
+  const th=TH(),out=[];
+  const E=DATA.experiments,byId=Object.fromEntries(E.map(e=>[e.id,e]));
+  const nav=[['overview','总览'],...(DATA.campaign_scope?[['campaign-current',DATA.campaign_scope.title]]:[]),...E.map(e=>[e.id,e.info.short.replace(/^实验 (\d).*/,'实验 $1')]),['videos','视频'],['trials','全部回合'],['sources','数据来源']];
+  $('#nav').innerHTML=nav.map(([id,l])=>`<a href="#${id}">${esc(l)}</a>`).join('');
+
+  // Overview
+  const nTr=DATA.trials.length;
+  out.push(`<section id="overview"><h2>总览</h2>
+  <p class="muted">生成于 ${esc(DATA.generated.slice(0,16).replace('T',' '))} UTC · ${DATA.jobs.length} 个作业 · 选中 ${nTr} 个回合（每个 实验 × 智能体 取已跑完的最新作业，每个 任务 × 重复 一个回合）。所有结果均为仿真，不是医疗建议。</p>
+  ${DATA.scoring?`<p class="small muted">评分 ${esc(DATA.scoring.version)}：${DATA.scoring_display?esc(DATA.scoring_display[UNITS]):`S = clip(${DATA.scoring.weights.tir}·TIR − ${DATA.scoring.weights.tbr70}·TBR&lt;${th.low} − ${DATA.scoring.weights.tbr54}·TBR&lt;${th.vlow} − ${DATA.scoring.weights.tar250}·TAR&gt;${th.vhigh}, 0, 1)；严重低血糖（&lt;${th.vlow} ${UL()} 持续 ≥15 分钟）时 S = 0。TIR = ${th.low}–${th.high} ${UL()}。括号内为按任务聚类的 bootstrap 95% CI。`}</p>`:''}
+  <div class="cards">${E.map(e=>{const best=e.agents[0];return `<div class="card"><h3><a href="#${e.id}">${esc(e.info.short)}</a></h3>
+    <p class="small">${esc(e.info.question??'')}</p>
+    <p class="small muted">${e.tasks} 个任务 · ${e.agents.length} 个智能体 · 作业 ${e.jobs.map(esc).join(', ')}</p>
+    ${best?`<p class="small">最高分：${sw(best.key)}${esc(best.label)} ${f3(best.reward.mean)}</p>`:''}</div>`;}).join('')}</div></section>`);
+
+  if(DATA.campaign_scope){const s=DATA.campaign_scope;
+    out.push(`<section id="campaign-current"><h2>${esc(s.title)}</h2><p>${esc(s.note)}</p>
+      <table><thead><tr><th class="l">模型</th><th>完整七天 / 计划</th><th>运行中</th><th>失败</th><th>待启动</th></tr></thead><tbody>
+      ${s.models.map(m=>`<tr><td class="l">${esc(m.label)}</td><td>${m.completed} / ${m.planned}</td><td>${m.running}</td><td>${m.failed}</td><td>${m.not_started}</td></tr>`).join('')}</tbody></table></section>`);
+  }
+
+  // Per-experiment
+  for(const e of E) {
+    const head=`<section id="${e.id}"><h2>${esc(e.info.short)} <span class="muted small">${esc(e.info.display_id??e.id)} · ${esc(e.track??'')} 赛道</span></h2>
+      <p class="q">${esc(e.info.question??'')}</p><p class="muted">${esc(e.info.setup??'')}</p>
+      ${e.player?`<p class="small">轨迹回放：<a href="${e.player}?units=${UNITS}">${esc(e.player)}</a>（每个回合一条记录，含操作与理由列表）</p>`:''}`;
+    const showCost=e.agents.some(a=>a.tokens_in>0||a.usd>0);
+    let body=`<h3>得分与安全指标</h3><div class="tw" style="max-height:none"><table><thead><tr><th>智能体</th><th>回合</th><th>S（均值 [95% CI]）</th><th>归一化 N</th><th>相对 wait 的 ΔS</th>
+      <th>TIR ${th.low}–${th.high}</th><th>TBR&lt;${th.low}</th><th>TBR&lt;${th.vlow}</th><th>TAR&gt;${th.vhigh}</th><th>平均血糖 ${UL()}</th><th>严重低血糖</th><th>低血糖事件</th><th>智能体正常结束</th><th>智能体耗时 s</th>${showCost?'<th>token 入 / 出（百万）</th><th>费用 USD</th>':''}</tr></thead><tbody>
+      ${e.agents.map(a=>`<tr><td class="l">${sw(a.key)}${esc(a.label)}${a.execution_protocols?.length?`<div class="small muted">${esc(a.execution_protocols.join('; '))}</div>`:''}</td><td>${a.n}${a.planned&&a.planned!==a.n?` / ${a.planned}`:''}</td><td>${ciT(a.reward)}</td><td>${f3(a.normalized.mean)}</td><td>${a.delta_vs_wait?ciD(a.delta_vs_wait):'–'}</td>
+        <td>${pct(a.tir)}</td><td>${pct(a.tbr70,2)}</td><td>${pct(a.tbr54,2)}</td><td>${pct(a.tar250)}</td><td>${fmtG(a.mean_mgdl)}</td><td class="${a.severe?'bad':''}">${a.severe}</td><td>${a.hypo_events}</td><td class="${a.agent_completed!=null&&a.agent_completed<1?'bad':''}">${pct(a.agent_completed,0)}</td><td>${a.agent_seconds!=null?a.agent_seconds.toFixed(1):'–'}</td>${showCost?`<td>${(a.tokens_in/1e6).toFixed(2)} / ${(a.tokens_out/1e6).toFixed(2)}</td><td>${a.pricing_status==='unpriced'?'未核价':a.usd!=null?a.usd.toFixed(2)+'（估算）':'–'}</td>`:''}</tr>`).join('')}
+      </tbody></table></div>
+      <div class="row"><div><h3>S 与 95% CI</h3>${dotWhisker(e.agents.map(a=>({label:a.label,key:a.key,mean:a.reward.mean,lo:a.reward.ci95[0],hi:a.reward.ci95[1]})),{fmt:v=>v.toFixed(2)})}</div>
+      ${e.agents.some(a=>a.delta_vs_wait?.mean!=null)?`<div><h3>相对 wait 的配对差 ΔS</h3>${(()=>{const r=e.agents.filter(a=>a.delta_vs_wait&&a.delta_vs_wait.mean!=null);
+        const m=Math.max(0.05,...r.flatMap(a=>a.delta_vs_wait.ci95.map(Math.abs)));return dotWhisker(r.map(a=>({label:a.label,key:a.key,mean:a.delta_vs_wait.mean,lo:a.delta_vs_wait.ci95[0],hi:a.delta_vs_wait.ci95[1]})),{x0:-m,x1:m,zero:0,fmt:v=>(v>0?'+':'')+v.toFixed(2)});})()}</div>`:''}</div>`;
+    if(e.id==='exp2-assisted'&&DATA.cross.length) body+=`<h3>同一环境：实验 2 − 实验 1（同一智能体，配对）</h3>
+      <p class="small muted">正值 = 患者参与自我管理后分数更高。patient 基线在辅助赛道不定义。</p>
+      <table><thead><tr><th>智能体</th><th>配对数</th><th>S(实验 2) − S(实验 1)</th></tr></thead><tbody>${DATA.cross.map(c=>`<tr><td class="l">${sw(keyOf(c.agent))}${esc(c.label)}</td><td>${c.n}</td><td>${ciD(c.diff)}</td></tr>`).join('')}</tbody></table>`;
+    if(e.id==='exp3-longitudinal') body+=exp3Section(e);
+    if(e.pairs) body+=exp4Section(e);
+    out.push(head+body+'</section>');
+  }
+  if(!byId['exp3-longitudinal']&&DATA.exp3)out.push(`<section id="exp3-longitudinal"><h2>实验 3 长期自我改进</h2>${exp3Section(null)}</section>`);
+  if(!byId['exp4-real2sim2real']&&DATA.exp4)out.push(`<section id="exp4-real2sim2real"><h2>实验 4 Real → Sim → Real</h2>${exp4Section(null)}</section>`);
+
+  // Videos
+  out.push(`<section id="videos"><h2>代表性视频</h2><p class="small muted">每段约 50 秒，覆盖整个回合（mmol/L 显示）。视频缺失时可在回放页面里交互查看。</p>
+    <table><thead><tr><th>视频</th><th class="l">说明</th><th>文件</th><th>回放</th></tr></thead><tbody>
+    ${DATA.videos.map(v=>`<tr><td class="l">${esc(v.title)}</td><td class="l wrap">${esc(v.note)}</td><td>${v.file?`<a href="${esc(v.file)}">${esc(v.file.split('/').pop())}</a> <span class="ci">${(v.bytes/1e6).toFixed(1)} MB</span>`:'<span class="muted">尚未录制</span>'}</td>
+      <td><a href="${esc(v.player)}&units=${UNITS}">打开</a></td></tr>`).join('')}</tbody></table></section>`);
+
+  // Trials
+  const exps=[...new Set(DATA.trials.map(t=>t.e))],agents=[...new Set(DATA.trials.map(t=>t.label))];
+  out.push(`<section id="trials"><h2>全部回合</h2><p class="small muted">点击任意一行打开该实验的回放页面并定位到这个回合。完整原始记录见 <code>trials.jsonl</code> 与 <code>archive/</code>。</p>
+    <div class="filters"><select id="fe"><option value="">全部实验 / 对照</option>${exps.map(x=>`<option value="${esc(x)}">${esc(byId[x]?.info.short??x)}</option>`).join('')}</select>
+      <select id="fa"><option value="">全部智能体</option>${agents.map(x=>`<option>${esc(x)}</option>`).join('')}</select>
+      <input id="fq" placeholder="搜索任务 / 实例 / 因子" size="28"> <label class="small"><input type="checkbox" id="fsev"> 仅严重低血糖</label> <span id="fcount" class="small muted"></span></div>
+    <div class="tw"><table><thead><tr><th>实验</th><th class="l">任务</th><th class="l">智能体</th><th>r</th><th class="l">因子</th><th>S</th><th>TIR</th><th>TBR&lt;${th.low}</th><th>TBR&lt;${th.vlow}</th><th>平均 ${UL()}</th><th>严重低</th><th>低血糖事件</th><th>步数</th><th>耗时 s</th><th class="l">每天 S</th></tr></thead><tbody id="tbody"></tbody></table></div></section>`);
+
+  // Sources
+  out.push(`<section id="sources"><h2>数据来源</h2><table><thead><tr><th>作业</th><th class="l">基准</th><th class="l">创建</th><th class="l">commit</th><th class="l">智能体</th><th>回合</th><th>选中</th><th class="l">冻结代码 sha256</th></tr></thead><tbody>
+    ${DATA.jobs.map(j=>`<tr><td class="l">${esc(j.id)}</td><td class="l">${esc(j.benchmark)}</td><td class="l">${esc((j.created??'').slice(0,16))}</td><td class="l"><code>${esc((j.commit??'').slice(0,10))}</code></td><td class="l wrap">${esc((j.agents??[]).join(', '))}</td><td>${j.trials}</td><td>${j.selected}</td><td class="l"><code>${esc((j.agent_code_sha256??'–').slice(0,12))}</code></td></tr>`).join('')}</tbody></table>
+    <p class="small muted">选择规则：每个 实验 × 智能体 取已跑完全部计划回合的最新作业（config.created；都没跑完时取完成回合最多的）；被取代的回合仍保留在 trials.jsonl（selected=false）与 archive/ 中。manifest.json 列出每个归档文件的大小与 sha256。</p></section>`);
+  $('#main').innerHTML=out.join('');
+  renderTrials();
+  for(const id of ['fe','fa','fq','fsev'])$('#'+id).addEventListener('input',renderTrials);
+  bindTips(document);
+}
+
+function exp3Section(e) {
+  let s='';
+  if(e) {
+    const ag=e.agents.filter(a=>a.curve);
+    if(ag.length) s+=`<h3>Harbor 作业：每天的 S（fixed vs adaptive，阴影 = 95% CI）</h3>${legend(ag.map(a=>[a.key,a.label]))}
+      ${lineChart(ag.map(a=>({key:a.key,label:a.label,points:a.curve.map(c=>({x:c.day,y:c.mean,lo:c.ci95[0],hi:c.ci95[1],tip:`第 ${c.day} 天 S ${f3(c.mean)} [${f3(c.ci95[0])}, ${f3(c.ci95[1])}] n=${c.n}`}))})),{xLabel:'天',yLabel:'S'})}
+      <table><thead><tr><th>智能体</th><th>学习斜率（S/天）</th></tr></thead><tbody>${ag.map(a=>`<tr><td class="l">${sw(a.key)}${esc(a.label)}</td><td>${ciD(a.learning_slope)}</td></tr>`).join('')}</tbody></table>`;
+  }
+  const X=DATA.exp3;if(!X)return s;
+  const names={fixed:'fixed（档案不变）',adaptive:'adaptive（跨天调档）',causal:'causal（因果最优）'};
+  const by=k=>X.curve.filter(c=>c.agent===k);
+  s+=`<h3>进程内结果（${esc(X.source)}）：每天的 S 与档案参数误差</h3>
+    <p class="small muted">${X.persons.length} 个人 × ${X.days} 天，同一组种子。参数误差 = 基础率 / ISF / 碳水比 相对真值的平均相对误差（越低越好）。causal 每天约 ${Math.round(X.summary.causal?.runtime_s_mean??0)} s。</p>
+    ${legend(X.agents.map(k=>[k,names[k]??k]))}
+    <div class="row"><div>${lineChart(X.agents.map(k=>({key:k,label:names[k]??k,dash:k==='causal',points:by(k).map(c=>({x:c.day,y:c.reward,tip:`第 ${c.day} 天 S ${f3(c.reward)} · TIR ${pct(c.tir)} · TBR<${TH().low} ${pct(c.tbr70,2)}`}))})),{xLabel:'天',yLabel:'S（4 人平均）'})}</div>
+    <div>${lineChart(X.agents.filter(k=>k!=='causal').map(k=>({key:k,label:names[k]??k,points:by(k).map(c=>({x:c.day,y:c.param_error,tip:`第 ${c.day} 天 参数误差 ${pct(c.param_error)}`}))})),{xLabel:'天',yLabel:'档案参数误差',yMin:0,yFmt:v=>(100*v).toFixed(0)+'%'})}</div></div>
+    <table><thead><tr><th>智能体</th><th>平均 S</th><th>前 2 天</th><th>后 2 天</th><th>学习斜率</th><th>参数误差 起 → 终</th><th>调档次数/人</th><th>每天耗时 s</th></tr></thead><tbody>
+    ${X.agents.map(k=>{const m=X.summary[k]??{};return `<tr><td class="l">${sw(k)}${esc(names[k]??k)}</td><td>${f3(m.reward_mean)}</td><td>${f3(m.reward_days_1_2)}</td><td>${f3(m.reward_last_2)}</td><td>${sgn(m.learning_slope)}</td><td>${pct(m.param_error_first)} → ${pct(m.param_error_final)}</td><td>${m.profile_changes??'–'}</td><td>${m.runtime_s_mean!=null?m.runtime_s_mean.toFixed(1):'–'}</td></tr>`;}).join('')}</tbody></table>
+    <h3>每个人（每天的 S，第 1–7 天）</h3><div class="tw"><table class="small"><thead><tr><th>人</th><th class="l">档案错配（×真值）</th>${X.agents.map(k=>`<th>${esc(k)}</th>`).join('')}<th>adaptive 参数误差 起 → 终</th><th class="l">adaptive 调档</th></tr></thead><tbody>
+    ${X.persons.map(p=>{const ad=p.agents.adaptive,er=ad?.errors??[];return `<tr><td class="l">${esc(p.id)}</td><td class="l">${Object.entries(p.mismatch??{}).map(([k,v])=>`${k} ×${Number(v).toFixed(2)}`).join(' · ')}</td>
+      ${X.agents.map(k=>`<td style="font-size:11px">${(p.agents[k]?.days??[]).map(d=>Number(d.reward).toFixed(2)).join(' ')}</td>`).join('')}
+      <td>${er.length?`${pct(er[0].mean)} → ${pct(er[er.length-1].mean)}`:'–'}</td><td class="l wrap small" style="min-width:260px">${(ad?.changes??[]).map(esc).join('<br>')||'无'}</td></tr>`;}).join('')}</tbody></table></div>`;
+  return s;
+}
+
+function exp4Section(e) {
+  let s='';const X=DATA.exp4;
+  if(X) s+=`<h3>孪生拟合（前 ${X.options.days-X.options.holdoutDays} 天重建，后 ${X.options.holdoutDays} 天留出）</h3>
+    <table><thead><tr><th>人</th><th class="l">类型 / 治疗 / CGM</th><th>等级</th><th>留出 MARD</th><th>孪生 vs 指尖血 MARD</th><th>CGM vs 指尖血 MARD</th><th>孪生 vs 真值 MARD</th><th>敏感性误差</th><th>TIR 差</th></tr></thead><tbody>
+    ${X.fit.map(f=>{const p=X.persons[f.person]??{};return `<tr><td class="l">${esc(f.person)}</td><td class="l">${esc([p.type,p.therapy,p.device,p.cgm].filter(Boolean).join(' · '))}</td><td>${esc(f.grade)}</td><td>${pct(f.holdout_mard)}</td><td>${pct(f.twin_vs_smbg_mard)}</td><td>${pct(f.cgm_vs_smbg_mard)}</td><td>${pct(f.twin_vs_true_mard)}</td><td>${sgn(f.sensitivity_error)}</td><td>${sgn(f.tir_diff)}</td></tr>`;}).join('')}</tbody></table>`;
+  if(e?.pairs) {
+    const P=e.pairs;
+    s+=`<h3>孪生 vs "真实"（Harbor 作业，每对 = 同一人同一未来日）</h3>
+    <table><thead><tr><th>智能体</th><th>配对</th><th>真实 S</th><th>孪生 S</th><th>差距 孪生 − 真实</th><th>|差距|</th></tr></thead><tbody>
+    ${P.agents.map(a=>`<tr><td class="l">${sw(keyOf(a.agent))}${esc(a.label)}</td><td>${a.pairs}</td><td>${ciT(a.real)}</td><td>${ciT(a.twin)}</td><td>${ciD(a.gap)}</td><td>${f3(a.abs_gap)}</td></tr>`).join('')}</tbody></table>
+    <p>按人排名一致性：Kendall τ 平均 <b>${f3(P.kendall_mean)}</b> · 孪生上最佳 = 真实最佳 的比例 <b>${pct(P.best_match_rate,0)}</b> · 平均遗憾（按孪生选择后在真实上损失的 S）<b>${f3(P.regret_mean)}</b> · 智能体总体均值排名 Kendall τ ${f3(P.rank_agent_means?.kendall)}</p>
+    <div class="row"><div>${legend(P.agents.map(a=>[keyOf(a.agent),a.label]))}${(()=>{const pts=[];
+      for(const t of DATA.trials.filter(t=>t.e===e.id&&t.role==='twin')){const r=DATA.trials.find(q=>q.e===e.id&&q.role==='real'&&q.pair===t.pair&&q.agent===t.agent&&q.r===t.r);
+        if(r)pts.push({x:t.S,y:r.S,key:keyOf(t.agent),href:playerHref(e.id,r.id),tip:`${t.pair} · ${t.label}\n孪生 S ${f3(t.S)} · 真实 S ${f3(r.S)}（点击打开真实回合）`});}
+      const lo=Math.max(0,Math.floor(Math.min(...pts.map(p=>Math.min(p.x,p.y)))*10)/10);
+      return scatter(pts,{lo,hi:1,xLabel:'孪生上的 S',yLabel:'"真实"个体上的 S'});})()}</div>
+    <div><table><thead><tr><th>人</th><th>Kendall τ</th><th class="l">孪生最佳</th><th class="l">真实最佳</th><th>遗憾</th>${P.agents.map(a=>`<th>${esc(a.agent)} 孪生/真实</th>`).join('')}</tr></thead><tbody>
+    ${P.persons.map(p=>`<tr><td class="l">${esc(p.person)}</td><td>${f3(p.kendall)}</td><td class="l">${esc(p.best_twin.join(', '))}</td><td class="l">${esc(p.best_real.join(', '))}</td><td class="${p.regret>0.02?'bad':''}">${f3(p.regret)}</td>
+      ${P.agents.map(a=>{const x=p.agents.find(q=>q.agent===a.agent);return `<td>${x?`${Number(x.twin).toFixed(2)} / ${Number(x.real).toFixed(2)}`:'–'}</td>`;}).join('')}</tr>`).join('')}</tbody></table></div></div>`;
+  }
+  if(X?.transfer?.rows&&!e) s+=`<h3>进程内 twin vs real</h3><table><thead><tr><th>人</th><th>智能体</th><th>孪生 S</th><th>真实 S</th><th>差距</th></tr></thead><tbody>${X.transfer.rows.map(r=>`<tr><td class="l">${esc(r.person)}</td><td class="l">${esc(r.agent)}</td><td>${f3(r.twin_reward)}</td><td>${f3(r.real_reward)}</td><td>${sgn(r.transfer_gap)}</td></tr>`).join('')}</tbody></table>`;
+  return s;
+}
+
+function renderTrials() {
+  const fe=$('#fe').value,fa=$('#fa').value,fq=$('#fq').value.trim().toLowerCase(),fs=$('#fsev').checked;
+  const rows=DATA.trials.filter(t=>(!fe||t.e===fe)&&(!fa||t.label===fa)&&(!fs||t.sev)&&(!fq||[t.task,t.inst,t.f,t.id].join(' ').toLowerCase().includes(fq)));
+  $('#fcount').textContent=`${rows.length} / ${DATA.trials.length} 个回合`;
+  $('#tbody').innerHTML=rows.map(t=>`<tr class="click" data-href="${esc(playerHref(t.e,t.id)??'')}"><td>${esc(DATA.experiments.find(e=>e.id===t.e)?.info.display_id??t.e.replace(/-.*/,''))}</td><td class="l">${esc(t.task)}${t.role?` <span class="ci">${esc(t.role)}</span>`:''}</td><td class="l">${sw(keyOf(t.agent))}${esc(t.label)}${t.ac===0?' <span class="bad small" title="智能体进程未正常结束（报错 / 超时），剩余时间由评分器按 WAIT 补完">未完成</span>':''}</td><td>${t.r}</td><td class="l small" style="white-space:normal;min-width:220px;max-width:300px">${esc(t.f)}</td>
+    <td>${f3(t.S)}</td><td>${pct(t.tir)}</td><td>${pct(t.tbr70,2)}</td><td>${pct(t.tbr54,2)}</td><td>${fmtG(t.mean)}</td><td class="${t.sev?'bad':''}">${t.sev||''}</td><td>${t.hypo??''}</td><td>${t.steps??''}</td><td>${t.sec!=null?Math.round(t.sec):''}</td><td class="l small">${t.days?t.days.map(d=>d==null?'–':d.toFixed(2)).join(' '):''}</td></tr>`).join('');
+  for(const tr of document.querySelectorAll('#tbody tr'))tr.onclick=()=>{if(tr.dataset.href)location.href=tr.dataset.href;};
+}
+
+$('#units').value=UNITS;
+$('#units').onchange=()=>{UNITS=$('#units').value;localStorage.setItem('sweet-sim-units',UNITS);const y=scrollY;render();scrollTo(0,y);};
+render();
+if(location.hash)setTimeout(()=>document.querySelector(location.hash)?.scrollIntoView(),0);
+</script>
+</body>
+</html>

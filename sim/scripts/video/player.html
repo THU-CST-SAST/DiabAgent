@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Sweet Sim 仿真演示</title>
+<style>
+  body{margin:0;background:#e9ecf0;font:14px -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;color:#1f2328}
+  #controls{display:flex;gap:10px;align-items:center;padding:10px 16px;flex-wrap:wrap}
+  #controls select,#controls button{font:inherit;padding:4px 8px;border:1px solid #d0d7de;border-radius:6px;background:#fff}
+  #scrub{flex:1;min-width:240px}
+  canvas{display:block;margin:0 auto;max-width:100%;height:auto;background:#f6f7f9}
+</style>
+</head>
+<body>
+<div id="controls">
+  <select id="run"></select>
+  <button id="play">暂停</button>
+  <label>速度 <select id="speed"><option value="10">10 分钟/秒</option><option value="32" selected>32 分钟/秒</option><option value="60">1 小时/秒</option><option value="120">2 小时/秒</option></select></label>
+  <label>单位 <select id="units"><option value="mmol">mmol/L</option><option value="mgdl">mg/dL</option></select></label>
+  <input id="scrub" type="range" min="0" max="1000" value="0">
+</div>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>/*RUNS*/</script>
+<script src="player.js"></script>
+</body>
+</html>

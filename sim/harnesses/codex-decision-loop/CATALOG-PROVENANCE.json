@@ -1,0 +1,18 @@
+{
+  "source": "https://github.com/openai/codex/blob/rust-v0.163.0/codex-rs/models-manager/models.json",
+  "source_commit": "83086188ae0614bd882818ff1aa23f3194962012",
+  "source_sha256": "943ca7fe1d19ed019054158303f0dbbd80b3bef43b3aa425a71aa7cb3fb52c2b",
+  "selected_slug": "gpt-6.1-sol",
+  "changes": {
+    "tool_mode": {"from": "code_mode_only", "to": "direct"},
+    "multi_agent_version": {"from": "v2", "to": "disabled"},
+    "experimental_supported_tools": {"from": ["send_user_message_async", "clock"], "to": []},
+    "node_repl_disabled": {"from": false, "to": true}
+  },
+  "purpose": "Remove native coding-only tools; preserve the registered benchmark tool surface",
+  "model_messages_note": "Catalog templates remain upstream-identical. Native baseInstructions supplies the original benchmark system. Registered transport v3 promotes that exact single developer item to provider instructions without duplication, preventing implicit provider coding defaults. The initial two-Read compatibility attempt and its original default-provider context remain disclosed in the explicit checkpoint lineage.",
+  "upstream_license": "Apache-2.0; see UPSTREAM-LICENSE and UPSTREAM-NOTICE",
+  "engineering_qualification": "Use scripts/qualify-codex-main.mjs to bind the official native binary, source, frozen runtime and fixture. Original main-controller full72h native CLI plus targeted negative/budget/context/Skill tests run only against localhost, with0upstream calls. A reusable matching certificate is required before preparing a live source.",
+  "transport_adaptation": "official-codex-output-cap-transport/v3; preserve native body and explicit cap/schema/strict/system-envelope deltas. Native CLI owns request generation, model history and tool loop. Provider responses are not rewritten; no direct API model adapter substitution.",
+  "live_acceptance_authority": "Per-source MODEL-ACCEPTANCE.json / CODEX-AUDIT.json plus actual source/process verification. Scripted qualification and this static catalog provenance are not evidence of real-model completion."
+}

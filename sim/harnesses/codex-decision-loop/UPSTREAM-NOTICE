@@ -1,0 +1,6 @@
+The pinned gpt-6.1-sol model catalog entry is derived from OpenAI Codex
+rust-v0.163.0, commit 83086188ae0614bd882818ff1aa23f3194962012.
+Upstream: https://github.com/openai/codex
+The upstream Apache-2.0 license is reproduced in UPSTREAM-LICENSE.
+The four catalog tool-surface changes are recorded in CATALOG-PROVENANCE.json.
+Benchmark adapter code does not modify the official native executable.

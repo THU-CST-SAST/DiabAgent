@@ -1,0 +1,487 @@
+{
+  "heise2015_fiasp": {
+    "cite": "Heise T et al. Diabetes Obes Metab 2015;17:682-688",
+    "url": "https://doi.org/10.1111/dom.12468",
+    "type": "primary"
+  },
+  "heise2017_fiasp_pooled": {
+    "cite": "Heise T et al. Clin Pharmacokinet 2017;56:551-559",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5385193",
+    "type": "primary"
+  },
+  "heise2017_fiasp_csii": {
+    "cite": "Heise T et al. Diabetes Obes Metab 2017;19:208-215",
+    "url": "https://doi.org/10.1111/dom.12803",
+    "type": "primary"
+  },
+  "ema_fiasp_epar": {
+    "cite": "EMA Fiasp EPAR public assessment report",
+    "url": "https://www.ema.europa.eu/en/documents/assessment-report/fiasp-epar-public-assessment-report_en.pdf",
+    "type": "label"
+  },
+  "fiasp_smpc": {
+    "cite": "Fiasp SmPC",
+    "url": "https://www.medicines.org.uk/emc/product/8108/smpc",
+    "type": "label"
+  },
+  "lyumjev_smpc": {
+    "cite": "Lyumjev SmPC",
+    "url": "https://www.medicines.org.uk/emc/product/11536/smpc",
+    "type": "label"
+  },
+  "leohr2021_urli": {
+    "cite": "Leohr J et al. Clin Pharmacokinet 2021;60:1423-1434",
+    "url": "https://link.springer.com/article/10.1007/s40262-021-01030-0",
+    "type": "primary"
+  },
+  "humalog_uspi": {
+    "cite": "Humalog US prescribing information",
+    "url": "https://uspl.lilly.com/humalog/humalog.html",
+    "type": "label"
+  },
+  "novolog_uspi": {
+    "cite": "NovoLog US prescribing information",
+    "url": "https://www.novo-pi.com/novolog.pdf",
+    "type": "label"
+  },
+  "apidra_uspi": {
+    "cite": "Apidra US prescribing information",
+    "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/021629s042lbl.pdf",
+    "type": "label"
+  },
+  "actrapid_smpc": {
+    "cite": "Actrapid SmPC",
+    "url": "https://www.medicines.org.uk/emc/product/3849/smpc",
+    "type": "label"
+  },
+  "lantus_uspi": {
+    "cite": "Lantus US prescribing information",
+    "url": "https://products.sanofi.us/lantus/lantus.pdf",
+    "type": "label"
+  },
+  "heise2015_basal_review": {
+    "cite": "Heise T et al. Expert Opin Drug Metab Toxicol 2015;11:1193-1201",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26086190/",
+    "type": "review"
+  },
+  "toujeo_smpc": {
+    "cite": "Toujeo SmPC",
+    "url": "https://www.medicines.org.uk/emc/product/6938/smpc",
+    "type": "label"
+  },
+  "toujeo_uspi": {
+    "cite": "Toujeo US prescribing information",
+    "url": "https://products.sanofi.us/toujeo/toujeo.pdf",
+    "type": "label"
+  },
+  "becker2015_u300": {
+    "cite": "Becker RHA et al. Diabetes Care 2015;38:637-643",
+    "url": "https://diabetesjournals.org/care/article/38/4/637/37555",
+    "type": "primary"
+  },
+  "tresiba_uspi": {
+    "cite": "Tresiba US prescribing information",
+    "url": "https://www.novo-pi.com/tresiba.pdf",
+    "type": "label"
+  },
+  "levemir_uspi": {
+    "cite": "Levemir US prescribing information (2012)",
+    "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2012/021536s037lbl.pdf",
+    "type": "label"
+  },
+  "plank2005_detemir": {
+    "cite": "Plank J et al. Diabetes Care 2005;28:1107-1112",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15855574/",
+    "type": "primary"
+  },
+  "aaps_configbuilder": {
+    "cite": "AndroidAPS docs: Config Builder (insulin presets)",
+    "url": "https://androidaps.readthedocs.io/en/latest/SettingUpAaps/ConfigBuilder.html",
+    "type": "label"
+  },
+  "aaps_pumptype": {
+    "cite": "AndroidAPS source: PumpType.kt",
+    "url": "https://github.com/nightscout/AndroidAPS/blob/master/core/data/src/main/kotlin/app/aaps/core/data/pump/defs/PumpType.kt",
+    "type": "label"
+  },
+  "aaps_dana": {
+    "cite": "AndroidAPS docs: DanaRS / Dana-i",
+    "url": "https://androidaps.readthedocs.io/en/latest/CompatiblePumps/DanaRS-Insulin-Pump.html",
+    "type": "label"
+  },
+  "aaps_dash": {
+    "cite": "AndroidAPS docs: Omnipod DASH",
+    "url": "https://androidaps.readthedocs.io/en/latest/CompatiblePumps/OmnipodDASH.html",
+    "type": "label"
+  },
+  "aaps_medtrum": {
+    "cite": "AndroidAPS docs: Medtrum Nano",
+    "url": "https://androidaps.readthedocs.io/en/latest/CompatiblePumps/MedtrumNano.html",
+    "type": "label"
+  },
+  "sooil_products": {
+    "cite": "SOOIL product page",
+    "url": "https://www.sooil.com/eng/product/",
+    "type": "label"
+  },
+  "insulet_safety": {
+    "cite": "Insulet Omnipod safety information",
+    "url": "https://www.omnipod.com/safety",
+    "type": "label"
+  },
+  "roche_insight_errors": {
+    "cite": "Roche Accu-Chek Insight error screens",
+    "url": "https://www.accu-chek.co.uk/insulin-pumps/insight/support-error-screens",
+    "type": "label"
+  },
+  "roche_combo": {
+    "cite": "Roche Accu-Chek Combo product page",
+    "url": "https://www.rochediabetescaremea.com/en/insulin-delivery-system/combo",
+    "type": "label"
+  },
+  "kanapka2022_sets": {
+    "cite": "Kanapka LG, Lum JW, Beck RW. Diabetes Technol Ther 2022",
+    "url": "https://journals.sagepub.com/doi/10.1089/dia.2021.0548",
+    "type": "primary"
+  },
+  "novopen_guide": {
+    "cite": "NovoPen 6 / Echo quick guide",
+    "url": "https://www.novonordisk.com/content/dam/nncorp/global/en/our-products/pdf/novopen-echo-and-6/NP6E-quick-guide.pdf",
+    "type": "label"
+  },
+  "humalog_kwikpen": {
+    "cite": "Humalog KwikPen label (DailyMed)",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c8ecbd7a-0e22-4fc7-a503-faa58c1b6f3f",
+    "type": "label"
+  },
+  "humalog_junior_pil": {
+    "cite": "Humalog Junior KwikPen leaflet",
+    "url": "https://www.medicines.org.uk/emc/product/8544/pil",
+    "type": "label"
+  },
+  "ada_lantus": {
+    "cite": "ADA Consumer Guide: Lantus",
+    "url": "https://consumerguide.diabetes.org/products/insulin/lantus",
+    "type": "review"
+  },
+  "shah2018_g6": {
+    "cite": "Shah VN et al. Diabetes Technol Ther 2018;20:428-433",
+    "url": "https://doi.org/10.1089/dia.2018.0143",
+    "type": "primary"
+  },
+  "garg2022_g7": {
+    "cite": "Garg SK et al. Diabetes Technol Ther 2022;24:373-380",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9208857/",
+    "type": "primary"
+  },
+  "alva2022_libre2": {
+    "cite": "Alva S et al. J Diabetes Sci Technol 2022;16:70-77",
+    "url": "https://journals.sagepub.com/doi/10.1177/1932296820958754",
+    "type": "primary"
+  },
+  "alva2023_libre3": {
+    "cite": "Alva S et al. Diabetes Ther 2023;14:767-783",
+    "url": "https://link.springer.com/article/10.1007/s13300-023-01385-6",
+    "type": "primary"
+  },
+  "fda_k212132": {
+    "cite": "FDA 510(k) K212132 FreeStyle Libre 3",
+    "url": "https://www.accessdata.fda.gov/cdrh_docs/reviews/K212132.pdf",
+    "type": "label"
+  },
+  "vettoretti2019_g6": {
+    "cite": "Vettoretti M et al. Sensors 2019;19:5320",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6928894/",
+    "type": "primary"
+  },
+  "deichmann2023": {
+    "cite": "Deichmann J et al. PLoS Comput Biol 2023;19:e1010289",
+    "url": "https://doi.org/10.1371/journal.pcbi.1010289",
+    "type": "primary"
+  },
+  "sweet_sim": {
+    "cite": "sweet-sim @441360591abe (DEFAULT_CONFIG lifestyle and profile)",
+    "url": "https://git.xiaoaojianghu.fun:114/chengxili/sweet-sim",
+    "type": "assumed"
+  },
+  "this_work": {
+    "cite": "sweetie calibration scripts (scripts/calibrate-*.mjs)",
+    "url": "",
+    "type": "fitted"
+  },
+  "bailey2015_libre": {
+    "cite": "Bailey T et al. Diabetes Technol Ther 2015;17:787-794",
+    "url": "https://journals.sagepub.com/doi/10.1089/dia.2014.0378",
+    "type": "primary"
+  },
+  "abbott_libre_faq": {
+    "cite": "Abbott FreeStyle Libre FAQ (8 h memory, 15-min history)",
+    "url": "https://www.freestyle.abbott/uk-en/support/faq/question-answer.html?q=UKFaqquestion-56",
+    "type": "label"
+  },
+  "abbott_libre2_alarms": {
+    "cite": "Abbott: FreeStyle Libre 2 alarm thresholds",
+    "url": "https://www.freestyle.abbott/en-ph/support/what-are-the-low-and-high-thresholds-for-glucose-alarms-on-the-freestyle-libre-2.html",
+    "type": "label"
+  },
+  "dunn2018_scans": {
+    "cite": "Dunn TC et al. Diabetes Res Clin Pract 2018;137:37-46",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29278709/",
+    "type": "primary"
+  },
+  "dexcom_g5_guide": {
+    "cite": "Dexcom G5 user guide (calibration)",
+    "url": "https://www.manualslib.com/manual/1359278/Dexcom-G5.html?page=101",
+    "type": "label"
+  },
+  "welsh_g5": {
+    "cite": "Welsh JB et al. J Diabetes Sci Technol 2024 (G5 accuracy)",
+    "url": "https://journals.sagepub.com/doi/full/10.1177/19322968221099879",
+    "type": "primary"
+  },
+  "medtronic_g3_perf": {
+    "cite": "Medtronic Guardian Sensor 3 performance document",
+    "url": "https://www.medtronicdiabetes.com/sites/default/files/library/download-library/user-guides/MP6026113-2AF1DOC_A_FINAL.pdf",
+    "type": "label"
+  },
+  "biagi2017_enlite": {
+    "cite": "Biagi L et al. Sensors 2017 (Enlite calibration error model)",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5492301/",
+    "type": "primary"
+  },
+  "freckmann2019_iso": {
+    "cite": "Freckmann G et al. J Diabetes Sci Technol 2019 (ISO 15197)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6501529/",
+    "type": "review"
+  },
+  "vettoretti2015_smbg": {
+    "cite": "Vettoretti M et al. EMBC 2015 (SMBG error model, OneTouch Ultra 2)",
+    "url": "https://doi.org/10.1109/embc.2015.7318867",
+    "type": "primary"
+  },
+  "ekhlaspour2017_meters": {
+    "cite": "Ekhlaspour L et al. J Diabetes Sci Technol 2017;11:558-566",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27697848/",
+    "type": "primary"
+  },
+  "klonoff2018_dts": {
+    "cite": "Klonoff DC et al. Diabetes Care 2018;41:1681-1688 (DTS surveillance)",
+    "url": "https://care.diabetesjournals.org/content/41/8/1681",
+    "type": "primary"
+  },
+  "freckmann2022_bias": {
+    "cite": "Freckmann G et al. J Diabetes Sci Technol 2022 (meter bias vs reference method)",
+    "url": "https://dx.doi.org/10.1177/1932296820948873",
+    "type": "primary"
+  },
+  "optium_bias": {
+    "cite": "PubMed 33073954 (Optium Neo vs Contour Next One bias)",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33073954/",
+    "type": "primary"
+  },
+  "fda_k160682": {
+    "cite": "FDA 510(k) K160682 Contour Next One",
+    "url": "https://www.accessdata.fda.gov/cdrh_docs/reviews/K160682.pdf",
+    "type": "label"
+  },
+  "fda_k160944": {
+    "cite": "FDA 510(k) K160944 Accu-Chek Guide",
+    "url": "https://www.accessdata.fda.gov/cdrh_docs/reviews/K160944.pdf",
+    "type": "label"
+  },
+  "onetouch_verio_spec": {
+    "cite": "OneTouch Verio Reflect technical specifications",
+    "url": "https://support.onetouch.com/s/article/OneTouch-Verio-Reflect-Technical-Specifications?language=en_US",
+    "type": "label"
+  },
+  "abbott_optium_neo": {
+    "cite": "Abbott FreeStyle Optium Neo H specifications",
+    "url": "https://pro.freestyle.abbott/uk-en/freestyle-portfolio/blood-glucose-meters/freestyle-optium-neo-h.html",
+    "type": "label"
+  },
+  "ada_standards_2022": {
+    "cite": "ADA Standards of Care 2022, Section 7 (S97)",
+    "url": "https://diabetesjournals.org/care/article/45/Supplement_1/S97/138911",
+    "type": "review"
+  },
+  "miller2013_t1dx": {
+    "cite": "Miller KM et al. Diabetes Care 2013;36:2009-2014",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23378621/",
+    "type": "primary"
+  },
+  "reinauer2025_dpv": {
+    "cite": "Reinauer C et al. Diabetes Technol Ther 2025 (DPV pump settings in children)",
+    "url": "https://doi.org/10.1089/dia.2024.0551",
+    "type": "primary"
+  },
+  "molinsky2026_tdd": {
+    "cite": "Molinsky R et al. Diabetes Technol Ther 2026 (TDD in ages 2-25)",
+    "url": "https://doi.org/10.1177/15209156261447653",
+    "type": "primary"
+  },
+  "evin2023_sweet": {
+    "cite": "Evin F et al. Pediatr Diabetes 2023 (SWEET, insulin dose and technology)",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12016914/",
+    "type": "primary"
+  },
+  "kuroda2011_pump": {
+    "cite": "Kuroda A et al. Diabetes Care 2011;34:1089-1090",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21447664/",
+    "type": "primary"
+  },
+  "king2007_pump": {
+    "cite": "King AB, Armstrong DU. J Diabetes Sci Technol 2007;1:36-41",
+    "url": "https://doi.org/10.1177/193229680700100107",
+    "type": "primary"
+  },
+  "davidson2008_isf": {
+    "cite": "Davidson PC et al. Endocr Pract 2008;14:1095-1101",
+    "url": "https://doi.org/10.4158/EP.14.9.1095",
+    "type": "primary"
+  },
+  "t1dx_bmi": {
+    "cite": "T1D Exchange EASD 2025 abstract: overweight/obesity in adults with T1D",
+    "url": "https://t1dexchange.org/easd-2025-overweight-obesity-and-glycemic-outcomes",
+    "type": "primary"
+  },
+  "pmc11395955_young": {
+    "cite": "PMC11395955 (ages 14-24 with T1D: weight 74.3+-16.2 kg)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11395955/",
+    "type": "primary"
+  },
+  "minges2017_teens": {
+    "cite": "Minges KE et al. Diabetes Res Clin Pract 2017;126:68-78",
+    "url": "https://doi.org/10.1016/j.diabres.2017.01.012",
+    "type": "primary"
+  },
+  "carbs_t1dx": {
+    "cite": "PMC7423164 (T1D Exchange dietary intake: 196-216 g/day)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7423164/",
+    "type": "primary"
+  },
+  "carbs_youth": {
+    "cite": "PMC4429048 (youth with T1D: 194+-44 g/day, meals 47/49/57 g)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4429048/",
+    "type": "primary"
+  },
+  "carbs_sweden": {
+    "cite": "PMC12666139 (adults with T1D: 183+-91 g/day)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12666139/",
+    "type": "primary"
+  },
+  "brazeau2013_carbcount": {
+    "cite": "Brazeau AS et al. Diabetes Res Clin Pract 2013;99:19-23",
+    "url": "https://doi.org/10.1016/j.diabres.2012.10.024",
+    "type": "primary"
+  },
+  "smart2010_carbcount": {
+    "cite": "Smart CE et al. Diabet Med 2010;27:348-353",
+    "url": "https://doi.org/10.1111/j.1464-5491.2010.02945.x",
+    "type": "primary"
+  },
+  "perriello1991_dawn": {
+    "cite": "Perriello G et al. Diabetologia 1991 (dawn phenomenon, 24% rise in insulin need)",
+    "url": "https://doi.org/10.1007/BF00404020",
+    "type": "primary"
+  },
+  "dawn_pump_2019": {
+    "cite": "Can J Diabetes 2019 (dawn phenomenon in pump users, median +58%)",
+    "url": "https://doi.org/10.1016/j.jcjd.2019.04.010",
+    "type": "primary"
+  },
+  "t1dexi_activity": {
+    "cite": "T1DEXI, Diabetes Care 2023 (activity 4.3 h/week)",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/36795053/",
+    "type": "primary"
+  },
+  "simglucose_params": {
+    "cite": "simglucose vpatient_params.csv / Quest.csv",
+    "url": "https://github.com/jxx123/simglucose",
+    "type": "review"
+  },
+  "ispad_insulin": {
+    "cite": "ISPAD guidelines on insulin dosing (prepubertal 0.7-1.0, puberty 1.2-2.0 U/kg/day)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4960276/",
+    "type": "review"
+  },
+  "moberg1995_variability": {
+    "cite": "Moberg E et al. 1995 (day-to-day variation of insulin sensitivity in T1D, CV 13%)",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/7758258/",
+    "type": "primary"
+  },
+  "wolpert2013_fat": {
+    "cite": "Wolpert HA et al. Diabetes Care 2013;36:810-816 (high-fat dinner +42% insulin)",
+    "url": "https://diabetesjournals.org/care/article/36/4/810/37916/",
+    "type": "primary"
+  },
+  "smart2013_fatprotein": {
+    "cite": "Smart CE et al. Diabetes Care 2013;36:3897-3902 (fat and protein additive late rise)",
+    "url": "https://doi.org/10.2337/dc13-1195",
+    "type": "primary"
+  },
+  "riddell2017_exercise": {
+    "cite": "Riddell MC et al. Lancet Diabetes Endocrinol 2017;5:377-390 (exercise consensus)",
+    "url": "https://doi.org/10.1016/S2213-8587(17)30014-1",
+    "type": "review"
+  },
+  "turner2001_alcohol": {
+    "cite": "Turner BC et al. Diabetes Care 2001;24:1888-1893 (evening alcohol, next-morning hypoglycaemia)",
+    "url": "https://www.researchgate.net/publication/11674337",
+    "type": "primary"
+  },
+  "ispad2022_sickdays": {
+    "cite": "ISPAD 2022 sick-day guidelines",
+    "url": "https://www.digibete.org/wp-content/uploads/2023/05/ISPAD-Ch_13_SDR.pdf",
+    "type": "review"
+  },
+  "herranz2016_menstrual": {
+    "cite": "Herranz L et al. Med Clin 2016 (luteal glucose rise in 65%)",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26897501/",
+    "type": "primary"
+  },
+  "menstrual_aid_2026": {
+    "cite": "Diabetes Care 2026: TDD -4.1% follicular to +4.1% midluteal in AID users",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13493352/",
+    "type": "primary"
+  },
+  "donga2010_sleep": {
+    "cite": "Donga E et al. Diabetes Care 2010 (one night of partial sleep loss, ~14-21% lower insulin sensitivity in T1D)",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20357381/",
+    "type": "primary"
+  },
+  "famulla2016_lipo": {
+    "cite": "Famulla S et al. Diabetes Care 2016;39:1486-1492 (lipohypertrophy reduces insulin absorption)",
+    "url": "https://diabetesjournals.org/care/article/39/9/1486/37027/",
+    "type": "primary"
+  },
+  "ahola2019_meals": {
+    "cite": "Ahola AJ et al. Sci Rep 2019 (eating occasions in adults with T1D)",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6934661/",
+    "type": "primary"
+  },
+  "aaps_temptargets": {
+    "cite": "AndroidAPS docs: Temp targets",
+    "url": "https://androidaps.readthedocs.io/en/latest/DailyLifeWithAaps/TempTargets.html",
+    "type": "label"
+  },
+  "aaps_screens": {
+    "cite": "AndroidAPS docs: AAPS screens (disconnect pump, suspend loop)",
+    "url": "https://androidaps.readthedocs.io/en/latest/DailyLifeWithAaps/AapsScreens.html",
+    "type": "label"
+  },
+  "aaps_combo_v2": {
+    "cite": "AndroidAPS docs: Accu-Chek Combo (v2 driver)",
+    "url": "https://androidaps.readthedocs.io/en/latest/CompatiblePumps/Accu-Chek-Combo-Pump-v2.html",
+    "type": "label"
+  },
+  "aaps_insight": {
+    "cite": "AndroidAPS docs: Accu-Chek Insight",
+    "url": "https://androidaps.readthedocs.io/en/latest/CompatiblePumps/Accu-Chek-Insight-Pump.html",
+    "type": "label"
+  },
+  "fda_icgm_special_controls": {
+    "cite": "21 CFR 862.1355 Integrated continuous glucose monitoring system (iCGM): special controls (accuracy across the wear period)",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-862/subpart-B/section-862.1355",
+    "type": "label"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "format": "sweet-sim.scenario-pipeline/v1",
+  "name": "custom-delayed-meal",
+  "scenarios": [{
+    "id": "delayed-small-lunch",
+    "title": "自定义：午餐推迟且摄入减少",
+    "family": "A",
+    "base_preset": "A01",
+    "evidence": ["R01", "CUSTOM_UNVALIDATED"],
+    "partial_rules": [{"category": "meal", "ids": ["custom-lunch"]}],
+    "overrides": {
+      "scenario": {"extra_events": [
+        {"id": "custom-lunch", "type": "meal", "at_minute": 90, "grams": 25, "announced_grams": 25, "absorption_minutes": 90},
+        {"id": "custom-dinner", "type": "meal", "at_minute": 420, "grams": 55, "announced_grams": 55, "absorption_minutes": 90},
+        {"id": "custom-breakfast", "type": "meal", "at_minute": 1200, "grams": 40, "announced_grams": 40, "absorption_minutes": 60}
+      ]}
+    }
+  }],
+  "patients": [
+    {"id": "male-reference", "patient": {"sex": "male", "age_years": 39, "height_cm": 170, "weight_kg": 66}},
+    {"id": "female-type", "person": "adult_female", "patient": {"sex": "female", "age_years": 39, "height_cm": 165, "weight_kg": 60}}
+  ],
+  "hardware": [{"id": "dana-guardian", "therapy": {"mode": "pump", "pump": {"model": "dana_i", "insulin": "aspart"}}, "sensors": {"cgm": "medtronic_guardian_3", "meter": "contour_next_one"}}],
+  "factors": [{"id": "default", "overrides": {}}],
+  "world_seeds": [20261017],
+  "background_seeds": [null],
+  "information": ["I0", "I1", "I2"],
+  "hours": 24,
+  "on_incompatible": "error"
+}

@@ -1,0 +1,118 @@
+{
+  "opus55": {
+    "harness": "code",
+    "config": {
+      "max_tokens": 16384,
+      "strict_tools": true,
+      "strict_tool_names": [
+        "act",
+        "read_glucose_history"
+      ],
+      "tool_contract_repair": true,
+      "tool_choice": "auto",
+      "disable_parallel_tool_use": true,
+      "thinking": {
+        "type": "adaptive",
+        "block_binding": {
+          "prefix_mismatch_behavior": "drop_block"
+        }
+      },
+      "reasoning_effort": "high",
+      "timeout_ms": 300000,
+      "model": "claude-opus-5-5"
+    }
+  },
+  "gpt61": {
+    "harness": "codex",
+    "config": {
+      "max_tokens": 16384,
+      "strict_tools": true,
+      "strict_tool_names": [
+        "act",
+        "read_glucose_history"
+      ],
+      "tool_contract_repair": true,
+      "tool_choice": "auto",
+      "disable_parallel_tool_use": true,
+      "thinking": {
+        "type": "adaptive",
+        "block_binding": {
+          "prefix_mismatch_behavior": "drop_block"
+        }
+      },
+      "reasoning_effort": "high",
+      "timeout_ms": 300000,
+      "model": "gpt-6.1-sol",
+      "adapter": "codex"
+    }
+  },
+  "deepseek41": {
+    "harness": "code",
+    "config": {
+      "max_tokens": 16384,
+      "strict_tools": true,
+      "strict_tool_names": [
+        "act",
+        "read_glucose_history"
+      ],
+      "tool_contract_repair": true,
+      "tool_choice": "auto",
+      "disable_parallel_tool_use": true,
+      "thinking": {
+        "type": "adaptive",
+        "block_binding": {
+          "prefix_mismatch_behavior": "drop_block"
+        }
+      },
+      "reasoning_effort": "high",
+      "timeout_ms": 300000,
+      "model": "deepseek-v4.1-flash-1017"
+    }
+  },
+  "kimi31": {
+    "harness": "code",
+    "config": {
+      "max_tokens": 16384,
+      "strict_tools": true,
+      "strict_tool_names": [
+        "act",
+        "read_glucose_history"
+      ],
+      "tool_contract_repair": true,
+      "tool_choice": "auto",
+      "disable_parallel_tool_use": true,
+      "thinking": {
+        "type": "adaptive",
+        "block_binding": {
+          "prefix_mismatch_behavior": "drop_block"
+        }
+      },
+      "reasoning_effort": "high",
+      "timeout_ms": 300000,
+      "model": "kimi-k3.1-pro"
+    }
+  },
+  "glm53flash": {
+    "harness": "code",
+    "config": {
+      "max_tokens": 16384,
+      "strict_tools": true,
+      "strict_tool_names": [
+        "act",
+        "read_glucose_history"
+      ],
+      "tool_contract_repair": true,
+      "tool_choice": "auto",
+      "disable_parallel_tool_use": true,
+      "thinking": {
+        "type": "adaptive",
+        "block_binding": {
+          "prefix_mismatch_behavior": "drop_block"
+        }
+      },
+      "reasoning_effort": "high",
+      "timeout_ms": 300000,
+      "model": "glm-5.3-flash"
+    }
+  }
+}

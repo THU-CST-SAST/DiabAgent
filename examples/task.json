@@ -1,0 +1,16 @@
+{
+  "id": "custom-dana-delayed-meal",
+  "seed": 20261020,
+  "start_time": "2026-10-20T00:00:00.000Z",
+  "horizon_minutes": 4320,
+  "person": {"type": "adult_male", "sample": false},
+  "therapy": {"mode": "pump", "pump": {"model": "dana_i", "insulin": "aspart"}},
+  "sensors": {"cgm": "dexcom_g6", "meter": "contour_next_one"},
+  "controller": {"enabled": false, "mode": "open"},
+  "self_care": "none",
+  "events": ["baseline", "high_fat_meals"],
+  "overrides": {
+    "information": {"mode": "I2", "policy": "record-derived-v3", "own_records": true},
+    "scenario": {"extra_events": [{"id": "delayed-lunch", "type": "meal", "at_minute": 400, "grams": 35, "announced_grams": 35, "absorption_minutes": 120}]}
+  }
+}

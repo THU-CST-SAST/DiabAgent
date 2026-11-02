@@ -1,0 +1,14 @@
+{
+  "version": "v4.2",
+  "created": "2026-10-18T17:47:02.601Z",
+  "files": [
+    {
+      "file": "scenario-v42-day-cards-20261019.json",
+      "sha256": "0eb31d239dafd79c7c7d81ac0f07afdb62fa05989cc8179c2c26212013fd5faf"
+    },
+    {
+      "file": "DESIGN.zh-CN.md",
+      "sha256": "d236743381839f4b0b407106922fab2a39b635e44b3b3f04fec9fdf979de5500"
+    }
+  ]
+}

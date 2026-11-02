@@ -1,0 +1,20 @@
+{
+  "name": "sweet-sim",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Synthetic diabetes benchmark simulator, task construction, native CLI harnesses and baselines",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "test": "node --test --test-concurrency=4 'test/*.test.js' 'test/*.test.mjs'"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "lodash": "^4.17.21",
+    "ws": "^8.22.0",
+    "zod": "^4.1.0"
+  },
+  "license": "MIT"
+}
